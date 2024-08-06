@@ -2,7 +2,7 @@
 name: "[User Story Title]"
 about: Custom template for project user stories
 title: ''
-labels: ''
+labels: user story
 assignees: ''
 
 ---
@@ -19,5 +19,8 @@ As a [role], I want to [specific goal] so that [reason/benefit].
 - [Task 2]
 - [Task 3]
 
-### Related Epic:
-[Link to Parent Epic]
+### Linked Issues:
+- Epic
+- User Story
+- Bug
+- Documentation
