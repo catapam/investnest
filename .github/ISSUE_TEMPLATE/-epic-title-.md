@@ -10,14 +10,14 @@ assignees: ''
 As a [role], I want to [high-level goal] so that [reason/benefit].
 
 ### Acceptance Criteria:
-- [Criteria 1]
-- [Criteria 2]
-- [Criteria 3]
+- [ ] [Criteria 1]
+- [ ] [Criteria 2]
+- [ ] [Criteria 3]
 
 ###User Stories:
-- [Link to User Story 1]
-- [Link to User Story 2]
-- [Link to User Story 3]
+- [NAME](https://github.com/catapam/investnest/issues/N)
+- [NAME](https://github.com/catapam/investnest/issues/N)
+- [NAME](https://github.com/catapam/investnest/issues/N)
 
 ### Additional Information:
 [Any additional information or context]
