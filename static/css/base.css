@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+:root{
+    /* Default dark mode styling */
+    --bg-light: #333333; /* Background color for light elements */
+    --bg-dark: #1a1a1a; /* Background color for main sections */
+    --bg-darker: #0D0D0D; /* Background color for the darkest elements (e.g., navbar) */
+    --text-primary-color: #FFFFFF; /* Primary text color (white) */
+    --text-secondary-color: #CCCCCC; /* Secondary text color (light gray) */
+    --light-accent: #2ECC71; /* Light accent color (green), used for buttons and highlights */
+    --dark-accent: #28a745; /* Darker accent color, used on button hover states */
+    --border: 1px solid #555555; /* Border color for elements like cards */
+
+    /* Font families */
+    --font-primary: 'Roboto', Arial, sans-serif; /* Primary font family for body text */
+    --font-heading: 'Merriweather', Georgia, serif; /* Font family for headings */
+}
+
+/* General styling */
+html, body {
+    height: 100%; /* Ensure that the html and body take up the full height of the viewport */
+}
+
+/* Custom theme Adjustments */
+body {
+    background-color: var(--bg-dark); /* Set the main background color */
+    color: var(--text-primary-color); /* Set the primary text color */
+    display: flex; /* Enable flexbox layout on the body */
+    flex-direction: column; /* Arrange body content in a column */
+    font-family: var(--font-primary); /* Use the primary font family for the body text */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading); /* Use the heading font for all heading elements */
+}
+
+.bg-body-tertiary {
+    background-color: var(--bg-dark);
+    --bs-bg-opacity: 0.2;
+}
+
+main {
+    flex: 1 0 auto; /* Allow the main content area to grow and shrink as needed, taking up available space */
+    background-color: var(--bg-darker); /* Set a darker background color for the main content area */
+}
+
+.navbar {
+    background-color: var(--bg-darker); /* Darker background color for the navbar */
+}
+
+.navbar-brand img {
+    max-height: 40px; /* Adjust the size of the logo in the navbar */
+}
+
+.nav-link {
+    color: var(--text-primary-color); /* Set the link color in the navbar */
+}
+
+.nav-link:hover {
+    color: var(--light-accent); /* Change link color on hover to the light accent color */
+}
+
+.card {
+    background-color: var(--bg-light); /* Background color for card elements */
+    border: var(--border); /* Border color for card elements */
+}
+
+.btn-primary {
+    background-color: var(--light-accent); /* Background color for primary buttons */
+    border-color: var(--light-accent); /* Border color for primary buttons */
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-accent); /* Change button background on hover */
+    border-color: var(--dark-accent); /* Change button border on hover */
+}
+
+.text-secondary {
+    color: var(--text-secondary-color); /* Secondary text color */
+}
+
+/* Footer */
+footer{
+    background-color: var(--bg-dark);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+footer a{
+    margin: 4px;
+    color: var(--text-secondary-color);
+}
