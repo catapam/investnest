@@ -1,0 +1,14 @@
+{% load static %}
+
+<!-- Hero Section -->
+{% with hero=hero_section %}
+<section id="hero"
+    style="background-image: linear-gradient(var(--bg-darker),rgba(0, 0, 0, 0), var(--bg-dark)), url('{{ hero.background_image.url }}'); background-size: cover; background-position: center; color: white;"
+    class="py-5">
+    <div class="container">
+        <h2>{{ hero.title }}</h2>
+        <h6 class="lead">{{ hero.subtitle }}</h6>
+        <a href="{{ hero.button_link }}" class="btn btn-primary">{{ hero.button_text }}</a>
+    </div>
+</section>
+{% endwith %}

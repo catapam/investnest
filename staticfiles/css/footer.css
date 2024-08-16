@@ -1,0 +1,15 @@
+/* Footer */
+footer{
+    background-color: var(--bg-darker);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+footer a{
+    margin: 4px;
+    color: var(--text-secondary-color);
+}

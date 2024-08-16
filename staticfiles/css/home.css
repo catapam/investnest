@@ -1,0 +1,5 @@
+/* Hero image */
+#hero{
+    background-image: linear-gradient(var(--bg-darker),rgba(0, 0, 0, 0), var(--bg-dark)), url('https://placehold.co/1500x1000/333333/0D0D0D'); background-size: cover; background-position: center; color: white;
+    min-height: 300px;
+}

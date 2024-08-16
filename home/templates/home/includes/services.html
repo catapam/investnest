@@ -1,0 +1,38 @@
+{% load static %}
+
+<!-- Services Section -->
+{% with services=services_section %}
+<section id="services" class="py-5">
+    <div class="container">
+        <h1 class="small-heading">{{ services.title }}</h1>
+        <h2>{{ services.subtitle }}</h2>
+        <div class="row text-center mt-4">
+            <div class="col-md-4">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">Investment portfolio management</h3>
+                        <p class="card-text">Effortlessly manage your investment portfolio with our intuitive tools.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">Real-Time market data integration</h3>
+                        <p class="card-text">Stay updated with live market data at your fingertips.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h3 class="card-title">Comprehensive reports and analytics</h3>
+                        <p class="card-text">Gain insights with detailed reports tailored to your investments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endwith %}

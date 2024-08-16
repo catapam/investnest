@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
 <!-- Hero Section -->
-<section id="hero" class="text-center py-5"
-  style="background-image: url('https://via.placeholder.com/1500x500'); background-size: cover; background-position: center; color: white;">
+<section id="hero" class="py-5">
   <div class="container">
-    <h1 class="display-4">InvestNest</h1>
-    <p class="lead">Take control of your investments with InvestNest.</p>
-    <a href="#services" class="btn btn-primary btn-lg">View Services</a>
+    <h2>InvestNest</h2>
+    <h6 class="lead">Take control of your investments with InvestNest.</h6>
+    <a href="#services" class="btn btn-primary">View Services</a>
   </div>
 </section>
 
@@ -16,16 +18,17 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <p>Your investment ally</p>
+        <h1 class="small-heading">Your investment ally</h1>
         <h2>Master your portfolio effortlessly</h2>
         <p>InvestNest empowers you to take control of your investments with ease. Based in Dublin, we provide a
           comprehensive Investing Portfolio Controller that allows you to manage and track a diverse range of assets,
           including stocks, bonds, and mutual funds. Enjoy secure user roles, advanced analytics, and real-time market
           data integration, all tailored to enhance your financial journey. Experience peace of mind with our robust
           security features, ensuring your investments are safe and sound.</p>
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
       </div>
-      <div class="col-lg-6">
-        <img src="https://via.placeholder.com/600x400" alt="About Image" class="img-fluid">
+      <div class="col-lg-6 d-none d-lg-block">
+        <img src="https://placehold.co/600x400/0D0D0D/333333" alt="About Image" class="img-fluid">
       </div>
     </div>
   </div>
@@ -34,8 +37,8 @@
 <!-- Services Section -->
 <section id="services" class="py-5">
   <div class="container">
-    <p>Our core services</p>
-    <h2 class="text-center">Tailored solutions for investors</h2>
+    <h1 class="small-heading">Our core services</h1>
+    <h2>Tailored solutions for investors</h2>
     <div class="row text-center mt-4">
       <div class="col-md-4">
         <div class="card bg-dark text-white">
