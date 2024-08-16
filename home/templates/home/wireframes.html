@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="hero" class="text-center py-5"
+  style="background-image: url('https://via.placeholder.com/1500x500'); background-size: cover; background-position: center; color: white;">
+  <div class="container">
+    <h1 class="display-4">InvestNest</h1>
+    <p class="lead">Take control of your investments with InvestNest.</p>
+    <a href="#services" class="btn btn-primary btn-lg">View Services</a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5 bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <p>Your investment ally</p>
+        <h2>Master your portfolio effortlessly</h2>
+        <p>InvestNest empowers you to take control of your investments with ease. Based in Dublin, we provide a
+          comprehensive Investing Portfolio Controller that allows you to manage and track a diverse range of assets,
+          including stocks, bonds, and mutual funds. Enjoy secure user roles, advanced analytics, and real-time market
+          data integration, all tailored to enhance your financial journey. Experience peace of mind with our robust
+          security features, ensuring your investments are safe and sound.</p>
+      </div>
+      <div class="col-lg-6">
+        <img src="https://via.placeholder.com/600x400" alt="About Image" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-5">
+  <div class="container">
+    <p>Our core services</p>
+    <h2 class="text-center">Tailored solutions for investors</h2>
+    <div class="row text-center mt-4">
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h3 class="card-title">Investment portfolio management</h3>
+            <p class="card-text">Effortlessly manage your investment portfolio with our intuitive tools.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h3 class="card-title">Real-Time market data integration</h3>
+            <p class="card-text">Stay updated with live market data at your fingertips.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h3 class="card-title">Comprehensive reports and analytics</h3>
+            <p class="card-text">Gain insights with detailed reports tailored to your investments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-5 bg-dark text-white">
+  <div class="container">
+    <h2 class="text-center">Pricing</h2>
+    <div class="row text-center mt-4">
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h3 class="card-title">Basic</h3>
+            <p class="card-text">Free for test</p>
+            <ul class="list-unstyled">
+              <li>Portfolio Management</li>
+              <li>Basic Analytics</li>
+              <li>Email Support</li>
+            </ul>
+            <a href="#" class="btn btn-primary">Get Started</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h3 class="card-title">Pro</h3>
+            <p class="card-text">$29.99/month</p>
+            <ul class="list-unstyled">
+              <li>Everything in Basic</li>
+              <li>Real-Time Data</li>
+              <li>Advanced Analytics</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Wait list</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h3 class="card-title">Enterprise</h3>
+            <p class="card-text">Custom Pricing</p>
+            <ul class="list-unstyled">
+              <li>Everything in Pro</li>
+              <li>Dedicated Support</li>
+              <li>Custom Solutions</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+  <div class="container">
+    <h2 class="text-center">Contact Us</h2>
+    <form>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Your Name">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Your Email">
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+      </div>
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

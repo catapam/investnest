@@ -23,6 +23,7 @@ html, body {
 
 /* Custom theme Adjustments */
 body {
+    padding-top: 70px; /* Add padding to the top of the body to prevent content from being hidden behind the fixed navbar */
     background-color: var(--bg-dark); /* Set the main background color */
     color: var(--text-primary-color); /* Set the primary text color */
     display: flex; /* Enable flexbox layout on the body */
@@ -45,7 +46,13 @@ main {
 }
 
 .navbar {
+    z-index: 1000; /* Ensure the navbar stays above other content */
+    position: fixed; /* Fix the navbar at the top */
+    top: 0; /* Position the navbar at the very top of the page */
+    width: 100%; /* Ensure the navbar spans the full width of the page */
     background-color: var(--bg-darker); /* Darker background color for the navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for visual separation */
+    opacity: 1; /* Ensure full opacity */
 }
 
 .navbar-brand img {
