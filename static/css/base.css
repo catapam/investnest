@@ -10,6 +10,7 @@
     --light-accent: #2ECC71; /* Light accent color (green), used for buttons and highlights */
     --dark-accent: #28a745; /* Darker accent color, used on button hover states */
     --border: 1px solid #555555; /* Border color for elements like cards */
+    --red-accent:#ad1e1e;
 
     /* Font families */
     --font-primary: 'Roboto', Arial, sans-serif; /* Primary font family for body text */
@@ -110,4 +111,10 @@ main {
 
 .text-secondary {
     color: var(--text-secondary-color); /* Secondary text color */
+}
+
+.construction-class{
+    color: var(--red-accent);
+    font-size: 1.1rem; /* Adjust the size as needed */
+    font-weight: bold; /* Optional: Keep it bold */
 }

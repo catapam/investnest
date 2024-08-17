@@ -4,50 +4,24 @@
 {% with pricing=pricing_section %}
 <section id="pricing" class="py-5 bg-dark text-white">
     <div class="container">
-        <h2 class="text-center">Pricing</h2>
+        <h2 class="text-center">{{ pricing.title }}</h2>
         <div class="row text-center mt-4">
+            {% for plan in ordered_pricing %}
             <div class="col-md-4">
                 <div class="card bg-dark text-white">
                     <div class="card-body">
-                        <h3 class="card-title">Basic</h3>
-                        <p class="card-text">Free for test</p>
+                        <h3 class="card-title">{{ plan.title }}</h3>
+                        <p class="card-text">{{ plan.price_description }}</p>
                         <ul class="list-unstyled">
-                            <li>Portfolio Management</li>
-                            <li>Basic Analytics</li>
-                            <li>Email Support</li>
+                            {% for feature in plan.get_features_list %}
+                            <li>{{ feature }}</li>
+                            {% endfor %}
                         </ul>
-                        <a href="#" class="btn btn-primary">Get Started</a>
+                        <a href="{{ plan.button_link }}" class="btn btn-primary">{{ plan.button_text }}</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        <h3 class="card-title">Pro</h3>
-                        <p class="card-text">$29.99/month</p>
-                        <ul class="list-unstyled">
-                            <li>Everything in Basic</li>
-                            <li>Real-Time Data</li>
-                            <li>Advanced Analytics</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-primary">Wait list</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        <h3 class="card-title">Enterprise</h3>
-                        <p class="card-text">Custom Pricing</p>
-                        <ul class="list-unstyled">
-                            <li>Everything in Pro</li>
-                            <li>Dedicated Support</li>
-                            <li>Custom Solutions</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-primary">Contact Us</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

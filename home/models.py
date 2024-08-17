@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from django.core.exceptions import ValidationError
 
@@ -38,9 +39,16 @@ class AboutSection(SingletonModel):
         return self.title
 
 class ServiceCard(models.Model):
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('in_construction', 'In construction'),
+        ('live', 'Live'),
+    ]
+    
     title = models.CharField(max_length=50)
-    short_description = models.CharField(max_length=50)
-    long_description = models.CharField(max_length=200)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='draft')
+    short_description = models.CharField(max_length=100)
+    long_description = models.TextField() 
 
     def __str__(self):
         return self.title
@@ -57,6 +65,14 @@ class ServicesSection(SingletonModel):
     def __str__(self):
         return self.title
 
+class ServiceOrder(models.Model):
+    service_section = models.ForeignKey(ServicesSection, on_delete=models.CASCADE)
+    service = models.ForeignKey(ServiceCard, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ['order']
+
 class PricingPlan(models.Model):
     title = models.CharField(max_length=15)
     price_description = models.CharField(max_length=15)
@@ -66,6 +82,10 @@ class PricingPlan(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_features_list(self):
+        # Split the features by either commas or newlines and strip any extra whitespace
+        return [feature.strip() for feature in re.split(r'[,\n]', self.features) if feature.strip()]
 
 class PricingSection(SingletonModel):
     title = models.CharField(max_length=200)
@@ -77,3 +97,11 @@ class PricingSection(SingletonModel):
     
     def __str__(self):
         return self.title
+
+class PricingOrder(models.Model):
+    pricing_section = models.ForeignKey(PricingSection, on_delete=models.CASCADE)
+    pricing = models.ForeignKey(PricingPlan, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ['order']
