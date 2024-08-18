@@ -31,7 +31,7 @@ class AboutSection(SingletonModel):
     title = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(upload_to='about_images/', blank=True)
+    image = models.ImageField(upload_to='static/images/', blank=True)
     button_text = models.CharField(max_length=50)
     button_link = models.CharField(max_length=50, blank=True)
     

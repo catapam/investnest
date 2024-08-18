@@ -3,7 +3,7 @@
 <!-- Hero Section -->
 {% with hero=hero_section %}
 <section id="hero"
-    style="background-image: linear-gradient(var(--bg-darker),rgba(0, 0, 0, 0), var(--bg-dark)), url('{{ hero.background_image.url }}'); background-size: cover; background-position: center; color: white;"
+    style="background-image: linear-gradient(var(--bg-darker),rgba(var(--bg-light-rgb),0.6), var(--bg-dark)), url('{{ hero.background_image.url }}');"
     class="py-5">
     <div class="container">
         <h2>{{ hero.title }}</h2>
