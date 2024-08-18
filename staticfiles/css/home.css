@@ -1,5 +1,62 @@
 /* Hero image */
 #hero{
-    background-image: linear-gradient(var(--bg-darker),rgba(0, 0, 0, 0), var(--bg-dark)), url('https://placehold.co/1500x1000/333333/0D0D0D'); background-size: cover; background-position: center; color: white;
     min-height: 300px;
+}
+
+/* Services section and cards */
+#services .container {
+    min-height: 100%; /* Ensure the container stretches to fit the cards */
+}
+
+#services .row {
+    align-items: stretch; /* Ensure all cards stretch to the same height */
+}
+
+.card-flip {
+    perspective: 1000px;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.flip-card-front {
+    z-index: 2;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.flip-card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.card {
+    height: auto ;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.flip-card-back .card-body .card-text {
+    overflow-y: scroll;
 }

@@ -6,7 +6,8 @@ footer{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 40px;
+    letter-spacing: 6px;
 }
 
 footer a{

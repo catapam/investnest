@@ -20,7 +20,11 @@ A total of 6 epics were designed for the project, with the project delivery focu
 
 ### Epic 1: Project Setup and Initial Configuration
 
+At this Epic, one sprint, the objective is having fully set up Django front-end website, with control of content through the admin dashboard. Content and branding creation as well as functional "end-version" landing page are the main objectives of this Epic. Also included initial preparation and installation of python modules and testing parameters for the front-end website are also set and ran.
+
 #### User Stories
+
+
 
 ### Epic 2: User Authentication and Authorization
 
@@ -122,13 +126,14 @@ Key design principles include:
 
 ## Existing Features
 
+* **Fully functional front-end website**: Users can learn about the product, choose plans, signin, initiad a contact and find social medias.
 * **Portfolio Management**: Allows users to create, update, and delete portfolios and assets, with real-time data updates.
-* **Real-Time Data Integration**: Fetches and displays up-to-date market prices for all assets in a user’s portfolio.
 * **User Authentication and Authorization**: Secure login, registration, and role-based access control.
 * **Reporting and Analytics**: Detailed performance metrics and visualizations to help users track their investments.
 
 ## Future Features
 
+* **Real-Time Data Integration**: Fetches and displays up-to-date market prices for all assets in a user’s portfolio.
 * **Advanced Analytics**: Introduce more advanced analytics, such as risk assessments and forecasting tools.
 * **Automated Alerts**: Implement automated alerts for significant portfolio changes.
 * **Portfolio Sharing**: Allow users to share their portfolios with others securely.
