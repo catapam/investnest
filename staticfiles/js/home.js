@@ -1,6 +1,7 @@
 window.onload = function() {
     var adjustHeightsAndAttachFlip = function() {
         var maxHeight = 0;
+        var minHeight = 220;  // Set the minimum height
         var flipCardFronts = document.querySelectorAll('.flip-card-front');
         var flipCardBacks = document.querySelectorAll('.flip-card-back');
         var flipCardInners = document.querySelectorAll('.flip-card-inner');
@@ -13,7 +14,10 @@ window.onload = function() {
             }
         });
 
-        // Set the height of all flip-card-front and flip-card-back elements to the maximum height
+        // Ensure the height is at least the minimum height
+        maxHeight = Math.max(maxHeight, minHeight);
+
+        // Set the height of all flip-card-front and flip-card-back elements to the maximum or minimum height
         flipCardFronts.forEach(function(card) {
             card.style.height = maxHeight + 'px';
         });
@@ -30,7 +34,7 @@ window.onload = function() {
         // Set the max-height for card-text inside flip-card-back
         var cardTexts = document.querySelectorAll('.flip-card-back .card-body .card-text');
         cardTexts.forEach(function(text) {
-            text.style.maxHeight = (maxHeight - text.closest('.card-body').offsetTop) * 0.5 + 'px';
+            text.style.maxHeight = (maxHeight - text.closest('.card-body').offsetTop) * 0.6 + 'px';
         });
 
         // Attach flip event listeners

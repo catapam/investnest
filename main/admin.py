@@ -58,4 +58,13 @@ admin_site.register(PricingPlan)
 admin_site.register(PricingOrder)
 admin_site.register(PricingSection, SingletonModelAdmin)
 
+# Register other apps by using the default admin site registrations
+# This will make sure allauth and any other installed apps are also included
+from django.apps import apps
 
+for model in apps.get_models():
+    if model._meta.app_label != 'home':
+        try:
+            admin_site.register(model)
+        except admin.sites.AlreadyRegistered:
+            pass
