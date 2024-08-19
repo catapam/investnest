@@ -119,3 +119,8 @@ main {
     font-size: 1.1rem; /* Adjust the size as needed */
     font-weight: bold; /* Optional: Keep it bold */
 }
+
+.active{
+    color: var(--dark-accent) !important;
+    font-weight: 700;
+}

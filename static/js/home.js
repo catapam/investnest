@@ -45,6 +45,85 @@ window.onload = function() {
         });
     };
 
-    // Run the function after the window is fully loaded
+    var activeMenu = function() {
+        var currentPath = window.location.pathname + window.location.hash;
+        
+        // Normalize the path for "Home" cases
+        if (currentPath === '/' || currentPath === '/#' || currentPath === '' || currentPath === '/#hero') {
+            currentPath = '/#';
+        }
+
+        // Select all nav-links
+        var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        
+        navLinks.forEach(link => {
+            // Remove active class from all links
+            link.classList.remove('active');
+            
+            // Check if the href ends with the current path (including fragment)
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    };
+
+    var updateURLOnScroll = function(entries) {
+        // Check if the page is at the top first
+        if (window.scrollY === 0) {
+            history.replaceState(null, null, '/#');
+            activeMenu();
+            return;
+        }
+
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Check if the entry is #hero and the scroll position is close to the top
+                if (entry.target.id === 'hero' && window.scrollY <= 10) {
+                    history.replaceState(null, null, '/#');
+                } else {
+                    history.replaceState(null, null, '#' + entry.target.id);
+                }
+                activeMenu();
+            }
+        });
+    };
+
+    var updateForFooter = function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Force the URL to #contact when the footer is visible
+                history.replaceState(null, null, '#contact');
+                activeMenu();
+            }
+        });
+    };
+
+    // Run the functions after the window is fully loaded
     adjustHeightsAndAttachFlip();
+
+    // Intersection Observer to detect section visibility
+    var observer = new IntersectionObserver(updateURLOnScroll, {
+        rootMargin: '-30% 0px -70% 0px',  // Adjust this value to trigger closer to the top of the viewport
+        threshold: [0, 0.1, 0.9]  // Multiple thresholds to detect entry and exit accurately
+    });
+
+    // Observe each section you want to track
+    document.querySelectorAll('section[id]').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Intersection Observer for the footer
+    var footerObserver = new IntersectionObserver(updateForFooter, {
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 0.1  // Trigger when 10% of the footer is visible
+    });
+
+    // Observe the footer
+    footerObserver.observe(document.querySelector('footer'));
+
+    // Update active menu item when the hash changes
+    window.addEventListener('hashchange', activeMenu);
+
+    // Check and update menu on initial load
+    activeMenu();
 };
