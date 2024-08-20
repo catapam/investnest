@@ -37,17 +37,8 @@
     <main>
         {% block content %}
         {% endblock %}
-        {% if form_submitted %}
-            <div id="success-popup" class="popup success">
-                <span class="popup-text">Your message has been sent successfully!</span>
-                <button class="close-btn" onclick="closePopup('success-popup')">&times;</button>
-            </div>
-        {% elif form_error %}
-            <div id="error-popup" class="popup error">
-                <span class="popup-text">An error occurred while submitting the form. Please contact by email: support@investnest.com</span>
-                <button class="close-btn" onclick="closePopup('error-popup')">&times;</button>
-            </div>
-        {% endif %}
+
+        {% include 'includes/popup.html' %}
     </main>
 
     {% include 'includes/footer.html' %}

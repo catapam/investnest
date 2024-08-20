@@ -1,4 +1,5 @@
-window.onload = function () {
+// If this code is running inside an existing onload handler, wrap it in a function
+function initHomePageScripts() {
     var adjustHeightsAndAttachFlip = function () {
         var maxHeight = 0;
         var minHeight = 220;  // Set the minimum height
@@ -45,28 +46,6 @@ window.onload = function () {
         });
     };
 
-    var activeMenu = function () {
-        var currentPath = window.location.pathname + window.location.hash;
-
-        // Normalize the path for "Home" cases
-        if (currentPath === '/' || currentPath === '/#' || currentPath === '' || currentPath === '/#hero') {
-            currentPath = '/#';
-        }
-
-        // Select all nav-links
-        var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
-        navLinks.forEach(link => {
-            // Remove active class from all links
-            link.classList.remove('active');
-
-            // Check if the href ends with the current path (including fragment)
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            }
-        });
-    };
-
     var updateURLOnScroll = function (entries) {
         // Check if the page is at the top first
         if (window.scrollY === 0) {
@@ -89,74 +68,22 @@ window.onload = function () {
     };
 
     var updateForFooter = function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Force the URL to #contact when the footer is visible
-                history.replaceState(null, null, '#contact');
-                activeMenu();
-            }
-        });
-    };
+        var currentPath = window.location.pathname;
 
-    var showSuccessPopup = function () {
-        var popup = document.getElementById('success-popup');
-        if (popup) {
-            
-            // Ensure the page stays at the top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.replaceState(null, null, '/#');
-            activeMenu();
-    
-            // Show the popup
-            popup.classList.add('show');
-    
-            // Hide the popup after 5 seconds
-            setTimeout(function () {
-                closePopup(popup);
-            }, 5000);
-    
-            // Add event listener for close button
-            popup.querySelector('.close-btn').addEventListener('click', function () {
-                closePopup(popup);
+        // Only update if the current path is home "/"
+        if (currentPath === '/' || currentPath === '/#') {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Force the URL to #contact when the footer is visible
+                    history.replaceState(null, null, '#contact');
+                    activeMenu();
+                }
             });
         }
     };
-    
-    var showErrorPopup = function () {
-        var errorPopup = document.getElementById('error-popup');
-        if (errorPopup) {
-            
-            // Ensure the page stays at the top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.replaceState(null, null, '/#');
-            activeMenu();
-    
-            // Show the popup
-            errorPopup.classList.add('show');
-    
-            // Hide the popup after 5 seconds
-            setTimeout(function () {
-                closePopup(errorPopup);
-            }, 5000);
-    
-            // Add event listener for close button
-            errorPopup.querySelector('.close-btn').addEventListener('click', function () {
-                closePopup(errorPopup);
-            });
-        }
-    };
-    
-    var closePopup = function (popup) {
-        popup.classList.remove('show');
-        activeMenu();
-    };
-    
 
     // Run the functions after the window is fully loaded
     adjustHeightsAndAttachFlip();
-    activeMenu();
-    showSuccessPopup();
-    showErrorPopup(); // Call this if there's an error
 
     // Intersection Observer to detect section visibility
     var observer = new IntersectionObserver(updateURLOnScroll, {
@@ -177,10 +104,7 @@ window.onload = function () {
 
     // Observe the footer
     footerObserver.observe(document.querySelector('footer'));
+}
 
-    // Update active menu item when the hash changes
-    window.addEventListener('hashchange', activeMenu);
-
-    // Check and update menu on initial load
-    activeMenu();
-};
+// Execute the function directly (without overwriting window.onload)
+initHomePageScripts();

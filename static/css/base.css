@@ -13,7 +13,8 @@
     --border: 1px solid #555555; /* Border color for elements like cards */
     --red-accent:rgb(173, 30, 30);
     --red-accent-rgb:173, 30, 30;
-    --light-accent-rgb: 46, 204, 113;
+    --bs-link-color-rgb: 46, 204, 113;
+    --bs-link-hover-color:#28a745;
 
     /* Font families */
     --font-primary: 'Roboto', Arial, sans-serif; /* Primary font family for body text */
@@ -129,7 +130,7 @@ main {
 
 /* Custom success message color */
 .alert-success {
-    background-color: rgba(var(--light-accent-rgb), 0.3); /* Green shade */
+    background-color: rgba(var(--bs-link-color-rgb), 0.3); /* Green shade */
     color: var(--text-primary-color); /* Text color */
     border-color: var(--light-accent); /* Border color */
 }
@@ -184,3 +185,4 @@ main {
     flex-grow: 1;
     text-align: left;
 }
+

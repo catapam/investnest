@@ -6,12 +6,12 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/auth.css' %}">
     <div class="container text-center">
-        {% element h1 %}
+        {% element h2 %}
             {% trans "Sign Out" %}
         {% endelement %}
-        {% element p %}
-            {% trans 'Are you sure you want to sign out?' %}
-        {% endelement %}
+        <p class="small">
+            Are you sure you want to sign out?
+        </p>
         {% url 'account_logout' as action_url %}
         {% element form method="post" action=action_url no_visible_fields=True %}
             {% slot body %}

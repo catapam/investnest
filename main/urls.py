@@ -22,5 +22,6 @@ from .admin import admin_site
 urlpatterns = [
     path("admin/", admin_site.urls),
     path('', include('home.urls')),
+    path('dashboard/', include('portfolio.urls')),
     path('accounts/', include('allauth.urls')),
 ]

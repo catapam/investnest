@@ -6,8 +6,8 @@
 {% endblock title %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-    <div class="container text-center">
-        {% element h1 %}
+    <div class="container text-center mt-auto">
+        {% element h2 %}
             {% trans "Sign In" %}
         {% endelement %}
         {% if not SOCIALACCOUNT_ONLY %}
@@ -17,9 +17,7 @@
                 {% setvar end_link %}
                 </a>
             {% endsetvar %}
-            {% element p %}
-                {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
-            {% endelement %}
+            <p class="small">If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.</p>
             {% url 'account_login' as login_url %}
             {% element form form=form method="post" action=login_url tags="entrance,login" class="form p-2" %}
                 {% slot body %}
