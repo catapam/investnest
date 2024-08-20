@@ -1,29 +1,34 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth %}
-{% load i18n %}
-{% block head_title %}
+{% extends "base.html" %}
+{% load i18n allauth account crispy_forms_tags static %}
+
+{% block title %}
     {% trans "Confirm Access" %}
-{% endblock head_title %}
+{% endblock title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Confirm Access" %}
-    {% endelement %}
-    {% element p %}
-        {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
-    {% endelement %}
-    {% block reauthenticate_content %}{% endblock %}
-    {% if reauthentication_alternatives %}
-        {% element hr %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<div class="container">
+    <div class="card text-center">
+        {% element h1 %}
+            {% trans "Confirm Access" %}
         {% endelement %}
-        {% element h2 %}
-            {% translate "Alternative options" %}
+        {% element p %}
+            {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
         {% endelement %}
-        {% element button_group %}
-            {% for alt in reauthentication_alternatives %}
-                {% element button href=alt.url tags="primary,outline" %}
-                    {{ alt.description }}
-                {% endelement %}
-            {% endfor %}
-        {% endelement %}
-    {% endif %}
+        {% block reauthenticate_content %}{% endblock %}
+        {% if reauthentication_alternatives %}
+            {% element hr %}
+            {% endelement %}
+            {% element h2 %}
+                {% translate "Alternative options" %}
+            {% endelement %}
+            {% element button_group %}
+                {% for alt in reauthentication_alternatives %}
+                    <button type="submit"  tags="prominent,outline" class="btn btn-primary w-50 mb-2" href=alt.url>
+                        {{ alt.description }}
+                    </button>
+                {% endfor %}
+            {% endelement %}
+        {% endif %}
+    </div>
+</div>
 {% endblock content %}

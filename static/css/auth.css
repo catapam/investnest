@@ -1,10 +1,28 @@
 /* forms */
 .container{
-    max-width: 450px;
-    margin-top: auto; 
-    margin-bottom: auto; 
+    display: flex;
+    align-items: center; /* Vertically centers the card */
+    justify-content: center; /* Horizontally centers the card */
+    height: 100%; /* Ensures the container takes the full height of the viewport */
 }
 
 #id_password1_helptext{
     font-size: .675em;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-size: medium;
+}
+
+p{
+    font-size: small;
+}
+
+.card {
+    max-width: 450px; 
+    padding: 20px; 
+}
+
+#divison_x{
+    margin-top: 30px;
 }

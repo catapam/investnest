@@ -1,6 +1,4 @@
 window.onload = function () {
-
-
     var showPopup = function (popupId) {
         var popup = document.getElementById(popupId);
         if (popup) {

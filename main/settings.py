@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'main',
     'home',
     'portfolio',
+    'dashboard',
 ]
 
 SITE_ID = 1
@@ -171,7 +172,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_MIN_LENGHT= 6
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = "/dashboard/"
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
