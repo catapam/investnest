@@ -84,3 +84,8 @@
     overflow-y: scroll;
 }
 
+/* Contact */
+
+#contact .container{
+    max-width: 600px;
+}

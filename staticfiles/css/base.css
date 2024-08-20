@@ -8,10 +8,13 @@
     --bg-darker: #0D0D0D; /* Background color for the darkest elements (e.g., navbar) */
     --text-primary-color: #FFFFFF; /* Primary text color (white) */
     --text-secondary-color: #b1b1b1; /* Secondary text color (light gray) */
-    --light-accent: #2ECC71; /* Light accent color (green), used for buttons and highlights */
+    --light-accent: rgb(46, 204, 113); /* Light accent color (green), used for buttons and highlights */
     --dark-accent: #28a745; /* Darker accent color, used on button hover states */
     --border: 1px solid #555555; /* Border color for elements like cards */
-    --red-accent:#ad1e1e;
+    --red-accent:rgb(173, 30, 30);
+    --red-accent-rgb:173, 30, 30;
+    --bs-link-color-rgb: 46, 204, 113;
+    --bs-link-hover-color:#28a745;
 
     /* Font families */
     --font-primary: 'Roboto', Arial, sans-serif; /* Primary font family for body text */
@@ -124,3 +127,63 @@ main {
     color: var(--dark-accent) !important;
     font-weight: 700;
 }
+
+/* Custom success message color */
+.alert-success {
+    background-color: rgba(var(--bs-link-color-rgb), 0.3); /* Green shade */
+    color: var(--text-primary-color); /* Text color */
+    border-color: var(--light-accent); /* Border color */
+}
+
+/* Custom error message color */
+.alert-danger {
+    background-color: rgba(var(--red-accent-rgb), 0.3); /* Red shade */
+    color: var(--text-primary-color); /* Text color */
+    border-color: var(--red-accent); /* Border color */
+}
+
+/*  pop-ups */
+
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 60px;
+    transform: translateX(-50%);
+    color: var(--text-primary-color);
+    text-align: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    max-width: 400px;
+    width: 80%;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible !important;
+}
+
+.popup.success {
+    background-color: var(--light-accent);
+}
+
+.popup.error {
+    background-color: var(--red-accent);
+}
+
+.popup .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary-color);
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 15px;
+    align-self: center; /* Ensure the close button is vertically centered */
+}
+
+.popup .popup-text {
+    flex-grow: 1;
+    text-align: left;
+}
+

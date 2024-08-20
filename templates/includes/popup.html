@@ -1,13 +1,9 @@
 
-{% if form_submitted %}
-<div id="success-popup" class="popup success">
-    <span class="popup-text">Your message has been sent successfully!</span>
-    <button class="close-btn" onclick="closePopup('success-popup')">&times;</button>
-</div>
-{% elif form_error %}
-<div id="error-popup" class="popup error">
-    <span class="popup-text">An error occurred while submitting the form. Please contact by email:
-        support@investnest.com</span>
-    <button class="close-btn" onclick="closePopup('error-popup')">&times;</button>
-</div>
+{% if messages %}
+    {% for message in messages %}
+        <div id="popup" class="popup {{ message.tags }}">
+            <span class="popup-text">{{ message }}</span>
+            <button class="close-btn" onclick="closePopup('popup')">&times;</button>
+        </div>
+    {% endfor %}
 {% endif %}

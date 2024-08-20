@@ -31,7 +31,7 @@ class Index(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # Handle the form submission
-        contact_form = ContactForm(request.POST)
+        contact_form = ContactForm(request.POST, request=request)
         if contact_form.is_valid():
             contact_form.save()
             return redirect(f'{self.request.path}?submitted=True')  # Redirect to avoid re-submission and show the popup

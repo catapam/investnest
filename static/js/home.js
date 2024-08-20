@@ -1,5 +1,28 @@
 // If this code is running inside an existing onload handler, wrap it in a function
 function initHomePageScripts() {
+
+    var activeMenu = function () {
+        var currentPath = window.location.pathname + window.location.hash;
+
+        // Normalize the path for "Home" cases
+        if (currentPath === '/' || currentPath === '/#' || currentPath === '' || currentPath === '/#hero') {
+            currentPath = '/#';
+        }
+
+        // Select all nav-links
+        var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        navLinks.forEach(link => {
+            // Remove active class from all links
+            link.classList.remove('active');
+
+            // Check if the href ends with the current path (including fragment)
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    };
+
     var adjustHeightsAndAttachFlip = function () {
         var maxHeight = 0;
         var minHeight = 220;  // Set the minimum height

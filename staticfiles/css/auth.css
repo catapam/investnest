@@ -1,3 +1,10 @@
+/* forms */
 .container{
     max-width: 450px;
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+#id_password1_helptext{
+    font-size: .675em;
 }
