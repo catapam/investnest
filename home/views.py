@@ -24,6 +24,9 @@ class Index(TemplateView):
         # Include the contact form
         context['contact_form'] = ContactForm()
 
+        # Check for success flag
+        context['form_submitted'] = self.request.GET.get('submitted', False)
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -31,13 +34,13 @@ class Index(TemplateView):
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
             contact_form.save()
-            return redirect('home')  # Redirect to avoid re-submission
+            return redirect(f'{self.request.path}?submitted=True')  # Redirect to avoid re-submission and show the popup
         else:
             # Re-render the page with the form and errors
             context = self.get_context_data()
             context['contact_form'] = contact_form
+            context['form_error'] = True  # Indicate that there was an error with the form submission
             return self.render_to_response(context)
-
 
 class Wireframes(TemplateView):
     template_name= 'home/wireframes.html'
