@@ -1,6 +1,6 @@
 from django.contrib.admin import AdminSite
 from django.contrib import admin
-from home.models import HeroSection, AboutSection, ServiceCard, ServicesSection, PricingPlan, PricingSection, ServiceOrder, PricingOrder
+from home.models import HeroSection, AboutSection, ServiceCard, ServicesSection, PricingPlan, PricingSection, ServiceOrder, PricingOrder, Contact
 
 class MyAdminSite(AdminSite):
     site_header = 'InvestNest Admin'
@@ -18,7 +18,8 @@ class MyAdminSite(AdminSite):
             'Services sections', 
             'Pricing plans', 
             'Pricing orders',
-            'Pricing sections'
+            'Pricing sections',
+            'Contact'
         ]
         for app in app_dict.values():
             app['models'].sort(
@@ -57,6 +58,7 @@ admin_site.register(ServicesSection, SingletonModelAdmin)
 admin_site.register(PricingPlan)
 admin_site.register(PricingOrder)
 admin_site.register(PricingSection, SingletonModelAdmin)
+admin_site.register(Contact)
 
 # Register other apps by using the default admin site registrations
 # This will make sure allauth and any other installed apps are also included

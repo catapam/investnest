@@ -223,6 +223,8 @@ Key design principles include:
 * **Django**: The main web framework used for building the application.
 * **PostgreSQL**: The relational database used to store user and portfolio data.
 * **Bootstrap**: For responsive design and styling.
+* **AllAuth**: For user authentication
+* **Crispy Forms**: For all forms
 * **Chart.js**: For data visualizations in the performance dashboard.
 * **Heroku**: For application deployment.
 * **Git**: For version control.
