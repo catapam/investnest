@@ -14,7 +14,12 @@ h1,h2,h3,h4,h5,h6{
     font-size: medium;
 }
 
-p{
+h1{
+    color: var(--light-accent);
+    padding-bottom: 20px;
+}
+
+p,a{
     font-size: small;
 }
 
@@ -25,4 +30,14 @@ p{
 
 #divison_x{
     margin-top: 30px;
+}
+
+.form-check .form-check-input {
+    float: none;
+    margin-right: 10px;
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-link-hover-color);
+    border-color: var(--bs-link-hover-color);
 }

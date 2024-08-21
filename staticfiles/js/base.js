@@ -1,6 +1,4 @@
 window.onload = function () {
-
-
     var showPopup = function (popupId) {
         var popup = document.getElementById(popupId);
         if (popup) {
@@ -13,7 +11,7 @@ window.onload = function () {
             // Hide the popup after 5 seconds
             setTimeout(function () {
                 closePopup(popup);
-            }, 3000);
+            }, 20000);
     
             // Add event listener for close button
             popup.querySelector('.close-btn').addEventListener('click', function () {
@@ -27,8 +25,10 @@ window.onload = function () {
     };
     
     // Show the success or error popup based on the condition
-    showPopup('success-popup'); // Call this if there's a success
-    showPopup('error-popup'); // Call this if there's an error
+    ['success-popup', 'error-popup', 'info-popup', 'warning-popup', 'custom-popup'].forEach(function (popupId) {
+        showPopup(popupId);
+    });
+
     var popup = document.getElementById('popup');
     if (popup) {
         showPopup('popup');

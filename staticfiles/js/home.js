@@ -1,28 +1,26 @@
-// If this code is running inside an existing onload handler, wrap it in a function
-function initHomePageScripts() {
+function activeMenu() {
+    var currentPath = window.location.pathname + window.location.hash;
 
-    var activeMenu = function () {
-        var currentPath = window.location.pathname + window.location.hash;
+    // Normalize the path for "Home" cases
+    if (currentPath === '/' || currentPath === '/#' || currentPath === '' || currentPath === '/#hero') {
+        currentPath = '/#';
+    }
 
-        // Normalize the path for "Home" cases
-        if (currentPath === '/' || currentPath === '/#' || currentPath === '' || currentPath === '/#hero') {
-            currentPath = '/#';
+    // Select all nav-links
+    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+        // Remove active class from all links
+        link.classList.remove('active');
+
+        // Check if the href ends with the current path (including fragment)
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
         }
+    });
+};
 
-        // Select all nav-links
-        var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
-        navLinks.forEach(link => {
-            // Remove active class from all links
-            link.classList.remove('active');
-
-            // Check if the href ends with the current path (including fragment)
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            }
-        });
-    };
-
+function initHomePageScripts() {
     var adjustHeightsAndAttachFlip = function () {
         var maxHeight = 0;
         var minHeight = 220;  // Set the minimum height
@@ -105,6 +103,18 @@ function initHomePageScripts() {
         }
     };
 
+    var collapseMobileMenu = function () {
+        var navbarToggler = document.querySelector('.navbar-toggler');
+        var navbarCollapse = document.querySelector('.navbar-collapse');
+
+        if (navbarCollapse.classList.contains('show')) {
+            console.log('Collapsing mobile menu');
+            navbarToggler.click();
+        } else {
+            console.log('Mobile menu already collapsed');
+        }
+    };
+
     // Run the functions after the window is fully loaded
     adjustHeightsAndAttachFlip();
 
@@ -127,6 +137,19 @@ function initHomePageScripts() {
 
     // Observe the footer
     footerObserver.observe(document.querySelector('footer'));
+
+    // Update active menu item when the hash changes
+    window.addEventListener('hashchange', activeMenu);
+
+    // Attach event listener to nav links to collapse the mobile menu on click
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.addEventListener('click', function () {
+            collapseMobileMenu();
+        });
+    });
+
+    // Check and update menu on initial load
+    activeMenu();
 }
 
 // Execute the function directly (without overwriting window.onload)

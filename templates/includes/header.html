@@ -20,23 +20,15 @@
             <a class="nav-link" aria-current="page" href="/#">Home</a>
           </li>
           {% if request.user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="/dashboard/">Dashboard</a>
-            </li>
-            {% if request.user.is_staff or request.user.is_superuser %}
-              <li class="nav-item">
-                <a class="nav-link {% if url_name == 'contacts' %}active{% endif %}" href="/contacts/">Contacts</a>
-              </li>
-            {% endif %}
-            {% if request.user.is_superuser %}
-              <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'admin:index' %}active{% endif %}" href="/admin/" target="_blank">Admin</a>
-              </li>
-            {% endif %}
-              <li class="nav-item">
-                <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}"
-                  href="/accounts/logout/">Logout</a>
-              </li>
+          <li class="nav-item">
+            <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="/dashboard/">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link logout-main-menu" href="/accounts/logout/">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span class="menu-text">Logout</span>
+            </a>
+          </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/#about">About</a>

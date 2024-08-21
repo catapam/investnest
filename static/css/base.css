@@ -10,7 +10,7 @@
     --text-secondary-color: #b1b1b1; /* Secondary text color (light gray) */
     --light-accent: rgb(46, 204, 113); /* Light accent color (green), used for buttons and highlights */
     --dark-accent: #28a745; /* Darker accent color, used on button hover states */
-    --border: 1px solid #555555; /* Border color for elements like cards */
+    --border: 2px solid #555555; /* Border color for elements like cards */
     --red-accent:rgb(173, 30, 30);
     --red-accent-rgb:173, 30, 30;
     --bs-link-color-rgb: 46, 204, 113;
@@ -128,6 +128,10 @@ main {
     font-weight: 700;
 }
 
+.logout-main-menu {
+    color: var(--red-accent);
+}
+
 /* Custom success message color */
 .alert-success {
     background-color: rgba(var(--bs-link-color-rgb), 0.3); /* Green shade */
@@ -145,6 +149,8 @@ main {
 /*  pop-ups */
 
 .popup {
+    display: flex;
+    flex-direction: row;
     position: fixed;
     left: 50%;
     top: 60px;
@@ -157,6 +163,8 @@ main {
     transition: opacity 0.3s ease, visibility 0.3s ease;
     max-width: 400px;
     width: 80%;
+    border-radius: 5px 5px;
+    padding: 20px;
 }
 
 .popup.show {
@@ -164,15 +172,16 @@ main {
     visibility: visible !important;
 }
 
-.popup.success {
+.popup.success, .popup.info, .popup.custom {
     background-color: var(--light-accent);
 }
 
-.popup.error {
+.popup.error, .popup.warning {
     background-color: var(--red-accent);
 }
 
 .popup .close-btn {
+    height: 100%;
     background: none;
     border: none;
     color: var(--text-primary-color);
@@ -187,3 +196,16 @@ main {
     text-align: left;
 }
 
+/* Media queries */
+@media (min-width: 768px) {
+    .logout-main-menu{
+        display: flex;
+        justify-content: flex-end;
+        position: absolute; 
+        right: 10px; 
+    }
+
+    .logout-main-menu .menu-text{
+        display: none;
+    }
+}

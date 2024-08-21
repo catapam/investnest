@@ -2,5 +2,69 @@
 {% load static %}
 
 {% block content %}
-<h1>dashboard test</h1>
-{% endblock %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul class="menu-list">
+            <div class="top-menu-dashboard">
+                <li>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-home"></i>
+                        <span class="menu-text">Main</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span class="menu-text">Portfolio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <span class="menu-text">Metrics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item">
+                        <i class="fa-regular fa-user"></i>
+                        <span class="menu-text">Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="menu-text">Contact</span>
+                    </a>
+                </li>
+            </div>
+            <div class="bottom-menu-dashboard">
+                <li>
+                    <a href="/admin/" target="_blank" class="menu-item admin-access">
+                        <i class="fa-solid fa-unlock"></i>
+                        <span class="menu-text">Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/accounts/logout/" class="menu-item logout-dashboard">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="menu-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </ul>        
+        <button class="toggle-btn" id="toggle-btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <!-- Main content area -->
+    <div class="dashboard-content" id="dashboard-content">
+        {% block dashboard_content %}
+        <!-- Add your dashboard-specific content here -->
+        {% endblock dashboard_content %}
+    </div>
+</div>
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock content %}

@@ -6,14 +6,16 @@
 {% endblock title %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-<div class="container text-center mt-auto">
-    {% element h1 %}
-    {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    {% element p %}
-    {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup
-    process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if
-    you do not receive the verification email within a few minutes.{% endblocktrans %}
-    {% endelement %}
+<div class="container">
+    <div class="card text-center">
+        {% element h1 %}
+        {% trans "Verify Your Email Address" %}
+        {% endelement %}
+        {% element p %}
+        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup
+        process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if
+        you do not receive the verification email within a few minutes.{% endblocktrans %}
+        {% endelement %}
+    </div>
 </div>
 {% endblock content %}
