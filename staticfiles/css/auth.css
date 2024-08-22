@@ -41,3 +41,28 @@ p,a{
     background-color: var(--bs-link-hover-color);
     border-color: var(--bs-link-hover-color);
 }
+
+.verified{
+    color: var(--light-accent);
+}
+
+.unverified{
+    color: var(--red-accent);
+}
+
+.list-emails{
+    max-height: 100px;
+    overflow-y: auto;
+    text-align: left;
+    background-color: var(--bg-dark);
+    border: var(--border);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.form-text{
+    font-size: small;
+    color: var(--text-secondary-color);
+}

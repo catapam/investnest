@@ -9,9 +9,11 @@
     --text-primary-color: #FFFFFF; /* Primary text color (white) */
     --text-secondary-color: #b1b1b1; /* Secondary text color (light gray) */
     --light-accent: rgb(46, 204, 113); /* Light accent color (green), used for buttons and highlights */
-    --dark-accent: #28a745; /* Darker accent color, used on button hover states */
-    --border: 2px solid #555555; /* Border color for elements like cards */
+    --dark-accent: rgb(40, 167, 69); /* Darker accent color, used on button hover states */
+    --border-color:#555555;
+    --border: 2px solid var(--border-color); /* Border color for elements like cards */
     --red-accent:rgb(173, 30, 30);
+    --dark-accent-rgb: 40, 167, 69;
     --red-accent-rgb:173, 30, 30;
     --bs-link-color-rgb: 46, 204, 113;
     --bs-link-hover-color:#28a745;
@@ -164,7 +166,7 @@ main {
     max-width: 400px;
     width: 80%;
     border-radius: 5px 5px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .popup.show {
@@ -173,11 +175,11 @@ main {
 }
 
 .popup.success, .popup.info, .popup.custom {
-    background-color: var(--light-accent);
+    background-color: rgba(var(--dark-accent-rgb),0.9);
 }
 
 .popup.error, .popup.warning {
-    background-color: var(--red-accent);
+    background-color: rgba(var(--red-accent-rgb),0.9);
 }
 
 .popup .close-btn {

@@ -29,5 +29,37 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleBtn.querySelector('i').classList.toggle('fa-arrow-left');
         toggleBtn.querySelector('i').classList.toggle('fa-arrow-right');
     });
+
+    // Function to check if any of the inner menu paths are active
+    var activateInnerDashboardMenu = function() {
+        var currentPath = window.location.pathname;
+        var innerMenuPaths = ['/dashboard/', '/portfolio/', '/metrics/', '/accounts/', '/contact/', '/operations/', '/accounts/email/', '/accounts/password/change/'];
+    
+        innerMenuPaths.forEach(function(path) {
+            // Select all matching links
+            var links = document.querySelectorAll(`[href="${path}"].nav-link`);
+            links.forEach(function(link) {
+                // Check if the link is inside an element with the class 'option-menu'
+                var isInOptionMenu = link.closest('.option-menu') !== null;
+    
+                if (isInOptionMenu) {
+                    // For links inside 'option-menu', check if the path is an exact match
+                    if (currentPath === path) {
+                        link.classList.add('active');
+                    }
+                } else {
+                    // For all other links, check if the path starts with the link's href
+                    if (currentPath.startsWith(path)) {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        });
+    };
+
+    // Activate the Dashboard menu if any inner menu paths are active
+    activateInnerDashboardMenu();
+
+    activeMenu();
 });
 

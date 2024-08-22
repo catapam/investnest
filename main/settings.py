@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'home',
     'portfolio',
     'dashboard',
+    'accounts',
 ]
 
 SITE_ID = 1
@@ -178,8 +179,9 @@ USE_TZ = True
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_USERNAME_MIN_LENGHT= 6
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_MIN_LENGHT = 6
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[InvestNest] - '
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = "/dashboard/"
 

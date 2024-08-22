@@ -6,48 +6,57 @@
 <div class="dashboard-container">
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-        <ul class="menu-list">
+        <ul class="menu-list .navbar-nav">
             <div class="top-menu-dashboard">
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="/dashboard/" class="menu-item nav-link">
                         <i class="fas fa-home"></i>
                         <span class="menu-text">Main</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="/portfolio/" class="menu-item nav-link">
                         <i class="fa-solid fa-briefcase"></i>
                         <span class="menu-text">Portfolio</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="/metrics/" class="menu-item nav-link disabled">
                         <i class="fa-solid fa-chart-simple"></i>
                         <span class="menu-text">Metrics</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="/accounts/" class="menu-item nav-link">
                         <i class="fa-regular fa-user"></i>
                         <span class="menu-text">Account</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="/contact/" class="menu-item nav-link">
                         <i class="fa-regular fa-envelope"></i>
                         <span class="menu-text">Contact</span>
                     </a>
                 </li>
+                <div class="empty-area">
+                    
+                </div>
             </div>
             <div class="bottom-menu-dashboard">
                 <li>
-                    <a href="/admin/" target="_blank" class="menu-item admin-access">
+                    <a href="/operations/" target="_blank" class="menu-item nav-link">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="menu-text">Operations</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/" target="_blank" class="menu-item admin-access nav-link">
                         <i class="fa-solid fa-unlock"></i>
                         <span class="menu-text">Admin</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/accounts/logout/" class="menu-item logout-dashboard">
+                    <a href="/accounts/logout/" class="menu-item logout-dashboard nav-link">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="menu-text">Logout</span>
                     </a>
@@ -61,8 +70,11 @@
 
     <!-- Main content area -->
     <div class="dashboard-content" id="dashboard-content">
+        {% if request.path|slice:":9" == "/accounts" %}
+            {% include 'dashboard/includes/intra-menu.html' %}
+        {% endif %}
+
         {% block dashboard_content %}
-        <!-- Add your dashboard-specific content here -->
         {% endblock dashboard_content %}
     </div>
 </div>

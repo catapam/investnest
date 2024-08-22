@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "dashboard/dashboard.html" %}
 {% load i18n allauth account crispy_forms_tags static %}
 {% block title %}
     {% trans "Sign Out" %}
 {% endblock title %}
-{% block content %}
+{% block dashboard_content %}
 <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 <div class="container">
     <div class=" text-center card">
@@ -27,4 +27,4 @@
         {% endelement %}
     </div>
 </div>
-{% endblock content %}
+{% endblock dashboard_content %}
