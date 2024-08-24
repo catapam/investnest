@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/metrics/" class="menu-item nav-link disabled">
+                    <a href="/metrics/" class="menu-item nav-link">
                         <i class="fa-solid fa-chart-simple"></i>
                         <span class="menu-text">Metrics</span>
                     </a>
@@ -39,22 +39,28 @@
                     </a>
                 </li>
                 <div class="empty-area">
-                    
+
                 </div>
             </div>
             <div class="bottom-menu-dashboard">
+                {% if request.user.is_staff %}
                 <li>
-                    <a href="/operations/" target="_blank" class="menu-item nav-link">
+                    <a href="/operations/" class="menu-item nav-link">
                         <i class="fa-solid fa-people-group"></i>
                         <span class="menu-text">Operations</span>
                     </a>
                 </li>
+                {% endif %}
+
+                {% if request.user.is_superuser %}
                 <li>
                     <a href="/admin/" target="_blank" class="menu-item admin-access nav-link">
                         <i class="fa-solid fa-unlock"></i>
                         <span class="menu-text">Admin</span>
                     </a>
                 </li>
+                {% endif %}
+
                 <li>
                     <a href="/accounts/logout/" class="menu-item logout-dashboard nav-link">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -62,7 +68,7 @@
                     </a>
                 </li>
             </div>
-        </ul>        
+        </ul>
         <button class="toggle-btn" id="toggle-btn">
             <i class="fas fa-arrow-left"></i>
         </button>
@@ -70,8 +76,8 @@
 
     <!-- Main content area -->
     <div class="dashboard-content" id="dashboard-content">
-        {% if request.path|slice:":9" == "/accounts" %}
-            {% include 'dashboard/includes/intra-menu.html' %}
+        {% if intra_menu %}
+        {% include 'dashboard/includes/intra-menu.html' %}
         {% endif %}
 
         {% block dashboard_content %}

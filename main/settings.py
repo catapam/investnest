@@ -66,6 +66,9 @@ INSTALLED_APPS = [
     'portfolio',
     'dashboard',
     'accounts',
+    'contact',
+    'metrics',
+    'operations',
 ]
 
 SITE_ID = 1
@@ -84,6 +87,9 @@ MIDDLEWARE = [
     
     # allauth requires:
     "allauth.account.middleware.AccountMiddleware",
+
+    #custom middleware:
+    'accounts.middleware.LoginRequiredMiddleware',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -108,6 +114,9 @@ TEMPLATES = [
 
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
+
+                #Custom context processor for dashboard intra-menu:
+                'dashboard.context_processors.intra_menu_processor',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

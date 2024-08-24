@@ -3,5 +3,5 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
 @method_decorator(login_required, name='dispatch')
-class Portfolio(TemplateView):
-    template_name = 'portfolio/portfolio.html'
+class MetricsView(TemplateView):
+    template_name = 'metrics/metrics.html'

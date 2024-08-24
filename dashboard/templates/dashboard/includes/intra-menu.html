@@ -1,11 +1,13 @@
-<ul class="nav nav-tabs option-menu">
-  <li class="nav-item">
-    <a href="/accounts/" class="nav-link" aria-current="page">User</a>
-  </li>
-  <li class="nav-item">
-    <a href="/accounts/email/" class="nav-link">Email</a>
-  </li>
-  <li class="nav-item">
-    <a href="/accounts/password/change/" class="nav-link">Password</a>
-  </li>
-</ul>
+<div class="option-menu-wrapper">
+  <button class="scroll-button scroll-button-left">&lt;</button>
+  <ul class="option-menu">
+    {% for item in intra_menu %}
+      <li class="nav-item">
+        <a href="{{ item.url }}" class="nav-link">
+          <i class="{{ item.icon }}"></i> {{ item.name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <button class="scroll-button scroll-button-right">&gt;</button>
+</div>
