@@ -217,8 +217,9 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom: 0;
-    display: inline-block; 
+    display: flex; 
     padding: 10px;
+    flex-direction: row;
 }
 
 .option-menu .nav-link.active {
@@ -229,6 +230,10 @@
     border-top-right-radius: 15px;
     border-bottom: 0;
     height: 40px;
+}
+
+.option-menu .menu-text {
+    display: none;
 }
 
 .scroll-button {
@@ -277,5 +282,9 @@
 
     .dashboard-content {
         margin-left: 200px;
+    }
+
+    .option-menu .menu-text {
+        display: block;
     }
 }

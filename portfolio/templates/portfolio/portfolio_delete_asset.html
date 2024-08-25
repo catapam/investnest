@@ -1,0 +1,15 @@
+{% extends "portfolio/portfolio.html" %}
+
+{% block title %}Delete Asset{% endblock title %}
+{% block portfolio_content %}
+<div class="container">
+    <h1>Delete Asset from {{ portfolio.name }}</h1>
+    <p>Are you sure you want to delete the asset <strong>{{ asset.name }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock portfolio_content %}

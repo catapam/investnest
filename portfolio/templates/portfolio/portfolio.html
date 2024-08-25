@@ -1,9 +1,12 @@
 {% extends "dashboard/dashboard.html" %}
-{% load i18n allauth account crispy_forms_tags static %}
+{% load crispy_forms_tags %}
+{% load static %}
 
-{% block title %}Portfolio{% endblock title %}
 {% block dashboard_content %}
-<div class="container">
-    <h1>Portfolio test</h1>
+<div class="container portfolio_container">
+    {% block portfolio_content %}
+    {% endblock portfolio_content %}
+    <script src="{% static 'js/portfolio.js' %}" defer></script>
 </div>
 {% endblock dashboard_content %}
+

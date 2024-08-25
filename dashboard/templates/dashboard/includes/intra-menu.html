@@ -4,8 +4,10 @@
     {% for item in intra_menu %}
       <li class="nav-item">
         <a href="{{ item.url }}" class="nav-link">
-          <i class="{{ item.icon }}"></i> {{ item.name }}
+          <i class="{{ item.icon }}" style="color: {{item.color|default:'#FFFFFF'}};"></i> 
+          <span class="menu-text">{{ item.name }}</span>
         </a>
+        
       </li>
     {% endfor %}
   </ul>

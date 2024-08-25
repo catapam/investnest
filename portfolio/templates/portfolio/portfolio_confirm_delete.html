@@ -1,0 +1,22 @@
+{% extends "portfolio/portfolio.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Delete Portfolio{% endblock title %}
+{% block portfolio_content %}
+<div class="container">
+    <h1>Delete Portfolio</h1>
+    <p>Are you sure you want to delete the portfolio "{{ object.name }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'portfolio_detail' object.pk %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+    {% if not object %}
+        <a href="{% url 'portfolio' %}" class="btn btn-secondary">Back to Portfolios</a>
+    {% endif %}
+
+</div>
+{% endblock portfolio_content %}

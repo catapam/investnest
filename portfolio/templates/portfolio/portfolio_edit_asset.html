@@ -1,0 +1,16 @@
+{% extends "portfolio/portfolio.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Asset{% endblock title %}
+{% block portfolio_content %}
+<div class="container">
+    <h1>Edit Asset in {{ portfolio.name }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Update Asset</button>
+        <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock portfolio_content %}
