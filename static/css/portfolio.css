@@ -1,0 +1,45 @@
+.portfolio-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 50px;
+    margin-left: 0;
+    margin-right: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.dashboard-table .btn {
+    height: 40px;
+    width: 40px;
+}
+
+.portfolio-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.portfolio-title .btn {
+    align-items: end;
+}
+
+.portfolio-title h1 {
+    margin-right: auto;
+}
+
+.portfolio-content {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    max-height: 60vh;
+    padding: 15px;
+    border: var(--border);
+    background-color: var(--bg-light);
+    border-radius: var(--bs-border-radius);
+}
+
+.portfolio-content .textarea {
+    max-height: 80px;
+}

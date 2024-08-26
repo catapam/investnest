@@ -3,10 +3,11 @@
 {% load static %}
 
 {% block dashboard_content %}
-<div class="container portfolio_container">
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+<div class="container portfolio-container">
     {% block portfolio_content %}
     {% endblock portfolio_content %}
-    <script src="{% static 'js/portfolio.js' %}" defer></script>
 </div>
+<script src="{% static 'js/portfolio.js' %}" defer></script>
 {% endblock dashboard_content %}
 

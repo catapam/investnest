@@ -7,15 +7,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 class="mb-4">Create New Portfolio</h1>
-            <form method="post" novalidate>
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Create Portfolio</button>
-                    <a href="{% url 'portfolio' %}" class="btn btn-secondary">Cancel</a>
-                </div>
-            </form>
+            <div class="portfolio-title">
+                <h1 class="mb-4">Create New Portfolio</h1>
+            </div>
+            <div class="portfolio-content">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create Portfolio</button>
+                        <a href="{% url 'portfolio' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

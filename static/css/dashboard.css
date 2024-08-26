@@ -1,3 +1,20 @@
+#id_password1_helptext{
+    font-size: .675em;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-size: medium;
+}
+
+h1{
+    color: var(--light-accent);
+    padding-bottom: 20px;
+}
+
+p,a{
+    font-size: small;
+}
+
 .dashboard-container {
     display: flex;
     position: relative;
@@ -25,7 +42,6 @@
     background-color: var(--bg-dark);
     width: auto;
     flex-grow: 1;
-    overflow-y: auto;
     transition: margin-left 0.3s ease;
     position: fixed;
     top: 0;
@@ -214,8 +230,8 @@
 .option-menu .nav-link {
     height: 40px;
     border: var(--border);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
     border-bottom: 0;
     display: flex; 
     padding: 10px;
@@ -226,8 +242,8 @@
     color: var(--text-primary-color) !important;
     background-color: var(--border-color) !important;
     border: var(--border);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
     border-bottom: 0;
     height: 40px;
 }
@@ -247,8 +263,8 @@
     display: none;
     z-index: 1;
     margin-top: 10px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
 }
 
 .scroll-button:hover {
@@ -257,14 +273,18 @@
 
 .scroll-button-left {
     left: 0;
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: var(--bs-border-radius);
 }
 
 .scroll-button-right {
     right: 0;
-    border-bottom-right-radius: 15px;
+    border-bottom-right-radius: var(--bs-border-radius);
 }
 
+/* tables */
+.dashboard-table {
+    border-top: var(--border);
+}
 
 
 @media (min-width: 768px) {

@@ -27,7 +27,7 @@ def intra_menu_processor(request):
             'url': f'/portfolio/{portfolio.pk}/',
             'icon': 'fa-solid fa-briefcase',
             'color': portfolio.color 
-        })
+        },)
             
     elif current_path.startswith('/contact'):
         intra_menu = [

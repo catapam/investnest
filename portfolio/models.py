@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 class Portfolio(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=14)
+    description = models.TextField(max_length=150,blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     color = models.CharField(max_length=7, default='#FFFFFF')
 

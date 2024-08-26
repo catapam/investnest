@@ -7,11 +7,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="mb-4">My Portfolios</h1>
-            <a href="{% url 'portfolio_new' %}" class="btn btn-success mb-4">Create New Portfolio</a>
-            
+            <div class="portfolio-title">
+                <h1 class="mb-8">My Portfolios</h1>
+                <a href="{% url 'portfolio_new' %}" class="btn btn-success mb-4">Create</a>
+            </div>
             {% if portfolios %}
-                <div class="list-group">
+                <div class="portfolio-content list-group">
                     {% for portfolio in portfolios %}
                         <a href="{% url 'portfolio_detail' portfolio.pk %}" class="list-group-item list-group-item-action">
                             <h5 class="mb-1" style="color: {{portfolio.color|default:'#FFFFFF'}};">{{ portfolio.name }}</h5>

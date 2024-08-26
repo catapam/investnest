@@ -39,10 +39,18 @@ class PortfolioDetailView(TemplateView):
         context = super().get_context_data(**kwargs)
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['pk'], user=self.request.user)
         order = self.request.GET.get('order', 'name')
+
+        # Get the assets and calculate the total value sum
+        assets = portfolio.assets.all()
+        total_value_sum = sum(asset.quantity * asset.price for asset in assets)
+
         context['portfolio'] = portfolio
-        context['assets'] = portfolio.assets.all()
+        context['assets'] = assets
+        context['total_value_sum'] = total_value_sum  # Add the sum to the context
         context['current_order'] = order
+
         return context
+    
 
 @method_decorator(login_required, name='dispatch')
 class PortfolioDeleteView(DeleteView):
