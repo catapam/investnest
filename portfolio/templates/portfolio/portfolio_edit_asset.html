@@ -14,6 +14,35 @@
             <button type="submit" class="btn btn-primary">Update Asset</button>
             <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-secondary">Cancel</a>
         </form>
+        <hr>
+        <h2>Transactions</h2>
+        <a href="{% url 'transaction_add' portfolio.pk asset.pk %}" class="btn btn-success mb-4">Add Transaction</a>
+        {% if transactions %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Action</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.get_type_display }}</td>
+                        <td>{{ transaction.get_action_display }}</td>
+                        <td>{{ transaction.quantity }}</td>
+                        <td>{{ transaction.price }}</td>
+                        <td>{{ transaction.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No transactions found.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock portfolio_content %}

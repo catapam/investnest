@@ -6,23 +6,6 @@
     height: 100%; /* Ensures the container takes the full height of the viewport */
 }
 
-#id_password1_helptext{
-    font-size: .675em;
-}
-
-h1,h2,h3,h4,h5,h6{
-    font-size: medium;
-}
-
-h1{
-    color: var(--light-accent);
-    padding-bottom: 20px;
-}
-
-p,a{
-    font-size: small;
-}
-
 .card {
     max-width: 450px; 
     padding: 20px; 
@@ -57,7 +40,7 @@ p,a{
     background-color: var(--bg-dark);
     border: var(--border);
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: var(--bs-border-radius);
     padding-left: 10px;
     padding-top: 10px;
 }

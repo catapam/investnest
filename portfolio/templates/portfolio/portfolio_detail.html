@@ -35,12 +35,12 @@
                         </th>
                         <th scope="col">
                             <a href="?order=price">
-                                Price {% if current_order == 'price' %}▲{% elif current_order == '-price' %}▼{% endif %}
+                                Price (US$) {% if current_order == 'price' %}▲{% elif current_order == '-price' %}▼{% endif %}
                             </a>
                         </th>
                         <th scope="col">
                             <a href="?order=total_value">
-                                Total Value
+                                Total Value (US$)
                             </a>
                         </th>
                     </tr>
@@ -49,19 +49,25 @@
                 </tbody>
                 <tbody>
                     {% for asset in assets %}
-                    <tr class="dashboard-table">
+                    <tr class="dashboard-table" onclick="window.location.href='{% url 'transaction_add' portfolio.pk asset.pk %}'" style="cursor: pointer;">
                         <th scope="row">
-                            <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">
+                            <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning" onclick="event.stopPropagation();">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
-                            <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger">
+                            <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger" onclick="event.stopPropagation();">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </th>
                         <td scope="row">{{ asset.name }}</td>
-                        <td scope="row">{{ asset.quantity }}</td>
-                        <td scope="row">{{ asset.price }}</td>
-                        <td scope="row">{{ asset.quantity|multiply:asset.price }}</td>
+                        <td scope="row">{{ asset.get_total_quantity }}</td>
+                        <td scope="row">{% if asset.transactions.exists %}{{ asset.live_price }}{% else %}N/A{% endif %}</td>
+                        <td scope="row">
+                            {% if asset.transactions.exists %}
+                                {{ asset.get_total_value }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

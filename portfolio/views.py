@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponseForbidden
 from django.urls import reverse
-from .models import Portfolio, Asset
-from .forms import PortfolioForm, AssetForm
+from .models import Portfolio, Asset, Transaction
+from .forms import PortfolioForm, AssetForm, TransactionForm
 
 @method_decorator(login_required, name='dispatch')
 class PortfolioListView(TemplateView):
@@ -38,19 +38,15 @@ class PortfolioDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['pk'], user=self.request.user)
-        order = self.request.GET.get('order', 'name')
-
-        # Get the assets and calculate the total value sum
         assets = portfolio.assets.all()
-        total_value_sum = sum(asset.quantity * asset.price for asset in assets)
+
+        # Sum only the assets that have a valid total value
+        total_value_sum = sum(asset.get_total_value() for asset in assets if asset.transactions.exists())
 
         context['portfolio'] = portfolio
         context['assets'] = assets
-        context['total_value_sum'] = total_value_sum  # Add the sum to the context
-        context['current_order'] = order
-
+        context['total_value_sum'] = total_value_sum
         return context
-    
 
 @method_decorator(login_required, name='dispatch')
 class PortfolioDeleteView(DeleteView):
@@ -98,12 +94,19 @@ class AssetCreateView(CreateView):
 @method_decorator(login_required, name='dispatch')
 class AssetUpdateView(UpdateView):
     model = Asset
-    form_class = AssetForm
+    form_class = AssetForm  # Update this form to exclude price and quantity
     template_name = 'portfolio/portfolio_edit_asset.html'
 
     def get_queryset(self):
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
         return portfolio.assets.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        asset = self.get_object()
+        context['portfolio'] = asset.portfolio
+        context['transactions'] = asset.transactions.all()
+        return context
 
     def get_success_url(self):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
@@ -123,3 +126,55 @@ class AssetDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
+
+@method_decorator(login_required, name='dispatch')
+class TransactionCreateView(CreateView):
+    model = Transaction
+    form_class = TransactionForm
+    template_name = 'portfolio/transaction_form.html'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        kwargs['portfolio'] = portfolio
+
+        if 'asset_pk' in self.kwargs:
+            asset = get_object_or_404(Asset, pk=self.kwargs['asset_pk'], portfolio=portfolio)
+            kwargs['initial'] = {'asset': asset.pk}  # Pass the asset's primary key
+
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        context['portfolio'] = portfolio
+
+        if 'asset_pk' in self.kwargs:
+            context['asset'] = get_object_or_404(Asset, pk=self.kwargs['asset_pk'], portfolio=portfolio)
+
+        # Pass the referrer to the template
+        context['referrer'] = self.request.META.get('HTTP_REFERER', reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']}))
+
+        return context
+
+    def form_valid(self, form):
+        portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        form.instance.portfolio = portfolio
+
+        asset_choice = form.cleaned_data.get('asset_choice')
+        new_asset_name = form.cleaned_data.get('new_asset_name')
+
+        if asset_choice == 'new' and new_asset_name:
+            asset, created = Asset.objects.get_or_create(
+                name=new_asset_name,
+                portfolio=portfolio
+            )
+        else:
+            asset = Asset.objects.get(pk=asset_choice)
+
+        form.instance.asset = asset
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
+

@@ -1,55 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-:root{
+:root {
     /* Default dark mode styling */
-    --bg-light: #333333; /* Background color for light elements */
+    --bg-light: #333333;
+    /* Background color for light elements */
     --bg-light-rgb: 51, 51, 51;
-    --bg-dark: #212529; /* Background color for main sections */
-    --bg-darker: #0D0D0D; /* Background color for the darkest elements (e.g., navbar) */
-    --text-primary-color: #FFFFFF; /* Primary text color (white) */
-    --text-secondary-color: #b1b1b1; /* Secondary text color (light gray) */
-    --light-accent: rgb(46, 204, 113); /* Light accent color (green), used for buttons and highlights */
-    --dark-accent: rgb(40, 167, 69); /* Darker accent color, used on button hover states */
-    --border-color:#555555;
-    --border: 2px solid var(--border-color); /* Border color for elements like cards */
-    --red-accent:rgb(173, 30, 30);
+    --bg-dark: #212529;
+    /* Background color for main sections */
+    --bg-darker: #0D0D0D;
+    /* Background color for the darkest elements (e.g., navbar) */
+    --text-primary-color: #FFFFFF;
+    /* Primary text color (white) */
+    --text-secondary-color: #b1b1b1;
+    /* Secondary text color (light gray) */
+    --light-accent: rgb(46, 204, 113);
+    /* Light accent color (green), used for buttons and highlights */
+    --dark-accent: rgb(40, 167, 69);
+    /* Darker accent color, used on button hover states */
+    --border-color: #555555;
+    --border: 2px solid var(--border-color);
+    /* Border color for elements like cards */
+    --red-accent: rgb(173, 30, 30);
+    --dark-red-accent: rgb(110, 20, 20);
     --dark-accent-rgb: 40, 167, 69;
-    --red-accent-rgb:173, 30, 30;
+    --red-accent-rgb: 173, 30, 30;
     --bs-link-color-rgb: 46, 204, 113;
-    --bs-link-hover-color:#28a745;
+    --bs-link-hover-color: #28a745;
+    --bs-border-radius: 0.5rem;
 
     /* Font families */
-    --font-primary: 'Roboto', Arial, sans-serif; /* Primary font family for body text */
-    --font-heading: 'Merriweather', Georgia, serif; /* Font family for headings */
+    --font-primary: 'Roboto', Arial, sans-serif;
+    /* Primary font family for body text */
+    --font-heading: 'Merriweather', Georgia, serif;
+    /* Font family for headings */
 }
 
 /* General styling */
-html, body {
-    height: 100%; /* Ensure that the html and body take up the full height of the viewport */
+html,
+body {
+    height: 100%;
+    /* Ensure that the html and body take up the full height of the viewport */
 }
 
 /* Custom theme Adjustments */
 body {
-    padding-top: 56px; /* Add padding to the top of the body to prevent content from being hidden behind the fixed navbar */
-    background-color: var(--bg-dark); /* Set the main background color */
-    color: var(--text-primary-color); /* Set the primary text color */
-    display: flex; /* Enable flexbox layout on the body */
-    flex-direction: column; /* Arrange body content in a column */
-    font-family: var(--font-primary); /* Use the primary font family for the body text */
+    padding-top: 56px;
+    /* Add padding to the top of the body to prevent content from being hidden behind the fixed navbar */
+    background-color: var(--bg-dark);
+    /* Set the main background color */
+    color: var(--text-primary-color);
+    /* Set the primary text color */
+    display: flex;
+    /* Enable flexbox layout on the body */
+    flex-direction: column;
+    /* Arrange body content in a column */
+    font-family: var(--font-primary);
+    /* Use the primary font family for the body text */
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading); /* Use the heading font for all heading elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    /* Use the heading font for all heading elements */
 }
 
 p {
     color: var(--text-secondary-color);
 }
 
-.small-heading{
+.small-heading {
     color: var(--light-accent);
-    font-size: 1.1rem; /* Adjust the size as needed */
-    font-weight: bold; /* Optional: Keep it bold */
+    font-size: 1.1rem;
+    /* Adjust the size as needed */
+    font-weight: bold;
+    /* Optional: Keep it bold */
 }
 
 .bg-body-tertiary {
@@ -58,74 +86,110 @@ p {
 }
 
 main {
-    flex: 1 0 auto; /* Allow the main content area to grow and shrink as needed, taking up available space */
-    background-color: var(--bg-darker); /* Set a darker background color for the main content area */
+    flex: 1 0 auto;
+    /* Allow the main content area to grow and shrink as needed, taking up available space */
+    background-color: var(--bg-darker);
+    /* Set a darker background color for the main content area */
 }
 
-.py-5{
+.py-5 {
     padding-top: 70px !important;
 }
 
 .navbar {
-    z-index: 1000; /* Ensure the navbar stays above other content */
-    position: fixed; /* Fix the navbar at the top */
-    top: 0; /* Position the navbar at the very top of the page */
-    width: 100%; /* Ensure the navbar spans the full width of the page */
-    background-color: var(--bg-darker); /* Darker background color for the navbar */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for visual separation */
-    opacity: 1; /* Ensure full opacity */
+    z-index: 1000;
+    /* Ensure the navbar stays above other content */
+    position: fixed;
+    /* Fix the navbar at the top */
+    top: 0;
+    /* Position the navbar at the very top of the page */
+    width: 100%;
+    /* Ensure the navbar spans the full width of the page */
+    background-color: var(--bg-darker);
+    /* Darker background color for the navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a subtle shadow for visual separation */
+    opacity: 1;
+    /* Ensure full opacity */
     --bs-navbar-brand-hover-color: inherit;
 }
 
-.navbar-brand{
-    max-height: 40px; /* Adjust the size of the logo and brand in the navbar */
-    color:var(--text-primary-color);
+.navbar-brand {
+    max-height: 40px;
+    /* Adjust the size of the logo and brand in the navbar */
+    color: var(--text-primary-color);
 }
 
 .nav-link {
-    color: var(--text-primary-color); /* Set the link color in the navbar */
+    color: var(--text-primary-color);
+    /* Set the link color in the navbar */
 }
 
 .nav-link:hover {
-    color: var(--light-accent); /* Change link color on hover to the light accent color */
+    color: var(--light-accent);
+    /* Change link color on hover to the light accent color */
 }
 
 .navbar-brand:hover {
-    text-decoration: none; /* Ensure no underline on hover */
+    text-decoration: none;
+    /* Ensure no underline on hover */
 }
 
-.navbar-toggler{
+.navbar-toggler {
     border-color: var(--text-secondary-color);
     border-width: 3px;
     color: var(--text-secondary-color) !important;
 }
 
 .card {
-    background-color: var(--bg-light); /* Background color for card elements */
-    border: var(--border); /* Border color for card elements */
+    background-color: var(--bg-light);
+    /* Background color for card elements */
+    border: var(--border);
+    /* Border color for card elements */
 }
 
 .btn-primary {
-    background-color: var(--light-accent); /* Background color for primary buttons */
-    border-color: var(--dark-accent); /* Border color for primary buttons */
+    background-color: var(--light-accent);
+    /* Background color for primary buttons */
+    border-color: var(--dark-accent);
+    /* Border color for primary buttons */
 }
 
 .btn-primary:hover {
-    background-color: var(--dark-accent); /* Change button background on hover */
-    border-color: var(--light-accent); /* Change button border on hover */
+    background-color: var(--dark-accent);
+    /* Change button background on hover */
+    border-color: var(--light-accent);
+    /* Change button border on hover */
+}
+
+.btn-secondary {
+    background-color: var(--red-accent);
+    /* Background color for primary buttons */
+    border-color: var(--dark-red-accent);
+    /* Border color for primary buttons */
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-red-accent);
+    /* Change button background on hover */
+    border-color: var(--red-accent);
+    /* Change button border on hover */
 }
 
 .text-secondary {
-    color: var(--text-secondary-color); /* Secondary text color */
+    color: var(--text-secondary-color);
+    /* Secondary text color */
 }
 
-.construction-class{
+.construction-class {
     color: var(--red-accent);
-    font-size: 1.1rem; /* Adjust the size as needed */
-    font-weight: bold; /* Optional: Keep it bold */
+    font-size: 1.1rem;
+    /* Adjust the size as needed */
+    font-weight: bold;
+    /* Optional: Keep it bold */
 }
 
-.active{
+.active {
     color: var(--dark-accent) !important;
     font-weight: 700;
 }
@@ -136,16 +200,22 @@ main {
 
 /* Custom success message color */
 .alert-success {
-    background-color: rgba(var(--bs-link-color-rgb), 0.3); /* Green shade */
-    color: var(--text-primary-color); /* Text color */
-    border-color: var(--light-accent); /* Border color */
+    background-color: rgba(var(--bs-link-color-rgb), 0.3);
+    /* Green shade */
+    color: var(--text-primary-color);
+    /* Text color */
+    border-color: var(--light-accent);
+    /* Border color */
 }
 
 /* Custom error message color */
 .alert-danger {
-    background-color: rgba(var(--red-accent-rgb), 0.3); /* Red shade */
-    color: var(--text-primary-color); /* Text color */
-    border-color: var(--red-accent); /* Border color */
+    background-color: rgba(var(--red-accent-rgb), 0.3);
+    /* Red shade */
+    color: var(--text-primary-color);
+    /* Text color */
+    border-color: var(--red-accent);
+    /* Border color */
 }
 
 /*  pop-ups */
@@ -174,12 +244,15 @@ main {
     visibility: visible !important;
 }
 
-.popup.success, .popup.info, .popup.custom {
-    background-color: rgba(var(--dark-accent-rgb),0.9);
+.popup.success,
+.popup.info,
+.popup.custom {
+    background-color: rgba(var(--dark-accent-rgb), 0.9);
 }
 
-.popup.error, .popup.warning {
-    background-color: rgba(var(--red-accent-rgb),0.9);
+.popup.error,
+.popup.warning {
+    background-color: rgba(var(--red-accent-rgb), 0.9);
 }
 
 .popup .close-btn {
@@ -190,7 +263,8 @@ main {
     font-size: 20px;
     cursor: pointer;
     margin-left: 15px;
-    align-self: center; /* Ensure the close button is vertically centered */
+    align-self: center;
+    /* Ensure the close button is vertically centered */
 }
 
 .popup .popup-text {
@@ -200,14 +274,14 @@ main {
 
 /* Media queries */
 @media (min-width: 768px) {
-    .logout-main-menu{
+    .logout-main-menu {
         display: flex;
         justify-content: flex-end;
-        position: absolute; 
-        right: 10px; 
+        position: absolute;
+        right: 10px;
     }
 
-    .logout-main-menu .menu-text{
+    .logout-main-menu .menu-text {
         display: none;
     }
 }

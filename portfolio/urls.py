@@ -6,7 +6,8 @@ from .views import (
     PortfolioDeleteView,
     AssetCreateView,
     AssetUpdateView,
-    AssetDeleteView
+    AssetDeleteView,
+    TransactionCreateView
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('<int:portfolio_pk>/asset/new/', AssetCreateView.as_view(), name='portfolio_add_asset'),
     path('<int:portfolio_pk>/asset/<int:pk>/edit/', AssetUpdateView.as_view(), name='portfolio_edit_asset'),
     path('<int:portfolio_pk>/asset/<int:pk>/delete/', AssetDeleteView.as_view(), name='portfolio_delete_asset'),
+    path('portfolio/<int:portfolio_pk>/asset/<int:asset_pk>/transaction/add/', TransactionCreateView.as_view(), name='transaction_add'),
 ]

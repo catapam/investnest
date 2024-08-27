@@ -1,0 +1,41 @@
+{% extends "portfolio/portfolio.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Transaction{% endblock title %}
+{% block portfolio_content %}
+<div class="container">
+    <div class="portfolio-title">
+        <h1>Add Transaction{% if asset %} to {{ asset.name }}{% endif %}</h1>
+    </div>
+    <div class="portfolio-content">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Add Transaction</button>
+            <a href="{{ referrer }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var assetChoiceField = document.getElementById("id_asset_choice");
+        var newAssetNameField = document.getElementById("id_new_asset_name");
+
+        assetChoiceField.addEventListener("change", function() {
+            if (assetChoiceField.value === "new") {
+                newAssetNameField.style.display = "block";
+            } else {
+                newAssetNameField.style.display = "none";
+            }
+        });
+
+        // Initialize visibility based on current selection
+        if (assetChoiceField.value === "new") {
+            newAssetNameField.style.display = "block";
+        } else {
+            newAssetNameField.style.display = "none";
+        }
+    });
+</script>
+{% endblock portfolio_content %}

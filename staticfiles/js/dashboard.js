@@ -34,32 +34,28 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleBtn.querySelector('i').classList.toggle('fa-arrow-right');
     });
 
-    // Function to check if any of the inner menu paths are active
     var activateInnerDashboardMenu = function () {
         var currentPath = window.location.pathname;
-        var innerMenuPaths = ['/dashboard/', '/portfolio/', '/metrics/', '/accounts/', '/contact/', '/operations/', '/accounts/email/', '/accounts/password/change/'];
-
-        innerMenuPaths.forEach(function (path) {
-            // Select all matching links
-            var links = document.querySelectorAll(`[href="${path}"].nav-link`);
-            links.forEach(function (link) {
-                // Check if the link is inside an element with the class 'option-menu'
-                var isInOptionMenu = link.closest('.option-menu') !== null;
-
-                if (isInOptionMenu) {
-                    // For links inside 'option-menu', check if the path is an exact match
-                    if (currentPath === path) {
-                        link.classList.add('active');
-                        // Scroll the active item into view, centered
-                        scrollActiveItemIntoView(link);
-                    }
-                } else {
-                    // For all other links, check if the path starts with the link's href
-                    if (currentPath.startsWith(path)) {
-                        link.classList.add('active');
-                    }
-                }
-            });
+    
+        // Activate the broader menu links with partial match
+        var broadMenuLinks = document.querySelectorAll('.sidebar .nav-link');
+        broadMenuLinks.forEach(function (link) {
+            var linkPath = link.getAttribute('href');
+            // Partial match for the broader menu
+            if (currentPath.startsWith(linkPath)) {
+                link.classList.add('active');
+            }
+        });
+    
+        // Activate the inner menu links with exact match
+        var innerMenuLinks = document.querySelectorAll('.option-menu .nav-link');
+        innerMenuLinks.forEach(function (link) {
+            var linkPath = link.getAttribute('href');
+            // Exact match for the inner menu
+            if (currentPath === linkPath) {
+                link.classList.add('active');
+                scrollActiveItemIntoView(link);
+            }
         });
     };
 
