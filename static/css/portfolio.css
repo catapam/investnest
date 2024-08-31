@@ -11,11 +11,6 @@
     top: 0;
 }
 
-.dashboard-table .btn {
-    height: 40px;
-    width: 40px;
-}
-
 .portfolio-title {
     display: flex;
     flex-direction: row;
@@ -42,4 +37,12 @@
 
 .portfolio-content .textarea {
     max-height: 80px;
+}
+
+.btn-sm{
+    padding: auto;
+    margin: auto;
+    text-align: center;
+    width: 32px;
+    height: 32px;
 }

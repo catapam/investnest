@@ -17,25 +17,4 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var assetChoiceField = document.getElementById("id_asset_choice");
-        var newAssetNameField = document.getElementById("id_new_asset_name");
-
-        assetChoiceField.addEventListener("change", function() {
-            if (assetChoiceField.value === "new") {
-                newAssetNameField.style.display = "block";
-            } else {
-                newAssetNameField.style.display = "none";
-            }
-        });
-
-        // Initialize visibility based on current selection
-        if (assetChoiceField.value === "new") {
-            newAssetNameField.style.display = "block";
-        } else {
-            newAssetNameField.style.display = "none";
-        }
-    });
-</script>
 {% endblock portfolio_content %}

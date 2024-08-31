@@ -1,4 +1,8 @@
+import json
+from django.views import View
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
@@ -64,7 +68,7 @@ class PortfolioDeleteView(DeleteView):
         portfolio = self.get_object()
         if not portfolio:
             return HttpResponseForbidden(render(request, '401.html')) 
-        messages.success(request, 'Portfolio deleted successfully!')
+        messages.success(self.request, 'Portfolio deleted successfully!')
         return super().delete(request, *args, **kwargs)
 
     def get_success_url(self):
@@ -94,7 +98,7 @@ class AssetCreateView(CreateView):
 @method_decorator(login_required, name='dispatch')
 class AssetUpdateView(UpdateView):
     model = Asset
-    form_class = AssetForm  # Update this form to exclude price and quantity
+    form_class = AssetForm
     template_name = 'portfolio/portfolio_edit_asset.html'
 
     def get_queryset(self):
@@ -108,9 +112,13 @@ class AssetUpdateView(UpdateView):
         context['transactions'] = asset.transactions.all()
         return context
 
-    def get_success_url(self):
-        return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
+    def form_valid(self, form):
+        form.save()
+        return self.render_to_response(self.get_context_data(form=form))
 
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+   
 @method_decorator(login_required, name='dispatch')
 class AssetDeleteView(DeleteView):
     model = Asset
@@ -121,8 +129,10 @@ class AssetDeleteView(DeleteView):
         return portfolio.assets.all()
 
     def delete(self, request, *args, **kwargs):
+        asset = self.get_object()
+        asset.delete()
         messages.success(self.request, 'Asset deleted successfully!')
-        return super().delete(request, *args, **kwargs)
+        return HttpResponse(status=204)
 
     def get_success_url(self):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
@@ -140,7 +150,7 @@ class TransactionCreateView(CreateView):
 
         if 'asset_pk' in self.kwargs:
             asset = get_object_or_404(Asset, pk=self.kwargs['asset_pk'], portfolio=portfolio)
-            kwargs['initial'] = {'asset': asset.pk}  # Pass the asset's primary key
+            kwargs['initial'] = {'asset': asset.pk}
 
         return kwargs
 
@@ -152,7 +162,6 @@ class TransactionCreateView(CreateView):
         if 'asset_pk' in self.kwargs:
             context['asset'] = get_object_or_404(Asset, pk=self.kwargs['asset_pk'], portfolio=portfolio)
 
-        # Pass the referrer to the template
         context['referrer'] = self.request.META.get('HTTP_REFERER', reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']}))
 
         return context
@@ -178,3 +187,30 @@ class TransactionCreateView(CreateView):
     def get_success_url(self):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
 
+
+@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(login_required, name='dispatch')
+class UpdateTransactionView(View):
+    def post(self, request, transaction_id):
+        transaction = get_object_or_404(Transaction, pk=transaction_id)
+        data = json.loads(request.body)
+
+        transaction.type = data.get('type', transaction.type)
+        transaction.action = data.get('action', transaction.action)
+        transaction.quantity = data.get('quantity', transaction.quantity)
+        transaction.price = data.get('price', transaction.price)
+        transaction.date = data.get('date', transaction.date)
+        transaction.save()
+
+        return JsonResponse({'status': 'success'})
+
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({'status': 'error'}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(login_required, name='dispatch')
+class DeleteTransactionView(View):
+    def delete(self, request, transaction_id):
+        transaction = get_object_or_404(Transaction, pk=transaction_id)
+        transaction.delete()
+        return HttpResponse(status=204)

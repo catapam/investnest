@@ -31,7 +31,7 @@ class PortfolioForm(forms.ModelForm):
 class AssetForm(forms.ModelForm):
     class Meta:
         model = Asset
-        fields = ['name']  # Only keeping the 'name' field for now
+        fields = ['name']
 
     def __init__(self, *args, **kwargs):
         super(AssetForm, self).__init__(*args, **kwargs)
