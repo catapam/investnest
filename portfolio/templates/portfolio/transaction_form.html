@@ -1,5 +1,6 @@
 {% extends "portfolio/portfolio.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}Add Transaction{% endblock title %}
 {% block portfolio_content %}
@@ -8,13 +9,50 @@
         <h1>Add Transaction{% if asset %} to {{ asset.name }}{% endif %}</h1>
     </div>
     <div class="portfolio-content">
-        <form method="post">
+        <form method="post" id="transactionForm">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ form.asset_choice|as_crispy_field }}  <!-- Asset selection dropdown with --- -->
+            {{ form.new_asset_name|as_crispy_field }}  <!-- New asset name field -->
+
+            <!-- Bootstrap Switches -->
+            <div class="form-group row text-center">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <label class="form-check-label">Buy</label>
+                    <div class="custom-control form-switch d-inline-block">
+                        <input type="checkbox" class="form-check-input" role="switch" id="actionSwitch" name="actionSwitch" value="sell">
+                        <label class="form-check-label" for="actionSwitch"></label>
+                    </div>
+                    <label class="form-check-label">Sell</label>
+                    <!-- Hidden field to ensure "buy" is submitted if the switch is off -->
+                    <input type="hidden" id="actionHidden" name="action" value="buy">
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <label class="form-check-label">Long</label>
+                    <div class="custom-control form-switch d-inline-block">
+                        <input type="checkbox" class="form-check-input" role="switch" id="typeSwitch" name="typeSwitch" value="short">
+                        <label class="form-check-label" for="typeSwitch"></label>
+                    </div>
+                    <label class="form-check-label">Short</label>
+                    <!-- Hidden field to ensure "long" is submitted if the switch is off -->
+                    <input type="hidden" id="typeHidden" name="type" value="long">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    {{ form.quantity|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.price|as_crispy_field }}
+                </div>
+            </div>
+            
+            {{ form.date|as_crispy_field }}
+
             <button type="submit" class="btn btn-primary">Add Transaction</button>
             <a href="{{ referrer }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </div>
-
+<script src="{% static 'js/transaction.js' %}" defer></script>
 {% endblock portfolio_content %}

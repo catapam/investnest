@@ -187,8 +187,6 @@ class TransactionCreateView(CreateView):
     def get_success_url(self):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
 
-
-@method_decorator(csrf_exempt, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 class UpdateTransactionView(View):
     def post(self, request, transaction_id):
@@ -207,10 +205,9 @@ class UpdateTransactionView(View):
     def get(self, request, *args, **kwargs):
         return JsonResponse({'status': 'error'}, status=400)
 
-@method_decorator(csrf_exempt, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 class DeleteTransactionView(View):
     def delete(self, request, transaction_id):
         transaction = get_object_or_404(Transaction, pk=transaction_id)
         transaction.delete()
-        return HttpResponse(status=204)
+        return JsonResponse({'status': 'success'}, status=204)

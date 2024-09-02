@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Portfolio(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -37,7 +38,6 @@ class Asset(models.Model):
     class Meta:
         ordering = ['name']
 
-
 class Transaction(models.Model):
     ACTION_CHOICES = [
         ('buy', 'Buy'),
@@ -48,13 +48,13 @@ class Transaction(models.Model):
         ('long', 'Long'),
         ('short', 'Short'),
     ]
-
+    
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE, related_name='transactions')
     action = models.CharField(max_length=4, choices=ACTION_CHOICES)
     type = models.CharField(max_length=5, choices=TYPE_CHOICES)
     quantity = models.DecimalField(max_digits=10, decimal_places=2)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=timezone.now)  # Set default to "now", but allow editing
 
     def __str__(self):
         return f'{self.get_action_display()} {self.quantity} {self.asset.name} at {self.price}'

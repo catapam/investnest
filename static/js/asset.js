@@ -28,36 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function saveTransaction(transactionId) {
         const row = document.getElementById(`transaction-${transactionId}`);
-        
-        const typeSelect = row.querySelector('select[name="type"]');
-        const actionSelect = row.querySelector('select[name="action"]');
-        const quantityInput = row.querySelector('input[name="quantity"]');
-        const priceInput = row.querySelector('input[name="price"]');
-        const dateInput = row.querySelector('input[name="date"]');
-    
-        const type = typeSelect.value;
-        console.log(type);
-        const action = actionSelect.value;
-        console.log(action);
-        const quantity = quantityInput.value;
-        console.log(quantity);
-        const price = priceInput.value;
-        console.log(price);
-        const date = dateInput.value;
-        console.log(date);
-    
-        if (quantity <= 0 || price <= 0) {
-            alert('Quantity and Price must be greater than zero.');
-            return;
-        }
-    
+        const type = row.querySelector('select[name="type"]').value;
+        const action = row.querySelector('select[name="action"]').value;
+        const quantity = row.querySelector('input[name="quantity"]').value;
+        const price = row.querySelector('input[name="price"]').value;
+        const date = row.querySelector('input[name="date"]').value;
+
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    
-        fetch(`/transaction/update/${transactionId}/`, {
+
+        fetch(`/portfolio/transaction/update/${transactionId}/`, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': csrfToken,
-                'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
@@ -71,23 +53,30 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                location.reload();
+                return response.json();
+            }
+            return response.json().then(err => { throw err; });
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                location.reload();  // Reload the page on success
             } else {
-                return response.json().then(err => { throw err; });
+                console.error('Error:', data.errors);
+                alert('Failed to save the transaction. Please try again.');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Failed to save the transaction. Please try again.');
+            alert('An error occurred while saving the transaction. Please try again.');
         });
     }
-    
+
     function deleteTransaction(transactionId) {
         if (!confirm('Are you sure you want to delete this transaction?')) return;
 
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-        fetch(`/transaction/delete/${transactionId}/`, {  // Correct URL for transaction delete
+        fetch(`/portfolio/transaction/delete/${transactionId}/`, {
             method: 'DELETE',
             headers: {
                 'X-CSRFToken': csrfToken,
@@ -95,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                location.reload();
+                location.reload();  // Reload the page on successful deletion
             } else {
                 return response.json().then(err => { throw err; });
             }

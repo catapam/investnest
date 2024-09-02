@@ -2,7 +2,9 @@ import random
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
+from crispy_forms.bootstrap import InlineRadios
 from .models import Portfolio, Asset, Transaction
+from django.utils import timezone
 
 def random_color():
     return "#{:06x}".format(random.randint(0, 0xFFFFFF))
@@ -54,42 +56,48 @@ class TransactionForm(forms.ModelForm):
         help_text="Enter the name of the new asset.",
         widget=forms.TextInput(attrs={'style': 'display:none;'})  # Initially hidden
     )
+    date = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        initial=timezone.now(),  # Set default to "now"
+        required=True
+    )
 
     class Meta:
         model = Transaction
-        fields = ['asset_choice', 'new_asset_name', 'action', 'type', 'quantity', 'price']
+        fields = ['asset_choice', 'new_asset_name', 'action', 'type', 'quantity', 'price', 'date']
+        widgets = {
+            'action': forms.RadioSelect,  # Render as radio buttons
+            'type': forms.RadioSelect,    # Render as radio buttons
+        }
 
     def __init__(self, *args, **kwargs):
         portfolio = kwargs.pop('portfolio', None)
         super(TransactionForm, self).__init__(*args, **kwargs)
 
         if portfolio:
-            # Get existing assets and sort them alphabetically by name
-            asset_choices = [(asset.pk, asset.name) for asset in Asset.objects.filter(portfolio=portfolio).order_by('name')]
-
-            # Add 'NEW ASSET' at the top and "---" as the default option
-            asset_choices.insert(0, ('new', 'NEW ASSET'))
-            asset_choices.insert(0, ('', '---'))
-
+            asset_choices = [('', '---')]  # Start with the --- option
+            asset_choices += [(asset.pk, asset.name) for asset in Asset.objects.filter(portfolio=portfolio).order_by('name')]
+            asset_choices.insert(1, ('new', 'NEW ASSET'))  # Add 'NEW ASSET' right after ---
             self.fields['asset_choice'].choices = asset_choices
 
-            # Handle the initial value for the dropdown
             initial_asset = kwargs.get('initial', {}).get('asset')
             if initial_asset:
-                # Set the initial asset selection if provided
                 self.fields['asset_choice'].initial = initial_asset
-            else:
-                # Default to "---" if no initial asset is provided
-                self.fields['asset_choice'].initial = ''
+
+        self.fields['action'].choices = Transaction.ACTION_CHOICES
+        self.fields['type'].choices = Transaction.TYPE_CHOICES
+        self.fields['action'].initial = 'buy'
+        self.fields['type'].initial = 'long'
 
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'asset_choice',
             'new_asset_name',
-            'action',
-            'type',
+            InlineRadios('action'),  # Ensure radio buttons are inline
+            InlineRadios('type'),    # Ensure radio buttons are inline
             'quantity',
             'price',
+            'date',
         )
         self.helper.add_input(Submit('submit', 'Save Transaction'))
 
@@ -109,7 +117,6 @@ class TransactionForm(forms.ModelForm):
         portfolio = self.instance.portfolio
 
         if asset_choice == 'new' and new_asset_name:
-            # Ensure portfolio is set correctly when creating a new asset
             asset, created = Asset.objects.get_or_create(
                 name=new_asset_name,
                 portfolio=portfolio
@@ -119,3 +126,5 @@ class TransactionForm(forms.ModelForm):
 
         self.instance.asset = asset
         return super(TransactionForm, self).save(commit=commit)
+    
+    
