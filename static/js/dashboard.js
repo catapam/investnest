@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         innerMenuLinks.forEach(function (link) {
             var linkPath = link.getAttribute('href');
             // Exact match for the inner menu
-            if (currentPath === linkPath) {
+            if (currentPath.startsWith(linkPath)) {
                 link.classList.add('active');
                 scrollActiveItemIntoView(link);
             }

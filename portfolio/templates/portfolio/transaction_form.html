@@ -1,12 +1,12 @@
-{% extends "portfolio/portfolio.html" %}
+{% extends "portfolio/portfolio_header.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}Add Transaction{% endblock title %}
-{% block portfolio_content %}
-<div class="container">
+{% block portfolio_inner_content %}
+<div>
     <div class="portfolio-title">
-        <h1>Add Transaction{% if asset %} to {{ asset.name }}{% endif %}</h1>
+        <h1>Add Transaction</h1>
     </div>
     <div class="portfolio-content">
         <form method="post" id="transactionForm">
@@ -49,10 +49,10 @@
             
             {{ form.date|as_crispy_field }}
 
-            <button type="submit" class="btn btn-primary">Add Transaction</button>
+            <button type="submit" class="btn btn-success">Add Transaction</button>
             <a href="{{ referrer }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </div>
 <script src="{% static 'js/transaction.js' %}" defer></script>
-{% endblock portfolio_content %}
+{% endblock portfolio_inner_content %}

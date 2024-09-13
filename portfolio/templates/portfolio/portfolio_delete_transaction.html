@@ -3,8 +3,7 @@
 {% block title %}Delete Asset{% endblock title %}
 {% block portfolio_inner_content %}
 <div class="container">
-    <h2>Are you sure you want to delete the asset <strong style="text-decoration: underline;">{{ asset.name }}</strong> from this portfolio?</h2>
-    <p>*All transactions from this asset will be deleted too</p>
+    <h2>Are you sure you want to delete the transaction from this portfolio?</h2>
 
     <form method="post">
         {% csrf_token %}

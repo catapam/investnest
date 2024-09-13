@@ -67,13 +67,13 @@
                     </div>                    
                 {% endslot %}
                 {% slot actions %}
-                    <button type="submit" name="action_primary" class="btn btn-primary w-33 mb-2">
+                    <button type="submit" name="action_primary" class="btn btn-success w-33 mb-2">
                         {% trans 'Make Primary' %}
                     </button>
-                    <button type="submit" tags="secondary" name="action_send" class="btn btn-primary w-33 mb-2">
+                    <button type="submit" tags="secondary" name="action_send" class="btn btn-success w-33 mb-2">
                         {% trans 'Re-send Verification' %}
                     </button>
-                    <button tags="danger,delete" type="submit" name="action_remove" class="btn btn-primary w-33 mb-2">
+                    <button tags="danger,delete" type="submit" name="action_remove" class="btn btn-success w-33 mb-2">
                         {% trans 'Remove' %}
                     </button>
                 {% endslot %}
@@ -93,7 +93,7 @@
                         {{ form|crispy }}
                     {% endslot %}
                     {% slot actions %}
-                        <button name="action_add" type="submit" class="btn btn-primary w-50 mb-2">
+                        <button name="action_add" type="submit" class="btn btn-success w-50 mb-2">
                             {% trans "Add Email" %}
                         </button>
                     {% endslot %}

@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import Dashboard
+from .views import Dashboard, redirect_to_main
 
 urlpatterns=[
-    path('', Dashboard.as_view(), name='dashboard'),
+    path('', redirect_to_main), 
+    path('main/', Dashboard.as_view(), name='dashboard'),
 ]

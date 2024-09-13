@@ -71,30 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function deleteTransaction(transactionId) {
-        if (!confirm('Are you sure you want to delete this transaction?')) return;
-
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        fetch(`/portfolio/transaction/delete/${transactionId}/`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRFToken': csrfToken,
-            },
-        })
-        .then(response => {
-            if (response.ok) {
-                location.reload();  // Reload the page on successful deletion
-            } else {
-                return response.json().then(err => { throw err; });
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to delete the transaction. Please try again.');
-        });
-    }
-
     function toggleAssetEditMode(editMode) {
         const assetNameDisplay = document.getElementById('asset-name-display');
         const assetNameForm = document.getElementById('asset-name-form');
@@ -103,11 +79,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (editMode) {
             assetNameDisplay.style.display = 'none';
-            assetNameForm.style.display = 'block';
+            assetNameForm.style.display = 'flex';
             editAssetNameBtn.style.display = 'none';
             deleteAssetBtn.style.display = 'none';
         } else {
-            assetNameDisplay.style.display = 'block';
+            assetNameDisplay.style.display = 'inline-block';
             assetNameForm.style.display = 'none';
             editAssetNameBtn.style.display = 'inline-block';
             deleteAssetBtn.style.display = 'inline-block';
@@ -186,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
      
     window.toggleEditMode = toggleEditMode;
     window.saveTransaction = saveTransaction;
-    window.deleteTransaction = deleteTransaction;
     window.toggleAssetEditMode = toggleAssetEditMode;
     window.saveAssetName = saveAssetName;
     window.deleteAsset = deleteAsset;

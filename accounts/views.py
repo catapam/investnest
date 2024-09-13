@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic.edit import FormView
 from .forms import UpdateUsernameForm
+from django.shortcuts import redirect
 
 @method_decorator(login_required, name='dispatch')
 class UpdateUsernameView(FormView):
@@ -22,6 +23,10 @@ class UpdateUsernameView(FormView):
     def form_invalid(self, form):
         messages.error(self.request, 'There was an error updating your username. Please try again.')
         return super().form_invalid(form)
+
+# Define a simple view that redirects to /user/
+def redirect_to_user(request):
+    return redirect('account_user')
 
 
 

@@ -1,93 +1,96 @@
-{% extends "portfolio/portfolio.html" %}
+{% extends "portfolio/portfolio_header.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% load custom_filters %}
 
 {% block title %}Portfolio Details{% endblock title %}
-{% block portfolio_content %}
-<div class="container">
-    <div class="portfolio-title">
-        <h1 style="color: {{portfolio.color|default:'#FFFFFF'}};">{{ portfolio.name }}</h1>
-        <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger">Delete Portfolio</a>
-        <p><strong>Created at:</strong> {{ portfolio.created_at }}</p>
-    </div>
+<div class="portfolio-content">
+    {% block portfolio_inner_content %}
 
-    <div class="portfolio-content">
-        <div>
+        <div class="inner-header">
             <h2>Assets</h2>
-            <a href="{% url 'portfolio_add_asset' portfolio.pk %}" class="btn btn-primary">Add Asset</a>
+            <a href="{% url 'portfolio_add_asset' portfolio.pk %}" class="btn-add btn btn-success btn-sm">+</a>
         </div>
+
         {% if assets %}
-        <div class="table-responsive">
-            <table class="table table-borderless table-hover table-sm align-middle">
-                <thead>
-                    <tr>
-                        <th scope="col">Actions</th>
-                        <th scope="col">
-                            <a href="?order=name">
-                                Name {% if current_order == 'name' %}▲{% elif current_order == '-name' %}▼{% endif %}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            <a href="?order=quantity">
-                                Quantity {% if current_order == 'quantity' %}▲{% elif current_order == '-quantity' %}▼{% endif %}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            <a href="?order=price">
-                                Av. Price (US$) {% if current_order == 'price' %}▲{% elif current_order == '-price' %}▼{% endif %}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            <a href="?order=total_value">
-                                Total Value (US$)
-                            </a>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                </tbody>
-                <tbody>
-                    {% for asset in assets %}
-                    <tr class="dashboard-table" style="cursor: pointer;" onclick="window.location.href='{% url "portfolio_edit_asset" portfolio.pk asset.pk %}'">
-                        <th scope="row">
-                            <meta name="csrf-token" content="{{ csrf_token }}">
-                            <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-info btn-sm" onclick="event.stopPropagation();">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                            <button id="delete-asset-btn" type="button" class="btn btn-danger btn-sm btn-delete"
-                                onclick="deleteAsset({{ asset.pk }}, {{ portfolio.pk }})">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </th>
-                        <td scope="row">{{ asset.name }}</td>
-                        <td scope="row">{{ asset.get_total_quantity }}</td>
-                        <td scope="row">{% if asset.transactions.exists %}{{ asset.live_price }}{% else %}N/A{% endif %}</td>
-                        <td scope="row">
-                            {% if asset.transactions.exists %}
-                                {{ asset.get_total_value }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr class="dashboard-table">
-                        <th scope="row"></th>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row">{{ total_value_sum }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+
+            <div class="table-responsive justify-inner-content">
+                <table class="table table-borderless table-hover table-sm align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">
+                                <a href="?order=name">
+                                    Name {% if current_order == 'name' %}▲{% elif current_order == '-name' %}▼{% endif %}
+                                </a>
+                            </th>
+                            <th scope="col">
+                                <a href="?order=quantity">
+                                    Quantity {% if current_order == 'quantity' %}▲{% elif current_order == '-quantity' %}▼{% endif %}
+                                </a>
+                            </th>
+                            <th scope="col">
+                                <a href="?order=price">
+                                    Av. Price (US$) {% if current_order == 'price' %}▲{% elif current_order == '-price' %}▼{% endif %}
+                                </a>
+                            </th>
+                            <th scope="col">
+                                <a href="?order=total_value">
+                                    Total Value (US$)
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    </tbody>
+                    <tbody>
+                        {% for asset in assets %}
+                        <tr class="dashboard-table" style="cursor: pointer;" onclick="window.location.href='{% url "portfolio_edit_asset" portfolio.pk asset.pk %}'">
+                            <th scope="row">
+                                <meta name="csrf-token" content="{{ csrf_token }}">
+                                <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-info btn-sm"
+                                    onclick="event.stopPropagation();">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </th>
+                            <td scope="row">{{ asset.name }}</td>
+                            <td scope="row">{{ asset.get_total_quantity }}</td>
+                            <td scope="row">
+                                {% if asset.transactions.exists %}
+                                    {{ asset.live_price }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td scope="row">
+                                {% if asset.transactions.exists %}
+                                    {{ asset.get_total_value }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr class="dashboard-table">
+                            <th scope="row"></th>
+                            <td scope="row"></td>
+                            <td scope="row"></td>
+                            <td scope="row"></td>
+                            <td scope="row">{{ total_value_sum }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
         {% else %}
-        <p>No assets in this portfolio.</p>
+            <p class="justify-inner-content">No assets in this portfolio yet</p>
         {% endif %}
-    </div>
+
+        <script src="{% static 'js/asset.js' %}" defer></script>
+    {% endblock portfolio_inner_content %}
 </div>
-<script src="{% static 'js/asset.js' %}" defer></script>
-{% endblock portfolio_content %}

@@ -1,0 +1,13 @@
+<div class="button-l1">
+    <a href="{% url 'portfolio_edit' portfolio.pk %}" class="btn btn-warning btn-sm btn-edit">
+        <i class="fa-solid fa-pencil"></i>
+    </a>
+    <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete">
+        <i class="fa-solid fa-trash"></i>
+    </a>
+</div>
+<div class="button-l2">
+    <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics">
+        Metrics
+    </a>
+</div>

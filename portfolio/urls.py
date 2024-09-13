@@ -3,19 +3,23 @@ from .views import (
     PortfolioListView,
     PortfolioCreateView,
     PortfolioDetailView,
+    PortfolioUpdateView,
     PortfolioDeleteView,
     AssetCreateView,
     AssetUpdateView,
     AssetDeleteView,
     TransactionCreateView,
     UpdateTransactionView,
-    DeleteTransactionView
+    DeleteTransactionView,
+    redirect_to_view
 )
 
 urlpatterns = [
-    path('', PortfolioListView.as_view(), name='portfolio'),
+    path('', redirect_to_view),
+    path('view/', PortfolioListView.as_view(), name='portfolio'),
     path('new/', PortfolioCreateView.as_view(), name='portfolio_new'),
     path('<int:pk>/', PortfolioDetailView.as_view(), name='portfolio_detail'),
+    path('<int:pk>/edit', PortfolioUpdateView.as_view(), name='portfolio_edit'),
     path('<int:pk>/delete/', PortfolioDeleteView.as_view(), name='portfolio_delete'),
 
     path('<int:portfolio_pk>/asset/new/', AssetCreateView.as_view(), name='portfolio_add_asset'),
@@ -24,6 +28,6 @@ urlpatterns = [
 
     path('<int:portfolio_pk>/asset/<int:asset_pk>/transaction/add/', TransactionCreateView.as_view(), name='transaction_add'),
     path('transaction/update/<int:transaction_id>/', UpdateTransactionView.as_view(), name='update_transaction'),
-    path('transaction/delete/<int:transaction_id>/', DeleteTransactionView.as_view(), name='delete_transaction'),
+    path('<int:portfolio_pk>/asset/<int:asset_pk>/transaction/<int:pk>/delete/', DeleteTransactionView.as_view(), name='delete_transaction'),
 ]
 

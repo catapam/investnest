@@ -7,13 +7,17 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.urls import reverse
 from .models import Portfolio, Asset, Transaction
 from .forms import PortfolioForm, AssetForm, TransactionForm
+from .mixins import SafeDispatchMixin
+
+def redirect_to_view(request):
+    return redirect('portfolio')
 
 @method_decorator(login_required, name='dispatch')
-class PortfolioListView(TemplateView):
+class PortfolioListView(SafeDispatchMixin,TemplateView):
     template_name = 'portfolio/portfolio_list.html'
 
     def get_context_data(self, **kwargs):
@@ -22,7 +26,7 @@ class PortfolioListView(TemplateView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-class PortfolioCreateView(CreateView):
+class PortfolioCreateView(SafeDispatchMixin,CreateView):
     model = Portfolio
     form_class = PortfolioForm
     template_name = 'portfolio/portfolio_new.html'
@@ -36,7 +40,7 @@ class PortfolioCreateView(CreateView):
         return reverse('portfolio')  
 
 @method_decorator(login_required, name='dispatch')
-class PortfolioDetailView(TemplateView):
+class PortfolioDetailView(SafeDispatchMixin,TemplateView):
     template_name = 'portfolio/portfolio_detail.html'
 
     def get_context_data(self, **kwargs):
@@ -53,7 +57,7 @@ class PortfolioDetailView(TemplateView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-class PortfolioDeleteView(DeleteView):
+class PortfolioDeleteView(SafeDispatchMixin,DeleteView):
     model = Portfolio
     template_name = 'portfolio/portfolio_confirm_delete.html'
 
@@ -74,9 +78,12 @@ class PortfolioDeleteView(DeleteView):
     def get_success_url(self):
         return reverse('portfolio')  
 
+@method_decorator(login_required, name='dispatch')
+class PortfolioUpdateView(SafeDispatchMixin,UpdateView):
+    pass
 
 @method_decorator(login_required, name='dispatch')
-class AssetCreateView(CreateView):
+class AssetCreateView(SafeDispatchMixin,CreateView):
     model = Asset
     form_class = AssetForm
     template_name = 'portfolio/portfolio_add_asset.html'
@@ -96,7 +103,7 @@ class AssetCreateView(CreateView):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
 
 @method_decorator(login_required, name='dispatch')
-class AssetUpdateView(UpdateView):
+class AssetUpdateView(SafeDispatchMixin,UpdateView):
     model = Asset
     form_class = AssetForm
     template_name = 'portfolio/portfolio_edit_asset.html'
@@ -114,31 +121,46 @@ class AssetUpdateView(UpdateView):
 
     def form_valid(self, form):
         form.save()
+        messages.success(self.request, 'Asset updated successfully!')
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_invalid(self, form):
+        messages.error(self.request, 'The asset update failed!')
         return self.render_to_response(self.get_context_data(form=form))
    
 @method_decorator(login_required, name='dispatch')
-class AssetDeleteView(DeleteView):
+class AssetDeleteView(SafeDispatchMixin,DeleteView):
     model = Asset
     template_name = 'portfolio/portfolio_delete_asset.html'
 
-    def get_queryset(self):
+    def get_object(self, queryset=None):
+        asset = super().get_object(queryset)
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
-        return portfolio.assets.all()
+        if asset.portfolio != portfolio:
+            messages.error(self.request, 'You do not have permission to delete this asset.')
+            return None 
+        return asset
 
     def delete(self, request, *args, **kwargs):
         asset = self.get_object()
-        asset.delete()
+        portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        kwargs['pk'] = portfolio
+        if not asset:
+            return HttpResponseForbidden(render(request, '401.html')) 
         messages.success(self.request, 'Asset deleted successfully!')
-        return HttpResponse(status=204)
+        return super().delete(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portfolio'] = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        
+        return context
+
 @method_decorator(login_required, name='dispatch')
-class TransactionCreateView(CreateView):
+class TransactionCreateView(SafeDispatchMixin,CreateView):
     model = Transaction
     form_class = TransactionForm
     template_name = 'portfolio/transaction_form.html'
@@ -182,13 +204,17 @@ class TransactionCreateView(CreateView):
             asset = Asset.objects.get(pk=asset_choice)
 
         form.instance.asset = asset
+        messages.success(self.request, 'Transaction added successfully!')
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']})
+        return reverse('portfolio_edit_asset', kwargs={
+        'portfolio_pk': self.kwargs['portfolio_pk'], 
+        'pk': self.kwargs['asset_pk']
+    })
 
 @method_decorator(login_required, name='dispatch')
-class UpdateTransactionView(View):
+class UpdateTransactionView(SafeDispatchMixin,UpdateView):
     def post(self, request, transaction_id):
         transaction = get_object_or_404(Transaction, pk=transaction_id)
         data = json.loads(request.body)
@@ -200,14 +226,40 @@ class UpdateTransactionView(View):
         transaction.date = data.get('date', transaction.date)
         transaction.save()
 
+        messages.success(self.request, 'Transaction updated successfully!')
         return JsonResponse({'status': 'success'})
 
     def get(self, request, *args, **kwargs):
         return JsonResponse({'status': 'error'}, status=400)
 
 @method_decorator(login_required, name='dispatch')
-class DeleteTransactionView(View):
-    def delete(self, request, transaction_id):
-        transaction = get_object_or_404(Transaction, pk=transaction_id)
-        transaction.delete()
-        return JsonResponse({'status': 'success'}, status=204)
+class DeleteTransactionView(SafeDispatchMixin,DeleteView):
+    model = Transaction
+    template_name = 'portfolio/portfolio_delete_transaction.html'
+
+    def get_object(self, queryset=None):
+        transaction = super().get_object(queryset)
+        asset = get_object_or_404(Asset, pk=self.kwargs['asset_pk'])
+        portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        if transaction.asset != asset:
+            messages.error(self.request, 'You do not have permission to delete this transaction.')
+            return None 
+
+        return transaction
+
+    def delete(self, request, *args, **kwargs):
+        transaction = self.get_object()
+        if not transaction:
+            return HttpResponseForbidden(render(request, '401.html'))
+
+        messages.success(self.request, 'Transaction deleted successfully!')
+        return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('portfolio_edit_asset', kwargs={'portfolio_pk':self.kwargs['portfolio_pk'], 'pk': self.kwargs['asset_pk']})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portfolio'] = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
+        context['asset'] = get_object_or_404(Asset, pk=self.kwargs['asset_pk'])
+        return context

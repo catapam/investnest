@@ -1,17 +1,12 @@
-{% extends "portfolio/portfolio.html" %}
+{% extends "portfolio/portfolio_header.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}View Asset{% endblock title %}
-{% block portfolio_content %}
-<div class="container">
-    <div class="portfolio-title">
-        <a href="{% if portfolio %}{% url 'portfolio_detail' portfolio.pk %}{% else %}#{% endif %}"
-            class="btn btn-warning btn-sm">Back</a>
-        <h1>Asset in <span style="color: {{ portfolio.color|default:'#FFFFFF'}};">{{ portfolio.name }}</span></h1>
-    </div>
-    <div class="portfolio-content">
-        <div>
+{% block portfolio_inner_content %}
+<div>
+    <div>
+        <div class="inner-header">
             <!-- Display Asset Name as Text -->
             <h2>Asset: <span id="asset-name-display">{{ asset.name }}</span></h2>
 
@@ -19,7 +14,7 @@
             <form id="asset-name-form" method="post" style="display: none;" action="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}">
                 {% csrf_token %}
                 <input type="text" name="name" value="{{ asset.name }}" class="form-control" />
-                <button type="submit" class="btn btn-success btn-sm btn-save">
+                <button type="submit" id="asset-save-btn" class="btn btn-success btn-sm btn-save">
                     <i class="fa-solid fa-floppy-disk"></i>
                 </button>
                 <button type="button" class="btn btn-danger btn-sm btn-cancel" onclick="toggleAssetEditMode(false)">
@@ -31,16 +26,17 @@
             <button id="edit-asset-name-btn" class="btn btn-warning btn-sm" onclick="toggleAssetEditMode(true)">
                 <i class="fa-solid fa-pencil"></i>
             </button>
-            <button id="delete-asset-btn" type="button" class="btn btn-danger btn-sm btn-delete"
-                onclick="deleteAsset({{ asset.pk }}, {{ portfolio.pk }})">
+            <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm btn-delete" id="delete-asset-btn">
                 <i class="fa-solid fa-trash"></i>
-            </button>
+            </a>
         </div>
         <hr>
-        <h2>Transactions</h2>
-        <a href="{% url 'transaction_add' portfolio.pk asset.pk %}" class="btn btn-success mb-4">Add Transaction</a>
+        <div class="inner-header">
+            <h2>Transactions</h2>
+            <a href="{% url 'transaction_add' portfolio.pk asset.pk %}" class="btn-add btn btn-success btn-sm">+</a>
+        </div>
         {% if transactions %}
-        <table class="table table-bordered">
+        <table class="table table-bordered justify-inner-content">
             <thead>
                 <tr>
                     <th>Options</th>
@@ -59,10 +55,9 @@
                             onclick="toggleEditMode({{ transaction.pk }})">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm btn-delete"
-                            onclick="deleteTransaction({{ transaction.pk }})">
+                        <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm btn-delete" id="delete-asset-btn">
                             <i class="fa-solid fa-trash"></i>
-                        </button>
+                        </a>                        
                         <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
                             onclick="saveTransaction({{ transaction.pk }})">
                             <i class="fa-solid fa-floppy-disk"></i>
@@ -106,9 +101,9 @@
             </tbody>
         </table>
         {% else %}
-        <p>No transactions found.</p>
+        <p class="justify-inner-content">No transactions found.</p>
         {% endif %}
     </div>
 </div>
 <script src="{% static 'js/asset.js' %}" defer></script>
-{% endblock portfolio_content %}
+{% endblock portfolio_inner_content %}

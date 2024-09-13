@@ -36,11 +36,11 @@
                         {% endslot %}
                         {% slot help_text %}
                             {% blocktranslate %}Your email address is still pending verification.{% endblocktranslate %}
-                                <button form="pending-email" type="submit" name="action_send" tags="minor,secondary" class="btn btn-primary w-50 mb-2">
+                                <button form="pending-email" type="submit" name="action_send" tags="minor,secondary" class="btn btn-success w-50 mb-2">
                                     {% trans 'Re-send Verification' %}
                                 </button>
                             {% if current_emailaddress %}
-                                <button form="pending-email" type="submit" name="action_remove" tags="danger,minor" class="btn btn-primary w-50 mb-2">
+                                <button form="pending-email" type="submit" name="action_remove" tags="danger,minor" class="btn btn-success w-50 mb-2">
                                     {% trans 'Cancel Change' %}
                                 </button>
                             {% endif %}
@@ -54,7 +54,7 @@
                 {% endelement %}
             {% endslot %}
             {% slot actions %}
-                <button name="action_add" type="submit" class="btn btn-primary w-50 mb-2">
+                <button name="action_add" type="submit" class="btn btn-success w-50 mb-2">
                     {% trans "Change Email" %}
                 </button>
             {% endslot %}

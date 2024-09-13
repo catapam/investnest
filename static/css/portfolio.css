@@ -9,26 +9,98 @@
     left: 0;
     right: 0;
     top: 0;
+    padding: 0 !important;
 }
 
-.portfolio-title {
+.portfolio-header {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: var(--bs-border-radius);
+    max-height: 120px;
+}
+
+.portfolio-header .btn {
+    align-items: end;
+    margin-left: 5px;
+}
+
+.portfolio-title{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+.my-portfolio-title{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    height: 32px;
+}
+
+.my-portfolio-title h1{
+    color: var(--text-primary-color);
+    font-size: large;
+    margin-bottom: auto !important;
+    margin-top: auto !important;
+    padding-bottom: 0;
+}
+
+.portfolio-title h1 {
+    padding-bottom: 0;
+    color: var(--text-primary-color);
+    font-size: large;
+}
+
+.portfolio-title p {
+    margin-bottom: 0;
+    margin-top: 5px;
+    color: var(--text-primary-color);
+    word-wrap: break-word; /* Break the word if it doesn't fit */
+    word-break: break-word; /* Break long words when necessary */
+    white-space: normal;    /* Ensure normal line breaks (default) */
+}
+
+.portfolio-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.portfolio-buttons .button-l1{
     display: flex;
     flex-direction: row;
 }
 
-.portfolio-title .btn {
-    align-items: end;
+.btn-metrics{
+    margin-top: 5px;
+    width: 69px;
+    height: 32px;
+    font-size: small;
 }
 
-.portfolio-title h1 {
-    margin-right: auto;
+.asset-header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.asset-header h2{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.btn-add{
+    margin: 0 !important;
+    margin-left: 10px !important;
 }
 
 .portfolio-content {
     display: flex;
     flex-direction: column;
     overflow: auto;
-    max-height: 60vh;
+    max-height: 65vh;
     padding: 15px;
     border: var(--border);
     background-color: var(--bg-light);
@@ -39,12 +111,20 @@
     max-height: 80px;
 }
 
-.btn-sm{
+.btn-sm, #edit-asset-name-btn, #asset-save-btn{
     padding: auto;
-    margin: auto;
     text-align: center;
     width: 32px;
     height: 32px;
+}
+
+#edit-asset-name-btn, #asset-save-btn{
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+}
+
+#delete-asset-btn{
+    margin-left: 5px !important;
 }
 
 .custom-control.form-group{
@@ -109,4 +189,25 @@
     left: 27px; /* Adjust for the switch position */
 }
 
+.inner-header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
 
+.inner-header h2{
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.justify-inner-content{
+    margin-left: 15px;
+    width:-webkit-fill-available; 
+}
+
+@media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+        max-width: none;
+    }
+}
