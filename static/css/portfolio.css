@@ -26,20 +26,20 @@
     margin-left: 5px;
 }
 
-.portfolio-title{
+.portfolio-title {
     display: flex;
     flex-direction: column;
     max-width: 80%;
 }
 
-.my-portfolio-title{
+.my-portfolio-title {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
     height: 32px;
 }
 
-.my-portfolio-title h1{
+.my-portfolio-title h1 {
     color: var(--text-primary-color);
     font-size: large;
     margin-bottom: auto !important;
@@ -57,9 +57,15 @@
     margin-bottom: 0;
     margin-top: 5px;
     color: var(--text-primary-color);
-    word-wrap: break-word; /* Break the word if it doesn't fit */
-    word-break: break-word; /* Break long words when necessary */
-    white-space: normal;    /* Ensure normal line breaks (default) */
+}
+
+.portfolio-title p span {
+    word-wrap: break-word;
+    /* Break the word if it doesn't fit */
+    word-break: break-word;
+    /* Break long words when necessary */
+    white-space: normal;
+    /* Ensure normal line breaks (default) */
 }
 
 .portfolio-buttons {
@@ -68,32 +74,27 @@
     margin-left: auto;
 }
 
-.portfolio-buttons .button-l1{
+.portfolio-buttons .button-l1 {
     display: flex;
     flex-direction: row;
 }
 
-.btn-metrics{
+.btn-metrics {
     margin-top: 5px;
     width: 69px;
     height: 32px;
     font-size: small;
 }
 
-.asset-header{
+.asset-header {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
 }
 
-.asset-header h2{
+.asset-header h2 {
     margin-top: auto;
     margin-bottom: auto;
-}
-
-.btn-add{
-    margin: 0 !important;
-    margin-left: 10px !important;
 }
 
 .portfolio-content {
@@ -111,37 +112,30 @@
     max-height: 80px;
 }
 
-.btn-sm, #edit-asset-name-btn, #asset-save-btn{
+.btn-sm,
+#edit-asset-name-btn,
+#asset-save-btn {
     padding: auto;
     text-align: center;
     width: 32px;
     height: 32px;
 }
 
-#edit-asset-name-btn, #asset-save-btn{
-    margin-left: 10px !important;
-    margin-right: 0 !important;
-}
-
-#delete-asset-btn{
-    margin-left: 5px !important;
-}
-
-.custom-control.form-group{
+.custom-control.form-group {
     padding: 5px;
     margin: 0;
 }
 
-.form-group div{
+.form-group div {
     min-height: 40px;
 }
 
-.custom-control.form-switch{
+.custom-control.form-switch {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
 
-.custom-control.form-switch label{
+.custom-control.form-switch label {
     display: inline;
 }
 
@@ -159,7 +153,7 @@
     transition: background-color 0.2s;
 }
 
-.form-check-input:focus{
+.form-check-input:focus {
     border-color: none;
     box-shadow: none;
 }
@@ -182,32 +176,99 @@
 }
 
 .custom-control.form-switch .form-check-input:checked {
-    background-color: var(--dark-red-accent); /* Green for Buy/Long */
+    background-color: var(--dark-red-accent);
+    /* Green for Buy/Long */
 }
 
 .custom-control.form-switch .form-check-input:checked:before {
-    left: 27px; /* Adjust for the switch position */
+    left: 27px;
+    /* Adjust for the switch position */
 }
 
-.inner-header{
+.inner-header {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
     padding-left: 15px;
 }
 
-.inner-header h2{
+.inner-header h2 {
     margin-bottom: auto;
     margin-top: auto;
 }
 
-.justify-inner-content{
+.justify-inner-content {
     margin-left: 15px;
-    width:-webkit-fill-available; 
+    margin-right: 15px;
+    width: -webkit-fill-available;
+}
+
+#color-switch {
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 69px;
+    height: 32px;
+    font-size: small;
+}
+
+#portfolio-name,
+#portfolio-description {
+    display: flex;
+    flex-direction: row;
+}
+
+#portfolio-description {
+    margin-top: 5px;
+}
+
+#portfolio-form input {
+    height: 32px;
+    margin-left: 10px;
+}
+
+table #delete-asset-btn, table .btn-cancel{
+    margin-top: 5px !important;
+}
+
+#action-buttons-transaction{
+    width: 48px;
+}
+
+.table-responsive{
+    height: 55vh;
+    overflow-y: auto;
+}
+
+#add-transaction{
+    margin:0 !important;
+}
+
+.asset-action-buttons{
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+#transaction-add-title{
+    margin-left: 15px;
+}
+
+.dashboard-table th{
+    width: 40px;
+}
+
+.btn-add{
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 @media (min-width: 768px) {
-    .container, .container-md, .container-sm {
+    .container,
+    .container-md,
+    .container-sm {
         max-width: none;
+    }
+
+    .dashboard-table th{
+        width: 88px;
     }
 }

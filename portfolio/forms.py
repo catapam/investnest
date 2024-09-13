@@ -19,9 +19,21 @@ class PortfolioForm(forms.ModelForm):
         model = Portfolio
         fields = ['name', 'description', 'color']
 
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        user = self.instance.user  # This will now be set correctly in the view
+
+        # Check for duplicate portfolio names for the same user
+        if Portfolio.objects.filter(user=user, name=name).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError(f'A portfolio with the name "{name}" already exists for this user.')
+
+        return name
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['color'].initial = random_color()
+        if not self.initial.get('color'):
+            self.fields['color'].initial = random_color()
+
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'name',
@@ -43,6 +55,15 @@ class AssetForm(forms.ModelForm):
         )
         self.helper.add_input(Submit('submit', 'Save Asset'))
 
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        portfolio = self.instance.portfolio
+
+        if Asset.objects.filter(portfolio=portfolio, name=name).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError(f'An asset with the name "{name}" already exists in this portfolio.')
+
+        return name
+
 class TransactionForm(forms.ModelForm):
     asset_choice = forms.ChoiceField(
         label="Select Asset",
@@ -54,7 +75,7 @@ class TransactionForm(forms.ModelForm):
         required=False,
         label="New Asset Name",
         help_text="Enter the name of the new asset.",
-        widget=forms.TextInput(attrs={'style': 'display:none;'})  # Initially hidden
+        widget=forms.TextInput(attrs={'style': 'display:block;'}) 
     )
     date = forms.DateTimeField(
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
@@ -83,6 +104,8 @@ class TransactionForm(forms.ModelForm):
             initial_asset = kwargs.get('initial', {}).get('asset')
             if initial_asset:
                 self.fields['asset_choice'].initial = initial_asset
+            else:
+                self.fields['asset_choice'].initial = 'new'
 
         self.fields['action'].choices = Transaction.ACTION_CHOICES
         self.fields['type'].choices = Transaction.TYPE_CHOICES

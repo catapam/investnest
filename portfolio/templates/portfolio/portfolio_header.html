@@ -1,19 +1,57 @@
 {% extends "portfolio/portfolio.html" %}
+{% load crispy_forms_tags %}
 
 {% block portfolio_content %}
 <div class="container">
-    <div class="portfolio-header" style="background-color: {{portfolio.color|default:'invisible'}};">
+    <div class="portfolio-header" id="portfolio-header"
+        style="background-color: {{portfolio.color|default:'invisible'}};">
         <div class="portfolio-title">
-            <h1>Portfolio: {{ portfolio.name }}</h1>
-            <p>Description: <br>{{ portfolio.description }}</p>
+            <form id="portfolio-form" method="post">
+                {% csrf_token %}
+                <div id="portfolio-name">
+                    <h1>Portfolio: <span class="display-mode">{{ portfolio.name }}</span></h1>
+                    <input name="name" type="text" class="edit-mode form-control" style="display: none;"
+                        value="{{ portfolio.name }}">
+                </div>
+                <div id="portfolio-description">
+                    <p>Description: <br><span class="display-mode">{{ portfolio.description }}</span></p>
+                    <input name="description" type="text" class="edit-mode form-control" style="display: none;"
+                        value="{{ portfolio.description }}">
+                </div>
+            </form>
         </div>
         <div class="portfolio-buttons">
-            {% include 'portfolio/includes/portfolio_actions.html' %}
+            <div class="button-l1">
+                <button type="button" class="btn btn-warning btn-sm btn-edit" style="display: block;"
+                    onclick="togglePortfolioEditMode({{ portfolio.pk }})">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete"
+                    style="display: block;">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+                <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
+                    onclick="savePortfolio({{ portfolio.pk }})">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;"
+                    onclick="togglePortfolioEditMode({{ portfolio.pk }}, false)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="button-l2">
+                <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics"
+                    style="display: block;">
+                    Metrics
+                </a>
+                <input id="color-switch" name="color" type="color" class="edit-mode form-control" style="display: none;"
+                    value="{{ portfolio.color }}" title="Pick a Color">
+            </div>
         </div>
     </div>
 
     {% block portfolio_inner_content %}
     {% endblock portfolio_inner_content %}
-    
+
 </div>
 {% endblock portfolio_content %}

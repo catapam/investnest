@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggle-btn');
-    const mainContent = document.getElementById('dashboard-content');
-    const optionMenu = document.querySelector('.option-menu');
-    const scrollButtonLeft = document.querySelector('.scroll-button-left');
-    const scrollButtonRight = document.querySelector('.scroll-button-right');
-    const optionMenuWrapper = document.querySelector('.option-menu-wrapper');
+    var sidebar = document.getElementById('sidebar');
+    var toggleBtn = document.getElementById('toggle-btn');
+    var mainContent = document.getElementById('dashboard-content');
+    var optionMenu = document.querySelector('.option-menu');
+    var scrollButtonLeft = document.querySelector('.scroll-button-left');
+    var scrollButtonRight = document.querySelector('.scroll-button-right');
+    var optionMenuWrapper = document.querySelector('.option-menu-wrapper');
 
     // Function to handle sidebar collapse/expand based on screen width
     function handleScreenResize() {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         innerMenuLinks.forEach(function (link) {
             var linkPath = link.getAttribute('href');
             // Exact match for the inner menu
-            if (currentPath === linkPath) {
+            if (currentPath.startsWith(linkPath)) {
                 link.classList.add('active');
                 scrollActiveItemIntoView(link);
             }
@@ -68,11 +68,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to scroll the active menu item into view, centered
     function scrollActiveItemIntoView(item) {
-        const menuWidth = optionMenu.clientWidth;
-        const itemLeft = item.offsetLeft;
-        const itemWidth = item.offsetWidth;
+        var menuWidth = optionMenu.clientWidth;
+        var itemLeft = item.offsetLeft;
+        var itemWidth = item.offsetWidth;
 
-        const scrollPosition = itemLeft - (menuWidth / 2) + (itemWidth / 2);
+        var scrollPosition = itemLeft - (menuWidth / 2) + (itemWidth / 2);
         optionMenu.scrollTo({
             left: scrollPosition,
             behavior: 'smooth'
@@ -81,9 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to check which elements are visible in the scrollable container
     function updateScrollButtonsAndFadedItems() {
-        const scrollLeft = optionMenu.scrollLeft;
-        const visibleWidth = optionMenu.clientWidth;
-        const maxScrollLeft = optionMenu.scrollWidth - visibleWidth;
+        var scrollLeft = optionMenu.scrollLeft;
+        var visibleWidth = optionMenu.clientWidth;
+        var maxScrollLeft = optionMenu.scrollWidth - visibleWidth;
 
         // Show or hide the left scroll button
         if (scrollLeft > 0) {
@@ -100,13 +100,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Apply the 'faded' class to items that are partially hidden
-        const menuItems = optionMenu.querySelectorAll('.nav-item');
+        var menuItems = optionMenu.querySelectorAll('.nav-item');
         menuItems.forEach(function (item, index) {
-            const itemLeft = item.offsetLeft - scrollLeft;
-            const itemRight = itemLeft + item.offsetWidth;
+            var itemLeft = item.offsetLeft - scrollLeft;
+            var itemRight = itemLeft + item.offsetWidth;
 
             // Adjust visibility calculation to account for boundary conditions
-            const isPartiallyVisible = (itemLeft < 0 && index !== 0) || (itemRight > visibleWidth && index !== menuItems.length - 1);
+            var isPartiallyVisible = (itemLeft < 0 && index !== 0) || (itemRight > visibleWidth && index !== menuItems.length - 1);
 
             if (isPartiallyVisible) {
                 item.classList.add('faded');
@@ -118,14 +118,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to scroll the option menu to the right
     function scrollMenuRight() {
-        const menuWidth = optionMenu.clientWidth;
+        var menuWidth = optionMenu.clientWidth;
         optionMenu.scrollBy({ left: menuWidth / 2, behavior: 'smooth' });
         setTimeout(updateScrollButtonsAndFadedItems, 300);
     }
 
     // Function to scroll the option menu to the left
     function scrollMenuLeft() {
-        const menuWidth = optionMenu.clientWidth;
+        var menuWidth = optionMenu.clientWidth;
         optionMenu.scrollBy({ left: -menuWidth / 2, behavior: 'smooth' });
         setTimeout(updateScrollButtonsAndFadedItems, 300);
     }

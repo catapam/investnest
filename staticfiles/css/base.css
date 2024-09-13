@@ -27,6 +27,10 @@
     --bs-link-color-rgb: 46, 204, 113;
     --bs-link-hover-color: #28a745;
     --bs-border-radius: 0.5rem;
+    --warning-color: #876f12;
+    --warning-light-color: #a58a1b;
+    --info-color: #207b90;
+    --info-light-color: #2795ad;
 
     /* Font families */
     --font-primary: 'Roboto', Arial, sans-serif;
@@ -148,6 +152,50 @@ main {
     /* Border color for card elements */
 }
 
+.btn{
+    color: var(--text-primary-color);
+}
+
+.btn-warning{
+    --bs-btn-color: var(--text-primary-color);
+    --bs-btn-bg: var(--warning-color);
+    --bs-btn-border-color: var(--warning-color);
+    --bs-btn-hover-color: var(--bg-darker);
+    --bs-btn-hover-bg: var(--warning-light-color);
+    --bs-btn-hover-border-color: var(--warning-light-color);
+    border: var(--border);
+}
+
+.btn-info{
+    --bs-btn-color: var(--text-primary-color);
+    --bs-btn-bg: var(--info-color);
+    --bs-btn-border-color: var(--info-color);
+    --bs-btn-hover-color: var(--bg-darker);
+    --bs-btn-hover-bg: var(--info-light-color);
+    --bs-btn-hover-border-color: var(--info-light-color);
+    border: var(--border);
+}
+
+.btn-danger{
+    --bs-btn-color: var(--text-primary-color);
+    --bs-btn-bg: var(--dark-red-accent);
+    --bs-btn-border-color: var(--dark-red-accent);
+    --bs-btn-hover-color: var(--bg-darker);
+    --bs-btn-hover-bg: var(--red-accent);
+    --bs-btn-hover-border-color: var(--red-accent);
+    border: var(--border);
+}
+
+.btn-success{
+    --bs-btn-color: var(--text-primary-color);
+    --bs-btn-bg: var(--dark-accent);
+    --bs-btn-border-color: var(--dark-accent);
+    --bs-btn-hover-color: var(--bg-darker);
+    --bs-btn-hover-bg: var(--light-accent);
+    --bs-btn-hover-border-color: var(--light-accent);
+    border: var(--border);
+}
+
 .btn-primary {
     background-color: var(--light-accent);
     /* Background color for primary buttons */
@@ -247,12 +295,12 @@ main {
 .popup.success,
 .popup.info,
 .popup.custom {
-    background-color: rgba(var(--dark-accent-rgb), 0.9);
+    background-color: rgba(var(--dark-accent-rgb));
 }
 
 .popup.error,
 .popup.warning {
-    background-color: rgba(var(--red-accent-rgb), 0.9);
+    background-color: rgba(var(--red-accent-rgb));
 }
 
 .popup .close-btn {

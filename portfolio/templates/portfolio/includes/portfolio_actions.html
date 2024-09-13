@@ -1,13 +1,23 @@
 <div class="button-l1">
-    <a href="{% url 'portfolio_edit' portfolio.pk %}" class="btn btn-warning btn-sm btn-edit">
+    <button type="button" class="btn btn-warning btn-sm btn-edit" style="display: block;"
+        onclick="togglePortfolioEditMode({{ portfolio.pk }})">
         <i class="fa-solid fa-pencil"></i>
-    </a>
-    <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete">
+    </button>
+    <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete"
+        style="display: block;">
         <i class="fa-solid fa-trash"></i>
     </a>
+    <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
+        onclick="savePortfolio({{ portfolio.pk }})">
+        <i class="fa-solid fa-floppy-disk"></i>
+    </button>
+    <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;"
+        onclick="togglePortfolioEditMode({{ portfolio.pk }}, false)">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
 </div>
 <div class="button-l2">
-    <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics">
+    <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics" style="display: block;">
         Metrics
     </a>
 </div>

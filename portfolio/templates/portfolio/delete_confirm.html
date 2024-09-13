@@ -1,0 +1,50 @@
+{% extends "portfolio/portfolio_header.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {% if object %}
+        Delete Portfolio
+    {% elif asset %}
+        Delete Asset
+    {% elif transaction %}
+        Delete Transaction
+    {% endif %}
+{% endblock title %}
+
+{% block portfolio_inner_content %}
+<div class="container centered">
+    <h2>
+        {% if object %}
+            Are you sure you want to delete the portfolio?
+        {% elif asset %}
+            Are you sure you want to delete the asset <strong style="text-decoration: underline;">{{ asset.name }}</strong> from this portfolio?
+        {% elif transaction %}
+            Are you sure you want to delete the transaction from this portfolio?
+        {% endif %}
+    </h2>
+
+    {% if object %}
+        <p>*All assets and transactions from this portfolio will be completely deleted too</p>
+    {% elif asset %}
+        <p>*All transactions from this asset will be deleted too</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            {% if object %}
+                <a href="{% url 'portfolio_detail' object.pk %}" class="btn btn-warning">Cancel</a>
+            {% elif asset %}
+                <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">Cancel</a>
+            {% elif transaction %}
+                <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">Cancel</a>
+            {% endif %}
+        </div>
+    </form>
+
+    {% if object and not object %}
+        <a href="{% url 'portfolio' %}" class="btn btn-warning">Back to Portfolios</a>
+    {% endif %}
+</div>
+{% endblock portfolio_inner_content %}

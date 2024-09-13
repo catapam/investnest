@@ -14,92 +14,98 @@
             <form id="asset-name-form" method="post" style="display: none;" action="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}">
                 {% csrf_token %}
                 <input type="text" name="name" value="{{ asset.name }}" class="form-control" />
-                <button type="submit" id="asset-save-btn" class="btn btn-success btn-sm btn-save">
-                    <i class="fa-solid fa-floppy-disk"></i>
-                </button>
-                <button type="button" class="btn btn-danger btn-sm btn-cancel" onclick="toggleAssetEditMode(false)">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
             </form>                        
 
             <!-- Edit and Delete Buttons -->
-            <button id="edit-asset-name-btn" class="btn btn-warning btn-sm" onclick="toggleAssetEditMode(true)">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-            <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm btn-delete" id="delete-asset-btn">
-                <i class="fa-solid fa-trash"></i>
-            </a>
+            <div class="asset-action-buttons">
+                <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-info btn-sm btn-delete" id="asset-all-btn" style="display: inline-block;">
+                    all
+                </a>
+                <button type="submit" id="asset-save-btn" class="btn btn-success btn-sm btn-save" style="display: none;">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </button>
+                <button type="button" id="asset-cancel-btn" class="btn btn-danger btn-sm btn-cancel" onclick="toggleAssetEditMode(false)" style="display: none;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button id="edit-asset-name-btn" class="btn btn-warning btn-sm" onclick="toggleAssetEditMode(true)" style="display: inline-block;">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm btn-delete" id="delete-asset-btn" style="display: inline-block;">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
         </div>
         <hr>
         <div class="inner-header">
             <h2>Transactions</h2>
-            <a href="{% url 'transaction_add' portfolio.pk asset.pk %}" class="btn-add btn btn-success btn-sm">+</a>
         </div>
         {% if transactions %}
-        <table class="table table-bordered justify-inner-content">
-            <thead>
-                <tr>
-                    <th>Options</th>
-                    <th>Type</th>
-                    <th>Action</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for transaction in transactions %}
-                <tr id="transaction-{{ transaction.pk }}">
-                    <td>
-                        <button type="button" class="btn btn-warning btn-sm btn-edit"
-                            onclick="toggleEditMode({{ transaction.pk }})">
-                            <i class="fa-solid fa-pencil"></i>
-                        </button>
-                        <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm btn-delete" id="delete-asset-btn">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>                        
-                        <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
-                            onclick="saveTransaction({{ transaction.pk }})">
-                            <i class="fa-solid fa-floppy-disk"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;"
-                            onclick="toggleEditMode({{ transaction.pk }}, false)">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <span class="display-mode">{{ transaction.get_type_display }}</span>
-                        <select name="type" class="edit-mode form-control" style="display: none;">
-                            <option value="long" {% if transaction.type == 'long' %}selected{% endif %}>Long</option>
-                            <option value="short" {% if transaction.type == 'short' %}selected{% endif %}>Short</option>
-                        </select>
-                    </td>
-                    <td>
-                        <span class="display-mode">{{ transaction.get_action_display }}</span>
-                        <select name="action" class="edit-mode form-control" style="display: none;">
-                            <option value="buy" {% if transaction.action == 'buy' %}selected{% endif %}>Buy</option>
-                            <option value="sell" {% if transaction.action == 'sell' %}selected{% endif %}>Sell</option>
-                        </select>
-                    </td>
-                    <td>
-                        <span class="display-mode">{{ transaction.quantity }}</span>
-                        <input name="quantity" type="number" class="edit-mode form-control" style="display: none;"
-                            value="{{ transaction.quantity }}">
-                    </td>
-                    <td>
-                        <span class="display-mode">{{ transaction.price }}</span>
-                        <input name="price" type="number" class="edit-mode form-control" style="display: none;"
-                            value="{{ transaction.price }}">
-                    </td>
-                    <td>
-                        <span class="display-mode">{{ transaction.date }}</span>
-                        <input name="date" type="datetime-local" class="edit-mode form-control" style="display: none;"
-                            value="{{ transaction.date|date:'Y-m-d\\TH:i' }}">
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered justify-inner-content">
+                <thead>
+                    <tr>
+                        <th><a href="{% url 'transaction_add' portfolio.pk asset.pk %}" class="btn-add btn btn-success btn-sm" id="add-transaction">+</a></th>
+                        <th>Type</th>
+                        <th>Action</th>
+                        <th>Qnt.</th>
+                        <th>$</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr id="transaction-{{ transaction.pk }}">
+                        <td id="action-buttons-transaction">
+                            <button type="button" class="btn btn-warning btn-sm btn-edit"
+                                onclick="toggleEditMode({{ transaction.pk }})">
+                                <i class="fa-solid fa-pencil"></i>
+                            </button>
+                            <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm btn-delete" id="delete-asset-btn">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>                        
+                            <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
+                                onclick="saveTransaction({{ portfolio.pk }}, {{ asset.pk }}, {{ transaction.pk }})">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;"
+                                onclick="toggleEditMode({{ transaction.pk }}, false)">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <span class="display-mode">{{ transaction.get_type_display }}</span>
+                            <select name="type" class="edit-mode form-control" style="display: none;">
+                                <option value="long" {% if transaction.type == 'long' %}selected{% endif %}>Long</option>
+                                <option value="short" {% if transaction.type == 'short' %}selected{% endif %}>Short</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span class="display-mode">{{ transaction.get_action_display }}</span>
+                            <select name="action" class="edit-mode form-control" style="display: none;">
+                                <option value="buy" {% if transaction.action == 'buy' %}selected{% endif %}>Buy</option>
+                                <option value="sell" {% if transaction.action == 'sell' %}selected{% endif %}>Sell</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span class="display-mode">{{ transaction.quantity }}</span>
+                            <input name="quantity" type="number" class="edit-mode form-control" style="display: none;"
+                                value="{{ transaction.quantity }}">
+                        </td>
+                        <td>
+                            <span class="display-mode">{{ transaction.price }}</span>
+                            <input name="price" type="number" class="edit-mode form-control" style="display: none;"
+                                value="{{ transaction.price }}">
+                        </td>
+                        <td>
+                            <span class="display-mode">{{ transaction.date }}</span>
+                            <input name="date" type="datetime-local" class="edit-mode form-control" style="display: none;"
+                                value="{{ transaction.date|date:'Y-m-d\\TH:i' }}">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% else %}
         <p class="justify-inner-content">No transactions found.</p>
         {% endif %}

@@ -6,7 +6,7 @@
 {% block portfolio_inner_content %}
 <div>
     <div class="portfolio-title">
-        <h1>Add Transaction</h1>
+        <h1 id="transaction-add-title">Add Transaction</h1>
     </div>
     <div class="portfolio-content">
         <form method="post" id="transactionForm">
@@ -50,7 +50,7 @@
             {{ form.date|as_crispy_field }}
 
             <button type="submit" class="btn btn-success">Add Transaction</button>
-            <a href="{{ referrer }}" class="btn btn-secondary">Cancel</a>
+            <a href="{{ referrer }}" class="btn btn-danger">Cancel</a>
         </form>
     </div>
 </div>

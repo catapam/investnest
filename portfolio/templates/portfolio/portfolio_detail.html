@@ -15,7 +15,7 @@
         {% if assets %}
 
             <div class="table-responsive justify-inner-content">
-                <table class="table table-borderless table-hover table-sm align-middle">
+                <table class="table table-borderless table-hover table-sm align-middle" id="asset-table">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -60,16 +60,16 @@
                             <td scope="row">{{ asset.get_total_quantity }}</td>
                             <td scope="row">
                                 {% if asset.transactions.exists %}
-                                    {{ asset.live_price }}
+                                    {{ asset.get_average_price }}
                                 {% else %}
-                                    N/A
+                                    0
                                 {% endif %}
                             </td>
                             <td scope="row">
                                 {% if asset.transactions.exists %}
                                     {{ asset.get_total_value }}
                                 {% else %}
-                                    N/A
+                                    0
                                 {% endif %}
                             </td>
                         </tr>
