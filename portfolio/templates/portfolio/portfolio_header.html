@@ -1,10 +1,11 @@
 {% extends "portfolio/portfolio.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block portfolio_content %}
 <div class="container">
     <div class="portfolio-header" id="portfolio-header"
-        style="background-color: {{portfolio.color|default:'invisible'}};">
+        style="background-color: {{ portfolio.color }};">
         <div class="portfolio-title">
             <form id="portfolio-form" method="post">
                 {% csrf_token %}
@@ -20,38 +21,13 @@
                 </div>
             </form>
         </div>
-        <div class="portfolio-buttons">
-            <div class="button-l1">
-                <button type="button" class="btn btn-warning btn-sm btn-edit" style="display: block;"
-                    onclick="togglePortfolioEditMode({{ portfolio.pk }})">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
-                <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete"
-                    style="display: block;">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
-                <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
-                    onclick="savePortfolio({{ portfolio.pk }})">
-                    <i class="fa-solid fa-floppy-disk"></i>
-                </button>
-                <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;"
-                    onclick="togglePortfolioEditMode({{ portfolio.pk }}, false)">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="button-l2">
-                <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics"
-                    style="display: block;">
-                    Metrics
-                </a>
-                <input id="color-switch" name="color" type="color" class="edit-mode form-control" style="display: none;"
-                    value="{{ portfolio.color }}" title="Pick a Color">
-            </div>
-        </div>
+        {% include 'portfolio/includes/portfolio_stats.html' %}
+        {% include 'portfolio/includes/portfolio_actions.html' %}
     </div>
 
     {% block portfolio_inner_content %}
     {% endblock portfolio_inner_content %}
 
 </div>
+<script src="{% static 'js/portfolio_header.js' %}" defer></script>
 {% endblock portfolio_content %}

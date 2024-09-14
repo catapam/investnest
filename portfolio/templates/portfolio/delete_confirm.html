@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    {% if object %}
+    {% if portfolio %}
         Delete Portfolio
     {% elif asset %}
         Delete Asset
@@ -14,36 +14,38 @@
 {% block portfolio_inner_content %}
 <div class="container centered">
     <h2>
-        {% if object %}
-            Are you sure you want to delete the portfolio?
+        {% if transaction %}
+        Are you sure you want to delete the transaction from this portfolio?
         {% elif asset %}
             Are you sure you want to delete the asset <strong style="text-decoration: underline;">{{ asset.name }}</strong> from this portfolio?
-        {% elif transaction %}
-            Are you sure you want to delete the transaction from this portfolio?
+        {% elif portfolio %}
+            Are you sure you want to delete the portfolio?
         {% endif %}
     </h2>
 
-    {% if object %}
-        <p>*All assets and transactions from this portfolio will be completely deleted too</p>
+    {% if transaction %}
+        <p>*Once confirmed the transaction cannot be recovered</p>
     {% elif asset %}
         <p>*All transactions from this asset will be deleted too</p>
+    {% elif portfolio %}
+        <p>*All assets and transactions from this portfolio will be completely deleted too</p>
     {% endif %}
 
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
             <button type="submit" class="btn btn-danger">Delete</button>
-            {% if object %}
-                <a href="{% url 'portfolio_detail' object.pk %}" class="btn btn-warning">Cancel</a>
+            {% if portfolio %}
+                <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-warning">Cancel</a>
             {% elif asset %}
-                <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">Cancel</a>
+                <a href="{% url 'edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">Cancel</a>
             {% elif transaction %}
-                <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">Cancel</a>
+                <a href="{% url 'edit_asset' portfolio.pk asset.pk %}" class="btn btn-warning">Cancel</a>
             {% endif %}
         </div>
     </form>
 
-    {% if object and not object %}
+    {% if portfolio and not portfolio %}
         <a href="{% url 'portfolio' %}" class="btn btn-warning">Back to Portfolios</a>
     {% endif %}
 </div>

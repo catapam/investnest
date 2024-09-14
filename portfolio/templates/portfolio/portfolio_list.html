@@ -12,11 +12,15 @@
                 <a href="{% url 'portfolio_new' %}" class="btn-add btn btn-success btn-sm">+</a>
             </div>
             {% if portfolios %}
-                <div class="portfolio-content list-group">
+                <div class="list-group" id="portfolios-list">
                     {% for portfolio in portfolios %}
                         <a href="{% url 'portfolio_detail' portfolio.pk %}" class="list-group-item list-group-item-action">
-                            <h5 class="mb-1" style="color: {{portfolio.color|default:'#FFFFFF'}};">{{ portfolio.name }}</h5>
-                            <p class="mb-1">{{ portfolio.description|truncatewords:20 }}</p>
+                            <div class="color-tag" style="background-color: {{portfolio.color}};"></div>
+                            <div class="portfolio-card-content">
+                                <h5 class="mb-1">{{ portfolio.name }}</h5>
+                                <p class="mb-1">Description: <br>{{ portfolio.description|truncatewords:20 }}</p>
+                            </div>
+                            {% include 'portfolio/includes/portfolio_stats.html' %}
                         </a>
                     {% endfor %}
                 </div>

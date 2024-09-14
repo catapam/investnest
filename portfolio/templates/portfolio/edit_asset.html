@@ -11,7 +11,7 @@
             <h2>Asset: <span id="asset-name-display">{{ asset.name }}</span></h2>
 
             <!-- Form to Edit Asset Name, initially hidden -->
-            <form id="asset-name-form" method="post" style="display: none;" action="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}">
+            <form id="asset-name-form" method="post" style="display: none;" action="{% url 'edit_asset' portfolio.pk asset.pk %}">
                 {% csrf_token %}
                 <input type="text" name="name" value="{{ asset.name }}" class="form-control" />
             </form>                        

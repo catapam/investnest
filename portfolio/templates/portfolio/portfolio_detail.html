@@ -17,38 +17,31 @@
             <div class="table-responsive justify-inner-content">
                 <table class="table table-borderless table-hover table-sm align-middle" id="asset-table">
                     <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">
-                                <a href="?order=name">
-                                    Name {% if current_order == 'name' %}▲{% elif current_order == '-name' %}▼{% endif %}
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="?order=quantity">
-                                    Quantity {% if current_order == 'quantity' %}▲{% elif current_order == '-quantity' %}▼{% endif %}
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="?order=price">
-                                    Av. Price (US$) {% if current_order == 'price' %}▲{% elif current_order == '-price' %}▼{% endif %}
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="?order=total_value">
-                                    Total Value (US$)
-                                </a>
-                            </th>
-                        </tr>
-                    </thead>
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" data-column="name" onclick="sortTable(0)">
+                                    Name 
+                                </th>
+                                <th scope="col" data-column="quantity" onclick="sortTable(1)">
+                                    Quantity 
+                                </th>
+                                <th scope="col" data-column="price" onclick="sortTable(2)">
+                                    Av. Price 
+                                </th>
+                                <th scope="col" data-column="total_value" onclick="sortTable(3)">
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
                     <tbody class="table-group-divider">
                     </tbody>
                     <tbody>
                         {% for asset in assets %}
-                        <tr class="dashboard-table" style="cursor: pointer;" onclick="window.location.href='{% url "portfolio_edit_asset" portfolio.pk asset.pk %}'">
+                        <tr class="dashboard-table" style="cursor: pointer;" onclick="window.location.href='{% url "edit_asset" portfolio.pk asset.pk %}'">
                             <th scope="row">
                                 <meta name="csrf-token" content="{{ csrf_token }}">
-                                <a href="{% url 'portfolio_edit_asset' portfolio.pk asset.pk %}" class="btn btn-info btn-sm"
+                                <a href="{% url 'edit_asset' portfolio.pk asset.pk %}" class="btn btn-info btn-sm"
                                     onclick="event.stopPropagation();">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
@@ -92,5 +85,6 @@
         {% endif %}
 
         <script src="{% static 'js/asset.js' %}" defer></script>
+        <script src="{% static 'js/sort_table.js' %}" defer></script>
     {% endblock portfolio_inner_content %}
 </div>

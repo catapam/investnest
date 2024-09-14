@@ -22,7 +22,7 @@ urlpatterns = [
     path('<int:pk>/delete/', PortfolioDeleteView.as_view(), name='portfolio_delete'),
 
     path('<int:portfolio_pk>/asset/new/', TransactionCreateView.as_view(), name='portfolio_add_asset'),
-    path('<int:portfolio_pk>/asset/<int:pk>/edit/', AssetUpdateView.as_view(), name='portfolio_edit_asset'),
+    path('<int:portfolio_pk>/asset/<int:pk>/edit/', AssetUpdateView.as_view(), name='edit_asset'),
     path('<int:portfolio_pk>/asset/<int:pk>/delete/', AssetDeleteView.as_view(), name='portfolio_delete_asset'),
 
     path('<int:portfolio_pk>/asset/<int:asset_pk>/transaction/add/', TransactionCreateView.as_view(), name='transaction_add'),

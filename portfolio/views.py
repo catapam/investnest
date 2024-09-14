@@ -22,7 +22,13 @@ class PortfolioListView(SafeDispatchMixin,TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['portfolios'] = Portfolio.objects.filter(user=self.request.user)
+        portfolios = Portfolio.objects.filter(user=self.request.user)
+
+        # Update the portfolio stats for each portfolio
+        for portfolio in portfolios:
+            portfolio.update_portfolio_stats()
+
+        context['portfolios'] = portfolios
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -83,7 +89,7 @@ class PortfolioUpdateView(SafeDispatchMixin,UpdateView):
 @method_decorator(login_required, name='dispatch')
 class PortfolioDeleteView(SafeDispatchMixin,DeleteView):
     model = Portfolio
-    template_name = 'portfolio/portfolio_confirm_delete.html'
+    template_name = 'portfolio/delete_confirm.html'
 
     def get_object(self, queryset=None):
         portfolio = super().get_object(queryset)
@@ -102,12 +108,11 @@ class PortfolioDeleteView(SafeDispatchMixin,DeleteView):
     def get_success_url(self):
         return reverse('portfolio')  
 
-
 @method_decorator(login_required, name='dispatch')
 class AssetUpdateView(SafeDispatchMixin,UpdateView):
     model = Asset
     form_class = AssetForm
-    template_name = 'portfolio/portfolio_edit_asset.html'
+    template_name = 'portfolio/edit_asset.html'
 
     def get_queryset(self):
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
@@ -132,7 +137,7 @@ class AssetUpdateView(SafeDispatchMixin,UpdateView):
 @method_decorator(login_required, name='dispatch')
 class AssetDeleteView(SafeDispatchMixin,DeleteView):
     model = Asset
-    template_name = 'portfolio/portfolio_delete_asset.html'
+    template_name = 'portfolio/delete_confirm.html'
 
     def get_object(self, queryset=None):
         asset = super().get_object(queryset)
@@ -160,9 +165,8 @@ class AssetDeleteView(SafeDispatchMixin,DeleteView):
         
         return context
 
-
 @method_decorator(login_required, name='dispatch')
-class TransactionCreateView(SafeDispatchMixin,CreateView):
+class TransactionCreateView(SafeDispatchMixin, CreateView):
     model = Transaction
     form_class = TransactionForm
     template_name = 'portfolio/transaction_form.html'
@@ -172,8 +176,9 @@ class TransactionCreateView(SafeDispatchMixin,CreateView):
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
         kwargs['portfolio'] = portfolio
 
-        if 'asset_pk' in self.kwargs:
-            asset = get_object_or_404(Asset, pk=self.kwargs['asset_pk'], portfolio=portfolio)
+        asset_pk = self.kwargs.get('asset_pk')
+        if asset_pk:
+            asset = get_object_or_404(Asset, pk=asset_pk, portfolio=portfolio)
             kwargs['initial'] = {'asset': asset.pk}
 
         return kwargs
@@ -183,8 +188,9 @@ class TransactionCreateView(SafeDispatchMixin,CreateView):
         portfolio = get_object_or_404(Portfolio, pk=self.kwargs['portfolio_pk'], user=self.request.user)
         context['portfolio'] = portfolio
 
-        if 'asset_pk' in self.kwargs:
-            context['asset'] = get_object_or_404(Asset, pk=self.kwargs['asset_pk'], portfolio=portfolio)
+        asset_pk = self.kwargs.get('asset_pk')
+        if asset_pk:
+            context['asset'] = get_object_or_404(Asset, pk=asset_pk, portfolio=portfolio)
 
         context['referrer'] = self.request.META.get('HTTP_REFERER', reverse('portfolio_detail', kwargs={'pk': self.kwargs['portfolio_pk']}))
 
@@ -204,18 +210,23 @@ class TransactionCreateView(SafeDispatchMixin,CreateView):
                 name=new_asset_name,
                 portfolio=portfolio
             )
+            self.asset_pk = asset.pk  # Set asset_pk for the new asset
         else:
             asset = Asset.objects.get(pk=asset_choice)
+            self.asset_pk = asset.pk  # Set asset_pk for the existing asset
 
         form.instance.asset = asset
+        # Ensure asset_pk is always set
+        self.asset_pk = asset.pk
         messages.success(self.request, 'Transaction added successfully!')
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('portfolio_edit_asset', kwargs={
-        'portfolio_pk': self.kwargs['portfolio_pk'], 
-        'pk': self.kwargs['asset_pk']
-    })
+        # Use self.asset_pk, which is now guaranteed to be set
+        return reverse('edit_asset', kwargs={
+            'portfolio_pk': self.kwargs['portfolio_pk'], 
+            'pk': self.asset_pk
+        })
 
 @method_decorator(login_required, name='dispatch')
 class UpdateTransactionView(SafeDispatchMixin, UpdateView):
@@ -242,7 +253,7 @@ class UpdateTransactionView(SafeDispatchMixin, UpdateView):
 @method_decorator(login_required, name='dispatch')
 class DeleteTransactionView(SafeDispatchMixin,DeleteView):
     model = Transaction
-    template_name = 'portfolio/portfolio_delete_transaction.html'
+    template_name = 'portfolio/delete_confirm.html'
 
     def get_object(self, queryset=None):
         transaction = super().get_object(queryset)
@@ -263,7 +274,7 @@ class DeleteTransactionView(SafeDispatchMixin,DeleteView):
         return super().post(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('portfolio_edit_asset', kwargs={'portfolio_pk':self.kwargs['portfolio_pk'], 'pk': self.kwargs['asset_pk']})
+        return reverse('edit_asset', kwargs={'portfolio_pk':self.kwargs['portfolio_pk'], 'pk': self.kwargs['asset_pk']})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
