@@ -2,13 +2,31 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
 
+<!-- Extra CSS block for home styles and external libraries -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <!-- Child templates can add their own CSS here -->
+    {% block extra_css_home %}
+    {% endblock extra_css_home %}
+{% endblock extra_css %}
+
+<!-- Include sections of the home page -->
 {% include 'home/includes/hero.html' %}
 {% include 'home/includes/about.html' %}
 {% include 'home/includes/services.html' %}
 {% include 'home/includes/pricing.html' %}
 {% include 'home/includes/contact.html' %}
 {% include 'home/includes/footer.html' %}
-<script src="{% static 'js/home.js' %}"></script>
-{% endblock %}
+
+<!-- Extra JS block for home styles and external libraries -->
+{% block extra_js %}
+    <script src="{% static 'js/home.js' %}"></script>
+
+    <!-- Child templates can add their own JS here -->
+    {% block extra_js_home %}
+    {% endblock extra_js_home %}
+{% endblock extra_js %}
+
+{% endblock content %}

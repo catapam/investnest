@@ -2,20 +2,26 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}
-{% trans "Verify Your Email Address" %}
+    {% translate "Verify Your Email Address" %}
 {% endblock title %}
+
 {% block dashboard_content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<!-- Extra CSS block for dashboard styles -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css_dashboard %}
+
 <div class="container">
     <div class="card text-center">
-        {% element h1 %}
-        {% trans "Verify Your Email Address" %}
-        {% endelement %}
-        {% element p %}
-        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup
-        process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if
-        you do not receive the verification email within a few minutes.{% endblocktrans %}
-        {% endelement %}
+        <!-- Page heading -->
+        <h1>
+            {% translate "Verify Your Email Address" %}
+        </h1>
+
+        <!-- Instructions for verifying the email address -->
+        <p>
+            {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
+        </p>
     </div>
 </div>
 {% endblock dashboard_content %}

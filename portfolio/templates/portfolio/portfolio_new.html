@@ -3,20 +3,27 @@
 {% load static %}
 
 {% block title %}Create New Portfolio{% endblock title %}
+
 {% block portfolio_content %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <!-- Page Title -->
             <div class="portfolio-title">
                 <h1 class="mb-4">Create New Portfolio</h1>
             </div>
+
+            <!-- Portfolio Form -->
             <div class="portfolio-content">
                 <form method="post" novalidate>
                     {% csrf_token %}
+                    <!-- Render form fields using Crispy Forms -->
                     {{ form|crispy }}
-                    <div class="form-group">
+                    
+                    <!-- Submit and Cancel Buttons -->
+                    <div class="form-group mt-3">
                         <button type="submit" class="btn btn-success">Create Portfolio</button>
-                        <a href="{% url 'portfolio' %}" class="btn btn-secondary">Cancel</a>
+                        <a href="{% url 'portfolio' %}" class="btn btn-secondary ms-2">Cancel</a>
                     </div>
                 </form>
             </div>

@@ -2,33 +2,52 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}
-    {% trans "Confirm Access" %}
+    <!-- SEO-friendly and translated page title -->
+    {% translate "Confirm Access" %}
 {% endblock title %}
+
 {% block dashboard_content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
-<div class="container">
-    <div class="card text-center">
-        {% element h1 %}
-            {% trans "Confirm Access" %}
-        {% endelement %}
-        {% element p %}
-            {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
-        {% endelement %}
-        {% block reauthenticate_content %}{% endblock %}
-        {% if reauthentication_alternatives %}
-            {% element hr %}
-            {% endelement %}
-            {% element h2 %}
+<!-- Including the CSS for styling -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css_dashboard %}
+
+<!-- Main content with ARIA role for accessibility -->
+<main role="main" aria-labelledby="confirm-access-heading">
+    <div class="container">
+        <div class="card text-center">
+            
+            <!-- Accessible heading for the page -->
+            <h1 id="confirm-access-heading">
+                {% translate "Confirm Access" %}
+            </h1>
+            
+            <!-- Descriptive text with appropriate tags for accessibility -->
+            <p>
+                {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
+            </p>
+            
+            <!-- Block for reauthentication content -->
+            {% block reauthenticate_content %}{% endblock %}
+            
+            <!-- Conditional block for alternative reauthentication methods -->
+            {% if reauthentication_alternatives %}
+            <hr>
+            <h2>
                 {% translate "Alternative options" %}
-            {% endelement %}
-            {% element button_group %}
+            </h2>
+            
+            <!-- Button group for alternatives, properly structured for accessibility -->
+            <div class="btn-group" role="group" aria-label="Reauthentication alternatives">
                 {% for alt in reauthentication_alternatives %}
-                    <button type="submit"  tags="prominent,outline" class="btn btn-success w-50 mb-2" href=alt.url>
+                    <!-- Accessible button for each alternative option -->
+                    <a class="btn btn-success w-50 mb-2" href="{{ alt.url }}" role="button">
                         {{ alt.description }}
-                    </button>
+                    </a>
                 {% endfor %}
-            {% endelement %}
-        {% endif %}
+            </div>
+            {% endif %}
+        </div>
     </div>
-</div>
+</main>
 {% endblock dashboard_content %}

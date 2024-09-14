@@ -4,25 +4,32 @@
 {% with services=services_section %}
 <section id="services" class="py-5">
     <div class="container">
+        <!-- Section heading -->
         <h1 class="small-heading">{{ services.title }}</h1>
         <h2>{{ services.subtitle }}</h2>
+
+        <!-- Services cards -->
         <div class="row text-center mt-4">
             {% for service in ordered_services %}
-            <!-- Card -->
-            <div class="col-md-4">
+            <!-- Service Card -->
+            <div class="col-md-4 mb-4">
                 <div class="card-flip">
                     <div class="flip-card-inner">
-                        <div class="flip-card-front card bg-dark text-white">
+                        <!-- Front of the card -->
+                        <div class="flip-card-front card bg-dark text-white h-100">
                             <div class="card-body">
                                 <h3 class="card-title">{{ service.title }}</h3>
                                 <p class="card-text">{{ service.short_description }}</p>
                             </div>
                         </div>
-                        <div class="flip-card-back card bg-dark text-white">
+                        
+                        <!-- Back of the card -->
+                        <div class="flip-card-back card bg-dark text-white h-100">
                             <div class="card-body">
-                                <p
-                                    class="{% if service.status == 'in_construction' %}construction-class{% else %}small-heading{% endif %}">
-                                    {{ service.get_status_display }}</p>
+                                <!-- Status with conditional class -->
+                                <p class="{% if service.status == 'in_construction' %}construction-class{% else %}small-heading{% endif %}">
+                                    {{ service.get_status_display }}
+                                </p>
                                 <p class="card-text">{{ service.long_description }}</p>
                             </div>
                         </div>
@@ -31,5 +38,6 @@
             </div>
             {% endfor %}
         </div>
+    </div>
 </section>
 {% endwith %}

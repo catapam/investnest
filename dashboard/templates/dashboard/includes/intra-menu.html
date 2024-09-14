@@ -1,15 +1,24 @@
 <div class="option-menu-wrapper">
-  <button class="scroll-button scroll-button-left">&lt;</button>
-  <ul class="option-menu">
-    {% for item in intra_menu %}
-      <li class="nav-item">
-        <a href="{{ item.url }}" class="nav-link">
-          <i class="{{ item.icon }}" style="color: {{item.color|default:'#FFFFFF'}};"></i> 
-          <span class="menu-text">{{ item.name }}</span>
-        </a>
-        
+  <!-- Scroll button with aria-label for accessibility -->
+  <button class="scroll-button scroll-button-left" aria-label="Scroll left">
+      &lt;
+  </button>
+
+  <!-- Navigation menu with ARIA role and better semantic structure -->
+  <ul class="option-menu" role="menu" aria-label="Intra-menu navigation">
+      {% for item in intra_menu %}
+      <li class="nav-item" role="none">
+          <a href="{{ item.url }}" class="nav-link" role="menuitem" aria-label="{{ item.name }}">
+              <!-- Ensure icons are decorative for screen readers -->
+              <i class="{{ item.icon }}" style="color: {{ item.color|default:'#FFFFFF' }};" aria-hidden="true"></i>
+              <span class="menu-text">{{ item.name }}</span>
+          </a>
       </li>
-    {% endfor %}
+      {% endfor %}
   </ul>
-  <button class="scroll-button scroll-button-right">&gt;</button>
+
+  <!-- Scroll button with aria-label for accessibility -->
+  <button class="scroll-button scroll-button-right" aria-label="Scroll right">
+      &gt;
+  </button>
 </div>

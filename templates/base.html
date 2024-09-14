@@ -20,9 +20,12 @@
     <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
 
     <!-- Import Bootstrap CSS with integrity and referrer policy for security -->
-    {% block extra_css %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+    <!-- Page specific styles -->
+    {% block extra_css %}
+    
     {% endblock %}
     
     {% block onload_js %}
@@ -41,6 +44,11 @@
         {% include 'includes/popup.html' %} <!-- Popup should have ARIA roles to ensure accessibility -->
     </main>
     
+    <!-- Block for extra page-specific JS -->
+    {% block extra_js %}
+    
+    {% endblock extra_js %}
+
     <!-- Base JavaScript file -->
     <script src="{% static 'js/base.js' %}"></script>
 </body>

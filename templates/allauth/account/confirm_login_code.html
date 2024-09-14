@@ -3,39 +3,57 @@
 
 {% block title %}
     {% translate "Sign In" %}
-{% endblock head_title %}
+{% endblock title %}
+
 {% block dashboard_content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
-<div class="container">
-    <div class="card text-center">
-        {% element h1 %}
-            {% translate "Enter Sign-In Code" %}
-        {% endelement %}
-        {% setvar email_link %}
-            <a href="mailto:{{ email }}">{{ email }}</a>
-        {% endsetvar %}
-        {% element p %}
-            {% blocktranslate %}We’ve sent a code to {{ email_link }}. The code expires shortly, so please enter it soon.{% endblocktranslate %}
-        {% endelement %}
-        {% url 'account_confirm_login_code' as login_url %}
-        {% element form form=form method="post" action=login_url tags="entrance,login" %}
-            {% slot body %}
-                {% csrf_token %}
-                {{ form|crispy }}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                <button type="submit"  tags="prominent,login" class="btn btn-success w-50 mb-2">
-                    {% translate "Sign In" %}
-                </button>
-            {% endslot %}
-        {% endelement %}
-        {% element h2 %}
-            {% url 'account_login' as login_url %}
-                <button type="submit"  href=login_url tags="link" class="btn btn-success w-50 mb-2">
+<!-- Including the CSS for styling -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css_dashboard %}
+
+<!-- Main content with ARIA role for accessibility -->
+<main role="main" aria-labelledby="sign-in-heading">
+    <div class="container">
+        <div class="card text-center">
+            
+            <!-- Accessible heading for the page -->
+            <h1 id="sign-in-heading">
+                {% translate "Enter Sign-In Code" %}
+            </h1>
+
+            <!-- Email link and descriptive paragraph -->
+            {% setvar email_link %}
+                <a href="mailto:{{ email }}">{{ email }}</a>
+            {% endsetvar %}
+            <p>
+                {% blocktranslate %}We’ve sent a code to {{ email_link }}. The code expires shortly, so please enter it soon.{% endblocktranslate %}
+            </p>
+            
+            <!-- Form for entering sign-in code -->
+            {% url 'account_confirm_login_code' as login_url %}
+            <form method="post" action="{{ login_url }}" class="entrance login">
+                <div>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    {{ redirect_field }}
+                </div>
+                
+                <!-- Sign-in button -->
+                <div class="actions">
+                    <button type="submit" class="btn btn-success w-50 mb-2">
+                        {% translate "Sign In" %}
+                    </button>
+                </div>
+            </form>
+
+            <!-- Alternative sign-in options button -->
+            <h2>
+                {% url 'account_login' as login_url %}
+                <a href="{{ login_url }}" class="btn btn-link w-50 mb-2">
                     {% translate "Other sign-in options" %}
-                </button>
-        {% endelement %}
+                </a>
+            </h2>
+        </div>
     </div>
-</div>
+</main>
 {% endblock dashboard_content %}

@@ -2,42 +2,57 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}
-    {% trans "Confirm Email Address" %}
+    {% translate "Confirm Email Address" %}
 {% endblock title %}
+
 {% block dashboard_content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<!-- Extra CSS block for dashboard styles -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css_dashboard %}
+
 <div class="container">
     <div class="card text-center">
-        {% element h1 %}
-            {% trans "Confirm Email Address" %}
-        {% endelement %}
+        <!-- Page heading -->
+        <h1>
+            {% translate "Confirm Email Address" %}
+        </h1>
+
         {% if confirmation %}
             {% user_display confirmation.email_address.user as user_display %}
             {% if can_confirm %}
-                {% element p %}
-                    {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
-                {% endelement %}
-                {% url 'account_confirm_email' confirmation.key as action_url %}
-                {% element form method="post" action=action_url %}
-                    {% slot actions %}
-                        {% csrf_token %}
-                        {{ redirect_field }}
-                        <button type="submit" class="btn btn-success w-50 mb-2">
-                            {% trans 'Confirm' %}
-                        </button>
-                    {% endslot %}
-                {% endelement %}
+            <p>
+                <!-- Confirmation message with email link -->
+                {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
+            </p>
+
+            <!-- Confirmation form -->
+            {% url 'account_confirm_email' confirmation.key as action_url %}
+            <form method="post" action="{{ action_url }}">
+                {% csrf_token %}
+                {{ redirect_field }}
+
+                <!-- Confirm button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success w-50 mb-2">
+                        {% translate 'Confirm' %}
+                    </button>
+                </div>
+            </form>
             {% else %}
-                {% element p %}
-                    {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}
-                {% endelement %}
+            <p>
+                <!-- Error message if email is already confirmed by a different account -->
+                {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}
+            </p>
             {% endif %}
         {% else %}
+            <!-- Invalid or expired confirmation link -->
             {% url 'account_email' as email_url %}
-            {% element p %}
+            <p>
                 {% blocktrans %}This email confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new email confirmation request</a>.{% endblocktrans %}
-            {% endelement %}
+            </p>
         {% endif %}
     </div>
 </div>
+
 {% endblock dashboard_content %}

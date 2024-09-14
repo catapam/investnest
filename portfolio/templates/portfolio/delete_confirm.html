@@ -12,25 +12,27 @@
 {% endblock title %}
 
 {% block portfolio_inner_content %}
-<div class="container centered">
+<div class="container text-center">
     <h2>
         {% if transaction %}
-        Are you sure you want to delete the transaction from this portfolio?
+            Are you sure you want to delete the transaction from this portfolio?
         {% elif asset %}
-            Are you sure you want to delete the asset <strong style="text-decoration: underline;">{{ asset.name }}</strong> from this portfolio?
+            Are you sure you want to delete the asset <strong class="text-decoration-underline">{{ asset.name }}</strong> from this portfolio?
         {% elif portfolio %}
             Are you sure you want to delete the portfolio?
         {% endif %}
     </h2>
 
+    <!-- Warning Messages -->
     {% if transaction %}
-        <p>*Once confirmed the transaction cannot be recovered</p>
+        <p>*Once confirmed, the transaction cannot be recovered.</p>
     {% elif asset %}
-        <p>*All transactions from this asset will be deleted too</p>
+        <p>*All transactions from this asset will also be deleted.</p>
     {% elif portfolio %}
-        <p>*All assets and transactions from this portfolio will be completely deleted too</p>
+        <p>*All assets and transactions from this portfolio will be completely deleted.</p>
     {% endif %}
 
+    <!-- Delete Confirmation Form -->
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -45,6 +47,7 @@
         </div>
     </form>
 
+    <!-- Optional back link for portfolios -->
     {% if portfolio and not portfolio %}
         <a href="{% url 'portfolio' %}" class="btn btn-warning">Back to Portfolios</a>
     {% endif %}

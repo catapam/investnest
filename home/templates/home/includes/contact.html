@@ -1,18 +1,22 @@
 {% load static %}
 {% load crispy_forms_tags %}
+{% load i18n %}  <!-- Load i18n for translations -->
 
 <!-- Contact Section -->
 <section id="contact" class="py-5">
     <div class="container">
         <h2 class="text-center">Contact Us</h2>
 
+        <!-- Success message after form submission -->
         {% if form_submitted %}
-            <div class="alert alert-success">
-                Your message has been sent successfully!
+            <div class="alert alert-success" role="alert">
+                {% trans "Your message has been sent successfully!" %}
             </div>
         {% else %}
+            <!-- Contact form -->
             <form method="post">
                 {% csrf_token %}
+                
                 <div class="row mt-4">
                     <div class="col-md-6">
                         {{ contact_form.name|as_crispy_field }}
@@ -21,11 +25,16 @@
                         {{ contact_form.email|as_crispy_field }}
                     </div>
                 </div>
+
                 <div class="form-group mt-3">
                     {{ contact_form.message|as_crispy_field }}
                 </div>
+
+                <!-- Submit button -->
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-success" formtarget="_top">Send Message</button>
+                    <button type="submit" class="btn btn-success" formtarget="_top">
+                        {% trans "Send Message" %}
+                    </button>
                 </div>
             </form>
         {% endif %}

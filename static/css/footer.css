@@ -14,3 +14,7 @@ footer a{
     margin: 4px;
     color: var(--text-secondary-color);
 }
+
+.social-icons{
+    display: flex;
+}

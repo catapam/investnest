@@ -2,26 +2,34 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block dashboard_content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<!-- Extra CSS block for dashboard styles -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css_dashboard %}
+
 <div class="container">
     <div class="card text-center">
-        {% element p %}
-            {% blocktranslate %}Enter your password:{% endblocktranslate %}
-        {% endelement %}
+        <!-- Instructional text -->
+        <p>
+            {% blocktrans %}Enter your password:{% endblocktrans %}
+        </p>
+
+        <!-- Reauthentication form -->
         {% url 'account_reauthenticate' as action_url %}
-        {% element form form=form method="post" action=action_url %}
-            {% slot body %}
+        <form method="post" action="{{ action_url }}">
+            <div class="form-body">
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
+                {{ form|crispy }}
                 {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                <button type="submit" tags="primary,reauthenticate" class="btn btn-success w-25 mb-2">
-                    {% trans "Confirm" %}
+            </div>
+
+            <!-- Confirm button -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success w-25 mb-2">
+                    {% translate "Confirm" %}
                 </button>
-            {% endslot %}
-        {% endelement %}
+            </div>
+        </form>
     </div>
 </div>
-{% endblock dashboard_content%}
+{% endblock dashboard_content %}
