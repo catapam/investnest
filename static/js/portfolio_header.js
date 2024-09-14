@@ -4,7 +4,7 @@ function adjustTextColor() {
     const bgColor = window.getComputedStyle(header).backgroundColor;
 
     // Get all child elements inside the header
-    const children = header.querySelectorAll('*');
+    const children = header.querySelectorAll('h1, p, li, span');
 
     // Loop through each child element and adjust the text color
     children.forEach(function(child) {

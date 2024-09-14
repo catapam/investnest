@@ -6,6 +6,7 @@
 {% block title %}Portfolio Details{% endblock title %}
 <div class="portfolio-content">
     {% block portfolio_inner_content %}
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
         <div class="inner-header">
             <h2>Assets</h2>
@@ -17,25 +18,22 @@
             <div class="table-responsive justify-inner-content">
                 <table class="table table-borderless table-hover table-sm align-middle" id="asset-table">
                     <thead>
-                        <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col" data-column="name" onclick="sortTable(0)">
-                                    Name 
-                                </th>
-                                <th scope="col" data-column="quantity" onclick="sortTable(1)">
-                                    Quantity 
-                                </th>
-                                <th scope="col" data-column="price" onclick="sortTable(2)">
-                                    Av. Price 
-                                </th>
-                                <th scope="col" data-column="total_value" onclick="sortTable(3)">
-                                    Value
-                                </th>
-                            </tr>
-                        </thead>
-                    <tbody class="table-group-divider">
-                    </tbody>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" data-column="name">
+                                Name 
+                            </th>
+                            <th scope="col" data-column="quantity">
+                                Quantity 
+                            </th>
+                            <th scope="col" data-column="price">
+                                Av. Price 
+                            </th>
+                            <th scope="col" data-column="total_value">
+                                Value
+                            </th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {% for asset in assets %}
                         <tr class="dashboard-table" style="cursor: pointer;" onclick="window.location.href='{% url "edit_asset" portfolio.pk asset.pk %}'">
@@ -83,7 +81,8 @@
         {% else %}
             <p class="justify-inner-content">No assets in this portfolio yet</p>
         {% endif %}
-
+        <!-- DataTables JS -->
+        <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="{% static 'js/asset.js' %}" defer></script>
         <script src="{% static 'js/sort_table.js' %}" defer></script>
     {% endblock portfolio_inner_content %}

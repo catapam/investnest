@@ -18,7 +18,7 @@
                             <div class="color-tag" style="background-color: {{portfolio.color}};"></div>
                             <div class="portfolio-card-content">
                                 <h5 class="mb-1">{{ portfolio.name }}</h5>
-                                <p class="mb-1">Description: <br>{{ portfolio.description|truncatewords:20 }}</p>
+                                <p class="mb-1" id="portfolio-description-list">Description: <br>{{ portfolio.description|truncatewords:20 }}</p>
                             </div>
                             {% include 'portfolio/includes/portfolio_stats.html' %}
                         </a>

@@ -18,7 +18,7 @@
     padding: 15px;
     margin-bottom: 10px;
     border-radius: var(--bs-border-radius);
-    max-height: 120px;
+    min-height: 120px;
 }
 
 .portfolio-header .btn {
@@ -216,16 +216,18 @@
 #portfolio-name,
 #portfolio-description {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    padding-right: 10px;
 }
 
 #portfolio-description {
     margin-top: 5px;
+    height: 65px;
+    overflow: auto;
 }
 
 #portfolio-form input {
     height: 32px;
-    margin-left: 10px;
 }
 
 table #delete-asset-btn, table .btn-cancel{
@@ -281,7 +283,8 @@ table #delete-asset-btn, table .btn-cancel{
 .portfolio-stats-container{
     border-left: var(--border);
     margin: auto;
-    min-width: 150px;
+    margin-left: 0;
+    min-width: 120px;
     display: flex;
     flex-direction: column;
     font-size: small;
@@ -320,6 +323,24 @@ table #delete-asset-btn, table .btn-cancel{
     right: 0;
 }
 
+table.dataTable{
+    border-collapse: collapse !important;
+}
+
+/* Reposition the default sorting icons */
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    position: relative;
+    padding-right: 20px; /* Adds space to the right of the text */
+    padding-left: 20px;  /* Adds space to the left of the text */
+    background-position: left center !important; /* Moves the icon to the left of the text */
+    background-repeat: no-repeat;
+}
+
+#portfolio-description-list{
+    overflow: hidden;
+}
 
 @media (min-width: 768px) {
     .container,
