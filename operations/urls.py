@@ -1,7 +1,11 @@
 from django.urls import path
-from .views import OperationsView,redirect_to_view
+from .views import OperationsView,RedirectOperationsView
 
+# Define URL patterns for the operations application
 urlpatterns = [
-    path('', redirect_to_view),
+    # Redirect root URL ('') to the main operations view
+    path('', RedirectOperationsView.as_view()),
+
+    # Main operations page view
     path('view/', OperationsView.as_view(), name='operations'),
 ]

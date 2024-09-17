@@ -18,6 +18,7 @@ import logging.config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Allows logging of errors for better troubleshooting and support
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -64,7 +65,6 @@ if os.path.exists('env.py'):
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # Email setup
-# default backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
@@ -224,8 +224,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Accoubt setup
-
+# Account setup
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True

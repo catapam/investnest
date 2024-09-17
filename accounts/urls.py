@@ -1,7 +1,11 @@
 from django.urls import path
-from .views import UpdateUsernameView, redirect_to_user
+from .views import UpdateUsernameView, RedirectUserView
 
+# Define the URL patterns for the 'accounts' app
 urlpatterns = [
-    path('', redirect_to_user),
+    # Root URL redirects to the user update page
+    path('', RedirectUserView.as_view()),  # Redirects to the user's profile or update page
+
+    # URL for updating the user's username
     path('user/', UpdateUsernameView.as_view(), name='account_user'),
 ]
