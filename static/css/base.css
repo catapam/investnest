@@ -1,25 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
 :root {
-    /* Default dark mode styling */
+    /* Color Variables */
     --bg-light: #333333;
-    /* Background color for light elements */
     --bg-light-rgb: 51, 51, 51;
     --bg-dark: #212529;
-    /* Background color for main sections */
     --bg-darker: #0D0D0D;
-    /* Background color for the darkest elements (e.g., navbar) */
     --text-primary-color: #FFFFFF;
-    /* Primary text color (white) */
     --text-secondary-color: #b1b1b1;
-    /* Secondary text color (light gray) */
     --light-accent: rgb(46, 204, 113);
-    /* Light accent color (green), used for buttons and highlights */
     --dark-accent: rgb(40, 167, 69);
-    /* Darker accent color, used on button hover states */
     --border-color: #555555;
     --border: 2px solid var(--border-color);
-    /* Border color for elements like cards */
     --red-accent: rgb(173, 30, 30);
     --dark-red-accent: rgb(110, 20, 20);
     --dark-accent-rgb: 40, 167, 69;
@@ -31,45 +23,30 @@
     --warning-light-color: #a58a1b;
     --info-color: #207b90;
     --info-light-color: #2795ad;
+    --info-color-rgb: 32, 123, 144;
 
-    /* Font families */
+    /* Font Variables */
     --font-primary: 'Roboto', Arial, sans-serif;
-    /* Primary font family for body text */
     --font-heading: 'Merriweather', Georgia, serif;
-    /* Font family for headings */
 }
 
-/* General styling */
-html,
-body {
+/* General Styling */
+html, body {
     height: 100%;
-    /* Ensure that the html and body take up the full height of the viewport */
 }
 
-/* Custom theme Adjustments */
 body {
     padding-top: 56px;
-    /* Add padding to the top of the body to prevent content from being hidden behind the fixed navbar */
     background-color: var(--bg-dark);
-    /* Set the main background color */
     color: var(--text-primary-color);
-    /* Set the primary text color */
     display: flex;
-    /* Enable flexbox layout on the body */
     flex-direction: column;
-    /* Arrange body content in a column */
     font-family: var(--font-primary);
-    /* Use the primary font family for the body text */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    /* Use the heading font for all heading elements */
 }
 
 p {
@@ -79,11 +56,10 @@ p {
 .small-heading {
     color: var(--light-accent);
     font-size: 1.1rem;
-    /* Adjust the size as needed */
     font-weight: bold;
-    /* Optional: Keep it bold */
 }
 
+/* Backgrounds */
 .bg-body-tertiary {
     background-color: var(--bg-dark);
     --bs-bg-opacity: 0.2;
@@ -91,52 +67,35 @@ p {
 
 main {
     flex: 1 0 auto;
-    /* Allow the main content area to grow and shrink as needed, taking up available space */
     background-color: var(--bg-darker);
-    /* Set a darker background color for the main content area */
 }
 
 .py-5 {
     padding-top: 70px !important;
 }
 
+/* Navbar */
 .navbar {
     z-index: 1000;
-    /* Ensure the navbar stays above other content */
     position: fixed;
-    /* Fix the navbar at the top */
     top: 0;
-    /* Position the navbar at the very top of the page */
     width: 100%;
-    /* Ensure the navbar spans the full width of the page */
     background-color: var(--bg-darker);
-    /* Darker background color for the navbar */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Optional: Add a subtle shadow for visual separation */
     opacity: 1;
-    /* Ensure full opacity */
-    --bs-navbar-brand-hover-color: inherit;
 }
 
 .navbar-brand {
     max-height: 40px;
-    /* Adjust the size of the logo and brand in the navbar */
     color: var(--text-primary-color);
 }
 
 .nav-link {
     color: var(--text-primary-color);
-    /* Set the link color in the navbar */
 }
 
 .nav-link:hover {
     color: var(--light-accent);
-    /* Change link color on hover to the light accent color */
-}
-
-.navbar-brand:hover {
-    text-decoration: none;
-    /* Ensure no underline on hover */
 }
 
 .navbar-toggler {
@@ -145,96 +104,78 @@ main {
     color: var(--text-secondary-color) !important;
 }
 
+/* Cards */
 .card {
     background-color: var(--bg-light);
-    /* Background color for card elements */
     border: var(--border);
-    /* Border color for card elements */
 }
 
-.btn{
+/* Buttons */
+.btn {
     color: var(--text-primary-color);
 }
 
-.btn-warning{
-    --bs-btn-color: var(--text-primary-color);
+.btn-warning, .btn-info, .btn-danger, .btn-success, .btn-primary, .btn-secondary {
+    border: var(--border);
+}
+
+.btn-warning {
     --bs-btn-bg: var(--warning-color);
     --bs-btn-border-color: var(--warning-color);
-    --bs-btn-hover-color: var(--bg-darker);
     --bs-btn-hover-bg: var(--warning-light-color);
     --bs-btn-hover-border-color: var(--warning-light-color);
-    border: var(--border);
 }
 
-.btn-info{
-    --bs-btn-color: var(--text-primary-color);
+.btn-info {
     --bs-btn-bg: var(--info-color);
     --bs-btn-border-color: var(--info-color);
-    --bs-btn-hover-color: var(--bg-darker);
     --bs-btn-hover-bg: var(--info-light-color);
     --bs-btn-hover-border-color: var(--info-light-color);
-    border: var(--border);
 }
 
-.btn-danger{
-    --bs-btn-color: var(--text-primary-color);
+.btn-danger {
     --bs-btn-bg: var(--dark-red-accent);
     --bs-btn-border-color: var(--dark-red-accent);
-    --bs-btn-hover-color: var(--bg-darker);
     --bs-btn-hover-bg: var(--red-accent);
     --bs-btn-hover-border-color: var(--red-accent);
-    border: var(--border);
 }
 
-.btn-success{
-    --bs-btn-color: var(--text-primary-color);
+.btn-success {
     --bs-btn-bg: var(--dark-accent);
     --bs-btn-border-color: var(--dark-accent);
-    --bs-btn-hover-color: var(--bg-darker);
     --bs-btn-hover-bg: var(--light-accent);
     --bs-btn-hover-border-color: var(--light-accent);
-    border: var(--border);
 }
 
 .btn-primary {
     background-color: var(--light-accent);
-    /* Background color for primary buttons */
     border-color: var(--dark-accent);
-    /* Border color for primary buttons */
 }
 
 .btn-primary:hover {
     background-color: var(--dark-accent);
-    /* Change button background on hover */
     border-color: var(--light-accent);
-    /* Change button border on hover */
 }
 
 .btn-secondary {
     background-color: var(--red-accent);
-    /* Background color for primary buttons */
     border-color: var(--dark-red-accent);
-    /* Border color for primary buttons */
 }
 
 .btn-secondary:hover {
     background-color: var(--dark-red-accent);
-    /* Change button background on hover */
     border-color: var(--red-accent);
-    /* Change button border on hover */
 }
 
+/* Text */
 .text-secondary {
     color: var(--text-secondary-color);
-    /* Secondary text color */
 }
 
 .construction-class {
     color: var(--red-accent);
     font-size: 1.1rem;
-    /* Adjust the size as needed */
     font-weight: bold;
-    /* Optional: Keep it bold */
 }
 
 .active {
@@ -246,44 +187,34 @@ main {
     color: var(--red-accent);
 }
 
-/* Custom success message color */
+/* Alerts */
 .alert-success {
     background-color: rgba(var(--bs-link-color-rgb), 0.3);
-    /* Green shade */
     color: var(--text-primary-color);
-    /* Text color */
     border-color: var(--light-accent);
-    /* Border color */
 }
 
-/* Custom error message color */
 .alert-danger {
     background-color: rgba(var(--red-accent-rgb), 0.3);
-    /* Red shade */
     color: var(--text-primary-color);
-    /* Text color */
     border-color: var(--red-accent);
-    /* Border color */
 }
 
-/*  pop-ups */
-
+/* Popups */
 .popup {
     display: flex;
-    flex-direction: row;
     position: fixed;
     left: 50%;
     top: 60px;
     transform: translateX(-50%);
     color: var(--text-primary-color);
-    text-align: center;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     max-width: 400px;
     width: 80%;
-    border-radius: 5px 5px;
+    border-radius: 5px;
     padding: 10px;
 }
 
@@ -292,14 +223,11 @@ main {
     visibility: visible !important;
 }
 
-.popup.success,
-.popup.info,
-.popup.custom {
+.popup.success, .popup.info, .popup.custom {
     background-color: rgba(var(--dark-accent-rgb));
 }
 
-.popup.error,
-.popup.warning {
+.popup.error, .popup.warning {
     background-color: rgba(var(--red-accent-rgb));
 }
 
@@ -312,7 +240,6 @@ main {
     cursor: pointer;
     margin-left: 15px;
     align-self: center;
-    /* Ensure the close button is vertically centered */
 }
 
 .popup .popup-text {
@@ -320,7 +247,7 @@ main {
     text-align: left;
 }
 
-/* Media queries */
+/* Media Queries */
 @media (min-width: 768px) {
     .logout-main-menu {
         display: flex;

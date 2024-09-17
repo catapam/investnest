@@ -2,8 +2,6 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block portfolio_content %}
-
 <!-- Include any extra CSS for portfolio -->
 {% block extra_css_portfolio %}
     {% block extra_css_portfolio_header %}
@@ -11,6 +9,7 @@
     {% endblock extra_css_portfolio_header %}
 {% endblock extra_css_portfolio %}
 
+{% block portfolio_content %}
 <div class="container">
     <!-- Portfolio Header with Dynamic Background Color -->
     <div class="portfolio-header" id="portfolio-header" style="background-color: {{ portfolio.color }};">
@@ -47,6 +46,7 @@
     <!-- Child templates can include specific content here -->
     {% endblock portfolio_inner_content %}
 </div>
+{% endblock portfolio_content %}
 
 <!-- Include Extra JS for Portfolio -->
 {% block extra_js_portfolio %}
@@ -55,5 +55,3 @@
     <!-- Additional JS for the portfolio header can be included here -->
     {% endblock extra_js_portfolio_header %}
 {% endblock extra_js_portfolio %}
-
-{% endblock portfolio_content %}

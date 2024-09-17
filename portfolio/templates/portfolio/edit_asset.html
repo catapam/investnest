@@ -20,17 +20,17 @@
 
             <!-- Edit and Delete Buttons -->
             <div class="asset-action-buttons d-flex">
-                <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-info btn-sm me-2" aria-label="View all portfolios">All</a>
-                <button type="submit" id="asset-save-btn" class="btn btn-success btn-sm me-2" style="display: none;" aria-label="Save asset name">
+                <a href="{% url 'portfolio_detail' portfolio.pk %}" class="btn btn-info btn-sm" id="asset-all-btn" aria-label="View all portfolios">All</a>
+                <button type="submit" id="asset-save-btn" class="btn btn-success btn-sm" style="display: none;" aria-label="Save asset name">
                     <i class="fa-solid fa-floppy-disk"></i>
                 </button>
-                <button type="button" id="asset-cancel-btn" class="btn btn-danger btn-sm me-2" style="display: none;" aria-label="Cancel edit" onclick="toggleAssetEditMode(false)">
+                <button type="button" id="asset-cancel-btn" class="btn btn-danger btn-sm " style="display: none;" aria-label="Cancel edit" onclick="toggleAssetEditMode(false)">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-                <button id="edit-asset-name-btn" class="btn btn-warning btn-sm me-2" style="display: inline-block;" aria-label="Edit asset name" onclick="toggleAssetEditMode(true)">
+                <button id="edit-asset-name-btn" class="btn btn-warning btn-sm" style="display: inline-block;" aria-label="Edit asset name" onclick="toggleAssetEditMode(true)">
                     <i class="fa-solid fa-pencil"></i>
                 </button>
-                <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm" aria-label="Delete asset">
+                <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" id="delete-asset-btn" class="btn btn-danger btn-sm" aria-label="Delete asset">
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </div>
@@ -65,16 +65,16 @@
                     <tr id="transaction-{{ transaction.pk }}">
                         <!-- Action Buttons -->
                         <td class="action-buttons">
-                            <button type="button" class="btn btn-warning btn-sm me-2" onclick="toggleEditMode({{ transaction.pk }})" aria-label="Edit transaction">
+                            <button type="button" class="btn btn-warning btn-sm btn-edit" onclick="toggleEditMode({{ transaction.pk }})" aria-label="Edit transaction">
                                 <i class="fa-solid fa-pencil"></i>
                             </button>
-                            <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm me-2" aria-label="Delete transaction">
+                            <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm btn-delete" aria-label="Delete transaction">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
-                            <button type="button" class="btn btn-success btn-sm me-2" style="display: none;" onclick="saveTransaction({{ portfolio.pk }}, {{ asset.pk }}, {{ transaction.pk }})" aria-label="Save transaction">
+                            <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;" onclick="saveTransaction({{ portfolio.pk }}, {{ asset.pk }}, {{ transaction.pk }})" aria-label="Save transaction">
                                 <i class="fa-solid fa-floppy-disk"></i>
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm" style="display: none;" onclick="toggleEditMode({{ transaction.pk }}, false)" aria-label="Cancel transaction edit">
+                            <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;" onclick="toggleEditMode({{ transaction.pk }}, false)" aria-label="Cancel transaction edit">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                         </td>
@@ -119,9 +119,8 @@
         {% endif %}
     </div>
 </div>
+{% endblock portfolio_inner_content %}
 
 {% block extra_js_portfolio_header %}
     <script src="{% static 'js/asset.js' %}" defer></script>
 {% endblock extra_js_portfolio_header %}
-
-{% endblock portfolio_inner_content %}

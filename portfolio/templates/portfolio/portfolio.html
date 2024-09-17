@@ -2,8 +2,6 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block dashboard_content %}
-
 <!-- Including CSS for dashboard and portfolio -->
 {% block extra_css_dashboard %}
     <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
@@ -12,12 +10,15 @@
     {% endblock extra_css_portfolio %}
 {% endblock extra_css_dashboard %}
 
+{% block dashboard_content %}
 <!-- Main portfolio container -->
 <div class="container portfolio-container">
     {% block portfolio_content %}
     <!-- Portfolio-specific content will be placed here -->
     {% endblock portfolio_content %}
 </div>
+
+{% endblock dashboard_content %}
 
 <!-- Including JS for dashboard and portfolio -->
 {% block extra_js_dashboard %}
@@ -26,5 +27,3 @@
     {% block extra_js_portfolio %}
     {% endblock extra_js_portfolio %}
 {% endblock extra_js_dashboard %}
-
-{% endblock dashboard_content %}
