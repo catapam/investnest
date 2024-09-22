@@ -1,25 +1,28 @@
-#id_password1_helptext{
+/* General Styles */
+#id_password1_helptext {
     font-size: .675em;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1, h2, h3, h4, h5, h6 {
     font-size: medium;
 }
 
-h1{
+h1 {
     color: var(--light-accent);
     padding-bottom: 20px;
 }
 
-p,a{
+p, a {
     font-size: small;
 }
 
+/* Dashboard Layout */
 .dashboard-container {
     display: flex;
     position: relative;
 }
 
+/* Sidebar */
 .sidebar {
     z-index: 2;
     width: 150px;
@@ -36,6 +39,7 @@ p,a{
     width: 60px;
 }
 
+/* Dashboard Content */
 .dashboard-content {
     display: flex;
     flex-direction: column;
@@ -53,7 +57,7 @@ p,a{
     border-top: var(--border);
 }
 
-.dashboard-content .container{
+.dashboard-content .container {
     height: auto;
     padding-top: 20px;
 }
@@ -62,7 +66,7 @@ p,a{
     margin-left: 60px;
 }
 
-/* Inner menu */
+/* Menu */
 .menu-list {
     display: flex;
     flex-direction: column;
@@ -105,7 +109,7 @@ p,a{
     max-width: 70px;
 }
 
-.disabled{
+.disabled {
     color: var(--bg-darker) !important;
     font-weight: 700;
 }
@@ -114,6 +118,7 @@ p,a{
     display: none;
 }
 
+/* Toggle Button */
 .toggle-btn {
     position: absolute;
     top: 10px;
@@ -129,6 +134,7 @@ p,a{
     margin-top: 60px;
 }
 
+/* Access and Logout Buttons */
 .admin-access {
     background-color: var(--text-secondary-color);
     color: var(--bg-darker);
@@ -151,7 +157,7 @@ p,a{
     border-bottom: var(--border);
 }
 
-/* Adjusting the right border */
+/* Adjust Right Border */
 .menu-list .menu-item.active {
     background-color: var(--bg-dark);
     color: var(--text-secondary-color) !important;
@@ -165,7 +171,7 @@ p,a{
     border-right: var(--border); /* Right border for non-active items */
 }
 
-/* Ensuring the right border stays visible on empty areas */
+/* Empty Areas */
 .menu-list::after {
     content: '';
     position: absolute;
@@ -178,12 +184,13 @@ p,a{
     z-index: 1;
 }
 
-.empty-area{
+.empty-area {
     flex-grow: 1;
     width: 100%;
     border-right: var(--border);
 }
 
+/* Option Menu */
 .option-menu-wrapper {
     position: relative;
     display: flex;
@@ -201,17 +208,17 @@ p,a{
     border-bottom: var(--border);
     border-width: 4px;
     display: flex;
-    flex-wrap: nowrap; /* Prevent wrapping to a new line */
-    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
-    white-space: nowrap; /* Prevent line breaks within items */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     padding: 0;
     scroll-behavior: smooth;
 }
 
 .option-menu::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in WebKit-based browsers */
+    display: none;
 }
 
 .option-menu .nav-item {
@@ -222,7 +229,7 @@ p,a{
 }
 
 .option-menu .nav-item.faded {
-    opacity: 0.5; /* Make partially visible items slightly transparent */
+    opacity: 0.5;
 }
 
 .option-menu .nav-link {
@@ -231,7 +238,7 @@ p,a{
     border-top-left-radius: var(--bs-border-radius);
     border-top-right-radius: var(--bs-border-radius);
     border-bottom: 0;
-    display: flex; 
+    display: flex;
     padding: 10px;
     flex-direction: row;
 }
@@ -250,6 +257,7 @@ p,a{
     display: none;
 }
 
+/* Scroll Buttons */
 .scroll-button {
     position: relative;
     background-color: transparent;
@@ -279,12 +287,12 @@ p,a{
     border-bottom-right-radius: var(--bs-border-radius);
 }
 
-/* tables */
+/* Dashboard Tables */
 .dashboard-table {
     border-top: var(--border);
 }
 
-
+/* Responsive Adjustments */
 @media (min-width: 768px) {
     .sidebar {
         width: 200px;
@@ -293,7 +301,7 @@ p,a{
     .menu-text {
         font-size: 1rem;
     }
-    
+
     .menu-item i {
         font-size: 1rem;
     }

@@ -1,5 +1,5 @@
-/* Footer */
-footer{
+/* Footer Styling */
+footer {
     background-color: var(--bg-darker);
     flex-shrink: 0;
     display: flex;
@@ -10,7 +10,13 @@ footer{
     letter-spacing: 6px;
 }
 
-footer a{
+/* Footer Links */
+footer a {
     margin: 4px;
     color: var(--text-secondary-color);
+}
+
+/* Social Media Icons Layout */
+.social-icons {
+    display: flex;
 }

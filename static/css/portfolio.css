@@ -1,37 +1,41 @@
+/* Main container for portfolio page */
 .portfolio-container {
     display: flex;
     flex-direction: row;
     position: relative;
-    margin-bottom: 50px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0 0 50px 0;
+    padding: 0 !important;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    top: 0;
-    padding: 0 !important;
 }
 
+/* Header section of the portfolio */
 .portfolio-header {
+    position: relative;
     display: flex;
     flex-direction: row;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: var(--bs-border-radius);
-    min-height: 120px;
+    min-height: 155px;
 }
 
+/* Button alignment within portfolio header */
 .portfolio-header .btn {
     align-items: end;
     margin-left: 5px;
 }
 
+/* Title section in the portfolio header */
 .portfolio-title {
     display: flex;
     flex-direction: column;
     width: calc(50% - 15px);
 }
 
+/* Title styling in the portfolio list */
 .my-portfolio-title {
     display: flex;
     flex-direction: row;
@@ -39,48 +43,43 @@
     height: 32px;
 }
 
-.my-portfolio-title h1 {
-    color: var(--text-primary-color);
-    font-size: large;
-    margin-bottom: auto !important;
-    margin-top: auto !important;
-    padding-bottom: 0;
-}
-
+/* Portfolio title styling */
+.my-portfolio-title h1,
 .portfolio-title h1 {
-    padding-bottom: 0;
     color: var(--text-primary-color);
     font-size: large;
+    margin: auto 0 !important;
+    padding-bottom: 0;
 }
 
+/* Portfolio description */
 .portfolio-title p {
-    margin-bottom: 0;
-    margin-top: 5px;
+    margin: 5px 0 0 0;
     color: var(--text-primary-color);
 }
 
+/* Ensures text wraps properly */
 .portfolio-title p span {
     word-wrap: break-word;
-    /* Break the word if it doesn't fit */
     word-break: break-word;
-    /* Break long words when necessary */
     white-space: normal;
-    /* Ensure normal line breaks (default) */
 }
 
+/* Container for buttons in portfolio header */
 .portfolio-buttons {
     display: flex;
     flex-direction: column;
+    margin: auto 0;
     margin-left: auto;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 
+/* Button group for top-level portfolio buttons */
 .portfolio-buttons .button-l1 {
     display: flex;
     flex-direction: row;
 }
 
+/* Metrics button sizing */
 .btn-metrics {
     margin-top: 5px;
     width: 69px;
@@ -88,17 +87,64 @@
     font-size: small;
 }
 
+/* Portoflio kebab menu */
+.dropdown-item{
+    font-size: medium;
+}
+
+.portfolio-menu-collapse {
+    position: relative; /* Ensure relative positioning for absolute child elements */
+}
+
+.portfolio-menu-btn {
+    position: absolute;
+    top: 0; /* Align to the top */
+    right: 0; /* Align to the right */
+    z-index: 1000; /* Ensures the button is on top of other elements */
+    height: 16; /* If you want it to be half the height of its container */
+}
+
+.dropdown-menu {
+    right: 0; /* Ensures the dropdown aligns with the button on the right */
+    left: auto; /* Prevents the dropdown from extending to the left */
+}
+
+.portfolio-menu-collapse {
+    position: relative; /* Ensure relative positioning for absolute child elements */
+}
+
+.portfolio-menu-btn {
+    position: relative;
+    z-index: 1000; /* Ensures the button is on top of other elements */
+    height: 25px !important; /* Half the height of its container */
+    margin-left: -25px !important;
+    margin-bottom: 100px;
+}
+
+/* hide arrow from portfolio header kebab button */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Asset header layout */
 .asset-header {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
 }
 
+/* Ensures asset header text is centered */
 .asset-header h2 {
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto 0;
 }
 
+/* First asset button */
+#btn-add-first-asset {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+/* Main content area of portfolio */
 .portfolio-content {
     display: flex;
     flex-direction: column;
@@ -110,10 +156,12 @@
     border-radius: var(--bs-border-radius);
 }
 
+/* Ensures proper textarea size */
 .portfolio-content .textarea {
     max-height: 80px;
 }
 
+/* Button sizing for small buttons */
 .btn-sm,
 #edit-asset-name-btn,
 #asset-save-btn {
@@ -123,43 +171,49 @@
     height: 32px;
 }
 
+/* Form group customization */
 .custom-control.form-group {
     padding: 5px;
     margin: 0;
 }
 
+/* Form group element height */
 .form-group div {
     min-height: 40px;
 }
 
+/* Switch control styling */
 .custom-control.form-switch {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding: 0 0.5em;
 }
 
+/* Label in form switch */
 .custom-control.form-switch label {
     display: inline;
 }
 
+/* Form switch input for toggles */
 .custom-control.form-switch .form-check-input {
     width: 50px;
     height: 24px;
     background-color: var(--dark-accent);
     border-radius: 12px;
     position: relative;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     cursor: pointer;
     outline: none;
     transition: background-color 0.2s;
+    border: var(--border);
+    margin-left: 0;
 }
 
+/* Removes focus outline */
 .form-check-input:focus {
     border-color: none;
     box-shadow: none;
 }
 
+/* Circle inside the switch */
 .custom-control.form-switch .form-check-input:before {
     content: '';
     width: 22px;
@@ -172,21 +226,17 @@
     transition: left 0.2s;
 }
 
-.custom-control.form-switch .form-check-input {
-    border: var(--border);
-    margin-left: 0;
-}
-
+/* Switch checked (toggled) state */
 .custom-control.form-switch .form-check-input:checked {
     background-color: var(--dark-red-accent);
-    /* Green for Buy/Long */
 }
 
+/* Moves the toggle button when checked */
 .custom-control.form-switch .form-check-input:checked:before {
     left: 27px;
-    /* Adjust for the switch position */
 }
 
+/* Header section inside the portfolio */
 .inner-header {
     display: flex;
     flex-direction: row;
@@ -194,25 +244,26 @@
     padding-left: 15px;
 }
 
+/* Aligns h2 in the inner header */
 .inner-header h2 {
-    margin-bottom: auto;
-    margin-top: auto;
+    margin: auto 0;
 }
 
+/* Inner content justification */
 .justify-inner-content {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin: 0 15px;
     width: -webkit-fill-available;
 }
 
+/* Color picker styling */
 #color-switch {
-    margin-left: 5px;
-    margin-top: 5px;
+    margin: 5px 0 0 5px;
     width: 69px;
     height: 32px;
     font-size: small;
 }
 
+/* Portfolio name and description layout */
 #portfolio-name,
 #portfolio-description {
     display: flex;
@@ -220,136 +271,174 @@
     padding-right: 10px;
 }
 
+/* Scrollable description box */
 #portfolio-description {
     margin-top: 5px;
-    height: 65px;
+    height: 75px;
     overflow: auto;
 }
 
+/* Input field height */
 #portfolio-form input {
     height: 32px;
 }
 
-table #delete-asset-btn, table .btn-cancel{
+/* Ensures proper margin for delete and cancel buttons in the table */
+table #delete-asset-btn,
+table .btn-cancel {
     margin-top: 5px !important;
 }
 
-#action-buttons-transaction{
+/* Adjusts button width in action column */
+#action-buttons-transaction {
     width: 48px;
 }
 
-.table-responsive{
+/* Responsive table with fixed height and scroll */
+.table-responsive {
     height: 55vh;
     overflow-y: auto;
 }
 
-#add-transaction{
-    margin:0 !important;
+/* Adjusts transaction button margin */
+#add-transaction {
+    margin: 0 !important;
 }
 
-.asset-action-buttons{
-    margin-left: auto;
-    margin-right: 15px;
+/* Aligns buttons in asset header */
+.asset-action-buttons {
+    margin: 0 15px 0 auto;
 }
 
-#transaction-add-title{
+/* Title for adding a transaction */
+#transaction-add-title {
     margin-left: 15px;
 }
 
-.dashboard-table th{
+/* Adjusts column width in the dashboard table */
+.dashboard-table th {
     width: 40px;
 }
 
-.btn-add{
-    margin-left: auto;
-    margin-right: 15px;
-}
-
-#portfolios-list{
-    margin-left: 15px;
-    margin-right: 15px;
+/* List styling for portfolios */
+#portfolios-list {
+    margin: 0 15px;
     overflow-y: auto;
     height: 75vh;
 }
 
-.portfolio-card-content{
+/* Adjusts content width in portfolio cards */
+.portfolio-card-content {
     width: calc(40% - 15px);
 }
 
-.portfolio-card-content, .portfolio-card-stats, .portfolio-stats-container{
+/* Padding for content within portfolio cards */
+.portfolio-card-content,
+.portfolio-card-stats,
+.portfolio-stats-container {
     padding: 15px;
 }
 
-.portfolio-stats-container{
+/* Portfolio statistics container */
+.portfolio-stats-container {
     border-left: var(--border);
-    margin: auto;
-    margin-left: 0;
+    margin: auto 0;
     min-width: 120px;
     display: flex;
     flex-direction: column;
     font-size: small;
 }
 
-.list-group-item .portfolio-stats-container{
+/* Removes border in list group items */
+.list-group-item .portfolio-stats-container {
     border-left: none;
 }
 
-.color-tag{
+/* Color tag beside portfolios */
+.color-tag {
     width: 15px;
     margin: 0;
     padding: 0;
 }
 
-.list-group-item{
+/* Styling for list group items */
+.list-group-item {
     display: flex;
     flex-direction: row;
     padding: 0;
     min-height: 100px;
 }
 
-.portfolio-stats-container ul{
+/* Styling for portfolio stats list */
+.portfolio-stats-container ul {
     padding: 0;
     margin: 0;
 }
 
-.portfolio-stats-container li{
+/* List item styling in portfolio stats */
+.portfolio-stats-container li {
     list-style-type: none;
     color: var(--text-secondary-color);
 }
 
-.portfolio-stats-container span{
+/* Ensures stats align to the right */
+.portfolio-stats-container span {
     color: var(--text-primary-color);
     margin-left: auto;
-    right: 0;
 }
 
-table.dataTable{
+/* DataTables table styling */
+table.dataTable {
     border-collapse: collapse !important;
 }
 
-/* Reposition the default sorting icons */
+/* Adjusts DataTables sorting icon position */
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc {
     position: relative;
-    padding-right: 20px; /* Adds space to the right of the text */
-    padding-left: 20px;  /* Adds space to the left of the text */
-    background-position: left center !important; /* Moves the icon to the left of the text */
+    padding: 0 20px;
+    background-position: left center !important;
     background-repeat: no-repeat;
 }
 
-#portfolio-description-list{
+/* Hides overflow in portfolio description */
+#portfolio-description-list {
     overflow: hidden;
 }
 
+/* Datables restyling */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate{
+    color: var(--text-secondary-color) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: var(--text-secondary-color) !important;
+}
+
+.filtered-column{
+    padding-left:20px !important;
+    padding-bottom: 10px !important;
+}
+
+.unfiltered-column {
+    padding: 8px 10px !important;
+}
+
+/* Media queries for responsive design */
 @media (min-width: 768px) {
+
     .container,
     .container-md,
     .container-sm {
         max-width: none;
     }
 
-    .dashboard-table th{
+    .dashboard-table th {
         width: 88px;
     }
 }

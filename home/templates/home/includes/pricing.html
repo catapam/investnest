@@ -5,19 +5,25 @@
 <section id="pricing" class="py-5 text-white">
     <div class="container">
         <h2 class="text-center">{{ pricing.title }}</h2>
+
+        <!-- Pricing plans -->
         <div class="row text-center mt-4">
             {% for plan in ordered_pricing %}
-            <div class="col-md-4">
-                <div class="card bg-dark text-white">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white h-100">
                     <div class="card-body">
                         <h3 class="card-title">{{ plan.title }}</h3>
                         <p class="card-text">{{ plan.price_description }}</p>
+                        
+                        <!-- Features list -->
                         <ul class="list-unstyled">
                             {% for feature in plan.get_features_list %}
                             <li>{{ feature }}</li>
                             {% endfor %}
                         </ul>
-                        <a href="{{ plan.button_link }}" class="btn btn-success">{{ plan.button_text }}</a>
+                        
+                        <!-- Call-to-action button -->
+                        <a href="{{ plan.button_link }}" class="btn btn-success mt-3">{{ plan.button_text }}</a>
                     </div>
                 </div>
             </div>

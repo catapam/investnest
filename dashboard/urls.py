@@ -1,7 +1,11 @@
 from django.urls import path
-from .views import Dashboard, redirect_to_main
+from .views import DashboardView,RedirectDashboardView
 
-urlpatterns=[
-    path('', redirect_to_main), 
-    path('main/', Dashboard.as_view(), name='dashboard'),
+# Define URL patterns for the dashboard application
+urlpatterns = [
+    # Redirect root URL ('') to the main dashboard view
+    path('', RedirectDashboardView.as_view()),
+
+    # Main dashboard page view
+    path('view/', DashboardView.as_view(), name='dashboard'),
 ]

@@ -1,28 +1,88 @@
-<div class="portfolio-buttons">
-    <div class="button-l1">
-        <button type="button" class="btn btn-warning btn-sm btn-edit" style="display: block;"
-            onclick="togglePortfolioEditMode({{ portfolio.pk }})">
+<div class="portfolio-buttons portfolio-menu-wide">
+    <div class="button-l1 d-flex justify-content-start">
+        <!-- Edit Button -->
+        <button type="button" class="btn btn-warning btn-sm btn-edit" style="display: block;" 
+            aria-label="Edit portfolio" onclick="togglePortfolioEditMode({{ portfolio.pk }})">
             <i class="fa-solid fa-pencil"></i>
         </button>
-        <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete"
-            style="display: block;">
+
+        <!-- Delete Button -->
+        <a href="{% url 'portfolio_delete' portfolio.pk %}" class="btn btn-danger btn-sm btn-delete" 
+            style="display: block;" aria-label="Delete portfolio">
             <i class="fa-solid fa-trash"></i>
         </a>
-        <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;"
-            onclick="savePortfolio({{ portfolio.pk }})">
+
+        <!-- Save Button -->
+        <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;" 
+            aria-label="Save changes" onclick="savePortfolio({{ portfolio.pk }})">
             <i class="fa-solid fa-floppy-disk"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;"
-            onclick="togglePortfolioEditMode({{ portfolio.pk }}, false)">
+
+        <!-- Cancel Button -->
+        <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;" 
+            aria-label="Cancel changes" onclick="togglePortfolioEditMode({{ portfolio.pk }}, false)">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
-    <div class="button-l2">
-        <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics"
+
+    <div class="button-l2 d-flex justify-content-start mt-2">
+        <!-- Metrics Button -->
+        <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics" 
             style="display: block;">
             Metrics
         </a>
-        <input id="color-switch" name="color" type="color" class="edit-mode form-control" style="display: none;"
-            value="{{ portfolio.color }}" title="Pick a Color">
+
+        <!-- Color Picker -->
+        <input id="color-switch" name="color" type="color" class="edit-mode form-control" 
+            style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
+    </div>
+</div>
+<div class="portfolio-buttons portfolio-menu-collapse" style="display: none;">
+    <!-- 3 Dots Menu Button -->
+    <div class="dropdown">
+        <button class="btn btn-warning btn-sm dropdown-toggle portfolio-menu-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-ellipsis-h"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <!-- Edit Button -->
+            <li>
+                <button class="dropdown-item" onclick="togglePortfolioEditMode({{ portfolio.pk }})">
+                    <i class="fa-solid fa-pencil"></i> Edit
+                </button>
+            </li>
+
+            <!-- Delete Button -->
+            <li>
+                <a class="dropdown-item" href="{% url 'portfolio_delete' portfolio.pk %}">
+                    <i class="fa-solid fa-trash"></i> Delete
+                </a>
+            </li>
+
+            <!-- Save Button (Hidden by default) -->
+            <li>
+                <button class="dropdown-item" style="display: none;" onclick="savePortfolio({{ portfolio.pk }})">
+                    <i class="fa-solid fa-floppy-disk"></i> Save
+                </button>
+            </li>
+
+            <!-- Cancel Button (Hidden by default) -->
+            <li>
+                <button class="dropdown-item" style="display: none;" onclick="togglePortfolioEditMode({{ portfolio.pk }}, false)">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </button>
+            </li>
+
+            <!-- Metrics Button -->
+            <li>
+                <a class="dropdown-item" href="{% url 'metrics_portfolio' portfolio.pk %}">
+                    <i class="fa-solid fa-chart-bar"></i> Metrics
+                </a>
+            </li>
+
+            <!-- Color Picker -->
+            <li>
+                <input id="color-switch" name="color" type="color" class="dropdown-item edit-mode form-control" style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
+            </li>
+        </ul>
     </div>
 </div>

@@ -2,14 +2,27 @@ from django.dispatch import Signal, receiver
 from django.contrib import messages
 
 # Define custom signals
-form_submission_success = Signal()
-form_submission_error = Signal()
+class FormSignals:
+    """Class to define and handle form-related signals."""
 
-# Signal handlers
-@receiver(form_submission_success)
-def on_form_submission_success(request, **kwargs):
-    messages.success(request, 'Your message has been sent successfully!')
+    # Custom signals for form submission
+    form_submission_success = Signal()
+    form_submission_error = Signal()
 
-@receiver(form_submission_error)
-def on_form_submission_error(request, **kwargs):
-    messages.error(request, 'An error occurred while submitting the form. Please contact by email: support@investnest.com')
+    @staticmethod
+    @receiver(form_submission_success)
+    def handle_form_submission_success(request, **kwargs):
+        """Handles successful form submission by showing a success message."""
+        messages.success(request, 'Your message has been sent successfully!')
+
+    @staticmethod
+    @receiver(form_submission_error)
+    def handle_form_submission_error(request, **kwargs):
+        """Handles form submission errors by showing an error message."""
+        messages.error(
+            request, 'An error occurred while submitting the form. '
+            'Please contact support via email: support@investnest.com.'
+        )
+
+# Instantiate the FormSignals class to ensure handlers are connected
+form_signals = FormSignals()

@@ -2,52 +2,70 @@
 
 <header>
   {% with request.resolver_match.url_name as url_name %}
-  <nav class="navbar navbar-expand-lg">
+  <!-- ARIA role added to nav for better accessibility -->
+  <nav class="navbar navbar-expand-lg" role="navigation">
     <div class="container-fluid">
+      
       <!-- Logo -->
-      <a class="navbar-brand" href="/#">
+      <a class="navbar-brand" href="/#" aria-label="Homepage - InvestNest">
+        <!-- Improved alt text for logo for better accessibility -->
         <img src="{% static 'images/logo.webp' %}" alt="InvestNest logo" width="30" height="24">
         InvestNest
       </a>
+      
+      <!-- Button for toggling the mobile navigation menu -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- Nav items -->
+
+      <!-- Navigation items with ARIA roles and improved link structure for accessibility -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+          <!-- Active page indication using aria-current for accessibility -->
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/#">Home</a>
           </li>
+
           {% if request.user.is_authenticated %}
+          <!-- Dynamic active class for dashboard -->
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="/dashboard/">Dashboard</a>
+            <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="/dashboard/" aria-label="Dashboard">
+              Dashboard
+            </a>
           </li>
+          
+          <!-- Logout link with icon and accessible text -->
           <li class="nav-item">
-            <a class="nav-link logout-main-menu" href="/accounts/logout/">
-              <i class="fa-solid fa-right-from-bracket"></i>
+            <a class="nav-link logout-main-menu" href="/accounts/logout/" aria-label="Logout">
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
               <span class="menu-text">Logout</span>
             </a>
           </li>
+
           {% else %}
+          <!-- Additional navigation items for non-authenticated users -->
           <li class="nav-item">
-            <a class="nav-link" href="/#about">About</a>
+            <a class="nav-link" href="/#about" aria-label="About us section">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#services">Services</a>
+            <a class="nav-link" href="/#services" aria-label="Services section">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#pricing">Pricing</a>
+            <a class="nav-link" href="/#pricing" aria-label="Pricing section">Pricing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="/#contact">Contact us</a>
+            <a class="nav-link" href="/#contact" aria-label="Contact us section">Contact us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}"
-              href="/accounts/signup/">Register</a>
+            <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="/accounts/signup/" aria-label="Register for InvestNest">
+              Register
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if url_name == 'account_login' %}active{% endif %}" href="/accounts/login/">Login</a>
+            <a class="nav-link {% if url_name == 'account_login' %}active{% endif %}" href="/accounts/login/" aria-label="Login to InvestNest">
+              Login
+            </a>
           </li>
           {% endif %}
         </ul>

@@ -1,5 +1,5 @@
-/* Hero image */
-#hero{
+/* Hero Image Section */
+#hero {
     width: 100%;
     min-height: 300px;
     background-size: cover; 
@@ -7,18 +7,19 @@
     color: white;
 }
 
-/* about */
+/* About Section */
 #about-image {
     width: 100%;
     max-height: 100%;
     height: auto;
     object-fit: cover;
 
-    /* Apply radial gradient mask */
+    /* Radial gradient mask for the image */
     mask-image: radial-gradient(circle, var(--bg-dark) 20%, rgba(0, 0, 0, 0) 80%);
     -webkit-mask-image: radial-gradient(circle, var(--bg-dark) 20%, rgba(0, 0, 0, 0) 80%);
 }
 
+/* About section - align image vertically in the column */
 .col-lg-6.d-none.d-lg-block {
     display: flex;
     align-items: center;
@@ -26,7 +27,7 @@
     height: 100%;
 }
 
-/* Services section and cards */
+/* Services Section */
 #services .container {
     min-height: 100%; /* Ensure the container stretches to fit the cards */
 }
@@ -35,6 +36,7 @@
     align-items: stretch; /* Ensure all cards stretch to the same height */
 }
 
+/* Card Flip Animation */
 .card-flip {
     perspective: 1000px;
     height: 100%;
@@ -50,7 +52,8 @@
     transform-style: preserve-3d;
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front, 
+.flip-card-back {
     position: absolute;
     width: 100%;
     backface-visibility: hidden;
@@ -72,20 +75,21 @@
     transform: rotateY(180deg);
 }
 
+/* Card Styling */
 .card {
-    height: auto ;
+    height: auto;
 }
 
 .card-body {
     flex: 1;
 }
 
+/* Ensure long card text scrolls */
 .flip-card-back .card-body .card-text {
     overflow-y: scroll;
 }
 
-/* Contact */
-
-#contact .container{
+/* Contact Section */
+#contact .container {
     max-width: 600px;
 }

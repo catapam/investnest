@@ -2,12 +2,28 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+<!-- Including CSS for dashboard and portfolio -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+    <!-- Additional CSS for specific portfolio sections can be added here -->
+    {% block extra_css_portfolio %}
+    {% endblock extra_css_portfolio %}
+{% endblock extra_css_dashboard %}
+
 {% block dashboard_content %}
-<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+<!-- Main portfolio container -->
 <div class="container portfolio-container">
     {% block portfolio_content %}
+    <!-- Portfolio-specific content will be placed here -->
     {% endblock portfolio_content %}
 </div>
-<script src="{% static 'js/portfolio.js' %}" defer></script>
+
 {% endblock dashboard_content %}
 
+<!-- Including JS for dashboard and portfolio -->
+{% block extra_js_dashboard %}
+    <script src="{% static 'js/portfolio.js' %}" defer></script>
+    <!-- Additional JS for specific portfolio sections can be added here -->
+    {% block extra_js_portfolio %}
+    {% endblock extra_js_portfolio %}
+{% endblock extra_js_dashboard %}

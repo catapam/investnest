@@ -2,32 +2,57 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+<!-- Include any extra CSS for portfolio -->
+{% block extra_css_portfolio %}
+    {% block extra_css_portfolio_header %}
+    <!-- Additional styles for the header can be included here -->
+    {% endblock extra_css_portfolio_header %}
+{% endblock extra_css_portfolio %}
+
 {% block portfolio_content %}
 <div class="container">
-    <div class="portfolio-header" id="portfolio-header"
-        style="background-color: {{ portfolio.color }};">
+    <!-- Portfolio Header with Dynamic Background Color -->
+    <div class="portfolio-header" id="portfolio-header" style="background-color: {{ portfolio.color }};">
+        <!-- Portfolio Title and Description Edit Form -->
         <div class="portfolio-title">
             <form id="portfolio-form" method="post">
                 {% csrf_token %}
+                
+                <!-- Portfolio Name (Editable) -->
                 <div id="portfolio-name">
-                    <h1>Portfolio: <span class="display-mode">{{ portfolio.name }}</span></h1>
-                    <input name="name" type="text" class="edit-mode form-control" style="display: none;"
-                        value="{{ portfolio.name }}">
+                    <h1>Portfolio: 
+                        <span class="display-mode">{{ portfolio.name }}</span>
+                    </h1>
+                    <input name="name" type="text" class="edit-mode form-control" style="display: none;" value="{{ portfolio.name }}">
                 </div>
+
+                <!-- Portfolio Description (Editable) -->
                 <div id="portfolio-description">
-                    <p>Description: <br><span class="display-mode">{{ portfolio.description }}</span></p>
-                    <input name="description" type="text" class="edit-mode form-control" style="display: none;"
-                        value="{{ portfolio.description }}">
+                    <p>Description: <br>
+                        <span class="display-mode">{{ portfolio.description }}</span>
+                    </p>
+                    <input name="description" type="text" class="edit-mode form-control" style="display: none;" value="{{ portfolio.description }}">
                 </div>
             </form>
         </div>
+
+        <!-- Include Portfolio Stats and Actions -->
         {% include 'portfolio/includes/portfolio_stats.html' %}
         {% include 'portfolio/includes/portfolio_actions.html' %}
     </div>
 
+    <!-- Inner Content Block for Child Templates -->
     {% block portfolio_inner_content %}
+    <!-- Child templates can include specific content here -->
     {% endblock portfolio_inner_content %}
-
 </div>
-<script src="{% static 'js/portfolio_header.js' %}" defer></script>
 {% endblock portfolio_content %}
+
+<!-- Include Extra JS for Portfolio -->
+{% block extra_js_portfolio %}
+    <script src="{% static 'js/portfolio_header.js' %}" defer></script>
+    
+    {% block extra_js_portfolio_header %}
+    <!-- Additional JS for the portfolio header can be included here -->
+    {% endblock extra_js_portfolio_header %}
+{% endblock extra_js_portfolio %}

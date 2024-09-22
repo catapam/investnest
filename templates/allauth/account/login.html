@@ -2,43 +2,55 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}
-    {% trans "Sign In" %}
+    {% translate "Sign In" %}
 {% endblock title %}
+
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<!-- Extra CSS block for authentication styles -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css %}
+
 <div class="container">
     <div class="card text-center">
-        {% element h1 %}
-            {% trans "Sign In" %}
-        {% endelement %}
+        <!-- Page heading -->
+        <h1>
+            {% translate "Sign In" %}
+        </h1>
+
+        <!-- Check if SOCIALACCOUNT_ONLY is not enabled -->
         {% if not SOCIALACCOUNT_ONLY %}
-            {% setvar link %}
+            <p class="small">
+                {% trans "If you have not created an account yet, then please" %}
                 <a href="{{ signup_url }}">
-                {% endsetvar %}
-                {% setvar end_link %}
+                    {% trans "sign up" %}
                 </a>
-            {% endsetvar %}
-            <p class="small">If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.</p>
+                {% trans "first." %}
+            </p>
+
+            <!-- Sign-in form -->
             {% url 'account_login' as login_url %}
-            {% element form form=form method="post" action=login_url tags="entrance,login" class="form p-2" %}
-                {% slot body %}
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    {{ redirect_field }}
-                {% endslot %}
-                {% slot body %}
-                    <button type="submit"  tags="prominent,login" class="btn btn-success w-25 mb-2">
-                        {% trans "Sign In" %}
+            <form method="post" action="{{ login_url }}" class="form p-2">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {{ redirect_field }}
+
+                <!-- Sign-in button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success w-25 mb-2">
+                        {% translate "Sign In" %}
                     </button>
-                {% endslot %}
-            {% endelement %}
+                </div>
+            </form>
         {% endif %}
     </div>
 </div>
 {% endblock content %}
+
 {% block extra_body %}
     {{ block.super }}
+    <!-- Include WebAuthn script if PASSKEY_LOGIN_ENABLED is true -->
     {% if PASSKEY_LOGIN_ENABLED %}
         {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
     {% endif %}
-{% endblock %}
+{% endblock extra_body %}

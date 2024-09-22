@@ -2,18 +2,26 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}
-    {% trans "Sign Up Closed" %}
+    {% translate "Sign Up Closed" %}
 {% endblock title %}
+
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/auth.css' %}">
-<div class="container"></div>
+<!-- Extra CSS block for authentication styles -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css %}
+
+<div class="container">
     <div class="card text-center">
-        {% element h2 %}
-            {% trans "Sign Up Closed" %}
-        {% endelement %}
-        {% element p %}
-            {% trans "We are sorry, but the sign up is currently closed." %}
-        {% endelement %}
+        <!-- Page heading -->
+        <h2>
+            {% translate "Sign Up Closed" %}
+        </h2>
+
+        <!-- Message informing the user about the closed sign-up -->
+        <p>
+            {% translate "We are sorry, but the sign up is currently closed." %}
+        </p>
     </div>
 </div>
 {% endblock content %}

@@ -1,0 +1,72 @@
+<!-- Sidebar with ARIA role for navigation -->
+<nav class="sidebar" id="sidebar" aria-label="Dashboard Navigation">
+    <ul class="menu-list .navbar-nav">
+        <div class="top-menu-dashboard">
+            <!-- Accessible menu items with aria-label for clarity -->
+            <li>
+                <a href="/dashboard/" class="menu-item nav-link" aria-label="Main Dashboard">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span class="menu-text">Main</span>
+                </a>
+            </li>
+            <li>
+                <a href="/portfolio/" class="menu-item nav-link" aria-label="Portfolio">
+                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                    <span class="menu-text">Portfolio</span>
+                </a>
+            </li>
+            <li>
+                <a href="/metrics/" class="menu-item nav-link" aria-label="Metrics">
+                    <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
+                    <span class="menu-text">Metrics</span>
+                </a>
+            </li>
+            <li>
+                <a href="/accounts/" class="menu-item nav-link" aria-label="Account">
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <span class="menu-text">Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="/contact/" class="menu-item nav-link" aria-label="Contact">
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                    <span class="menu-text">Contact</span>
+                </a>
+            </li>
+            <div class="empty-area"></div>
+        </div>
+
+        <div class="bottom-menu-dashboard">
+            {% if request.user.is_staff %}
+            <li>
+                <a href="/operations/" class="menu-item nav-link" aria-label="Operations">
+                    <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+                    <span class="menu-text">Operations</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if request.user.is_superuser %}
+            <li>
+                <a href="/admin/" target="_blank" class="menu-item admin-access nav-link" aria-label="Admin">
+                    <i class="fa-solid fa-unlock" aria-hidden="true"></i>
+                    <span class="menu-text">Admin</span>
+                </a>
+            </li>
+            {% endif %}
+
+            <li>
+                <a href="/accounts/logout/" class="menu-item logout-dashboard nav-link" aria-label="Logout">
+                    <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                    <span class="menu-text">Logout</span>
+                </a>
+            </li>
+        </div>
+    </ul>
+
+    <!-- Toggle button for the sidebar, with aria-controls for accessibility -->
+    <button class="toggle-btn" id="toggle-btn" aria-controls="sidebar" aria-expanded="false">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span class="visually-hidden">Toggle Sidebar</span>
+    </button>
+</nav>

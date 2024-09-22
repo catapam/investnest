@@ -1,18 +1,36 @@
 from django.contrib import admin
 from django.urls import path, include
 from .admin import admin_site
-from .views import custom_401_view, custom_404_view
+from .views import Custom401View, Custom404View
 
+# URL patterns for the project
 urlpatterns = [
+    # Custom admin site URL
     path("admin/", admin_site.urls),
+
+    # Home app URLs
     path('', include('home.urls')),
+
+    # Dashboard app URLs
     path('dashboard/', include('dashboard.urls')),
+
+    # Portfolio app URLs
     path('portfolio/', include('portfolio.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('accounts/', include('accounts.urls')), 
+
+    # Authentication and account management URLs from 'allauth' and custom app
+    path('accounts/', include('allauth.urls')),  # Third-party auth package
+    path('accounts/', include('accounts.urls')),  # Custom account-related URLs
+
+    # Operations app URLs
     path('operations/', include('operations.urls')),
+
+    # Contact app URLs
     path('contact/', include('contact.urls')),
+
+    # Metrics app URLs
     path('metrics/', include('metrics.urls')),
-    path('401/', custom_401_view, name='custom_401'),
-    path('404/', custom_404_view, name='custom_404'),
+
+    # Custom error pages for 401 Unauthorized and 404 Not Found
+    path('401/', Custom401View.as_view(), name='custom_401'),
+    path('404/', Custom404View.as_view(), name='custom_404'),
 ]

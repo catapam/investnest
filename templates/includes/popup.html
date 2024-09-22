@@ -1,9 +1,14 @@
-
 {% if messages %}
     {% for message in messages %}
-        <div id="popup" class="popup {{ message.tags }}">
-            <span class="popup-text">{{ message }}</span>
-            <button class="close-btn" onclick="closePopup('popup')">&times;</button>
-        </div>
+    <!-- ARIA role 'alert' added for better accessibility to notify screen readers of the popup message -->
+    <div id="popup" class="popup {{ message.tags }}" role="alert" aria-live="assertive" aria-atomic="true">
+        <!-- Popup text inside a span for styling, with a descriptive message -->
+        <span class="popup-text">{{ message }}</span>
+        
+        <!-- Close button for the popup, labeled and keyboard accessible -->
+        <button class="close-btn" onclick="closePopup('popup')" aria-label="Close popup notification">
+            &times;
+        </button>
+    </div>
     {% endfor %}
 {% endif %}

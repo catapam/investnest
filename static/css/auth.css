@@ -1,20 +1,23 @@
-/* forms */
-.container{
+/* Container Styling */
+.container {
     display: flex;
     align-items: center; /* Vertically centers the card */
     justify-content: center; /* Horizontally centers the card */
     height: 100%; /* Ensures the container takes the full height of the viewport */
 }
 
+/* Card Styling */
 .card {
     max-width: 450px; 
     padding: 20px; 
 }
 
-#divison_x{
+/* Division Margin */
+#divison_x {
     margin-top: 30px;
 }
 
+/* Form Check Input Styling */
 .form-check .form-check-input {
     float: none;
     margin-right: 10px;
@@ -25,15 +28,17 @@
     border-color: var(--bs-link-hover-color);
 }
 
-.verified{
+/* Email Verification Status Styling */
+.verified {
     color: var(--light-accent);
 }
 
-.unverified{
+.unverified {
     color: var(--red-accent);
 }
 
-.list-emails{
+/* Email List Styling */
+.list-emails {
     max-height: 100px;
     overflow-y: auto;
     text-align: left;
@@ -45,7 +50,17 @@
     padding-top: 10px;
 }
 
-.form-text{
+/* Form Text Styling */
+.form-text {
     font-size: small;
     color: var(--text-secondary-color);
+}
+
+/* Badges */
+.bg-primary{
+    background-color: rgba(var(--info-color-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-success{
+    background-color: rgba(var(--dark-accent-rgb), var(--bs-bg-opacity)) !important;
 }

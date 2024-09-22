@@ -189,10 +189,10 @@ Key design principles include:
 * **Fully functional front-end website**: Users can learn about the product, choose plans, signin, initiad a contact and find social medias.
 * **Portfolio Management**: Allows users to create, update, and delete portfolios and assets, with real-time data updates.
 * **User Authentication and Authorization**: Secure login, registration, and role-based access control.
-* **Reporting and Analytics**: Detailed performance metrics and visualizations to help users track their investments.
 
 ## Future Features
 
+* **Reporting and Analytics**: Detailed performance metrics and visualizations to help users track their investments.
 * **Real-Time Data Integration**: Fetches and displays up-to-date market prices for all assets in a user’s portfolio.
 * **Advanced Analytics**: Introduce more advanced analytics, such as risk assessments and forecasting tools.
 * **Automated Alerts**: Implement automated alerts for significant portfolio changes.
@@ -246,8 +246,6 @@ To deploy the application on Heroku:
 11. Scroll down and either "Enable Automatic Deploys" to update the code each time it is pushed to GitHub, or choose "Manual Deploy" for manual updates.
 
 # Testing
-
-## Automated testing
 
 ## Manual testing
 
