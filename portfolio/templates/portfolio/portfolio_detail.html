@@ -7,7 +7,7 @@
 
 <!-- Include DataTables CSS -->
 {% block extra_css_portfolio_header %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 {% endblock extra_css_portfolio_header %}
 
 <div class="portfolio-content">
@@ -23,12 +23,12 @@
         <table class="table table-borderless table-hover table-sm align-middle" id="asset-table">
             <thead>
                 <tr>
-                    <th scope="col"><a href="{% url 'portfolio_add_asset' portfolio.pk %}"
+                    <th scope="col" class="unfiltered-column"><a href="{% url 'portfolio_add_asset' portfolio.pk %}"
                             class="btn-add btn btn-success btn-sm" aria-label="Add asset">+</a></th>
-                    <th scope="col" data-column="name">Name</th>
-                    <th scope="col" data-column="quantity">Quantity</th>
-                    <th scope="col" data-column="price">Avg. Price</th>
-                    <th scope="col" data-column="total_value">Value</th>
+                    <th scope="col" class="filtered-column" data-column="name">Name</th>
+                    <th scope="col" class="filtered-column" data-column="quantity">Quantity</th>
+                    <th scope="col" class="filtered-column" data-column="price">Avg. Price</th>
+                    <th scope="col" class="filtered-column" data-column="total_value">Value</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,12 +87,7 @@
 
 <!-- Include DataTables JS and Custom Scripts -->
 {% block extra_js_portfolio_header %}
-<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" defer></script>
 <script src="{% static 'js/asset.js' %}" defer></script>
 <script src="{% static 'js/sort_table.js' %}" defer></script>
-<script>
-    $(document).ready(function () {
-        $('#asset-table').DataTable();  // Initialize DataTables
-    });
-</script>
 {% endblock extra_js_portfolio_header %}

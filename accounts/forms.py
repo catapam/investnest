@@ -7,13 +7,19 @@ class UpdateUsernameForm(forms.ModelForm):
     This form is tied to the built-in User model.
     """
     class Meta:
-        model = User  # The form is tied to the User model
-        fields = ['username']  # Only the 'username' field will be editable
+        model = User
+        fields = ['username']
 
     def __init__(self, *args, **kwargs):
-        """
-        Custom initialization of the form to add CSS classes for better styling.
-        """
         super(UpdateUsernameForm, self).__init__(*args, **kwargs)
-        # Add Bootstrap class 'form-control' to the username field
         self.fields['username'].widget.attrs.update({'class': 'form-control'})
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        
+        # Check if the new username is already taken by another user
+        if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError("This username is already taken. Please choose another one.")
+        
+        return username
+

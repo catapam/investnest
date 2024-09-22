@@ -5,6 +5,7 @@ function handleSidebarToggle() {
     var sidebar = document.getElementById('sidebar');
     var toggleBtn = document.getElementById('toggle-btn');
     var mainContent = document.getElementById('dashboard-content');
+    var currentPath = window.location.pathname;
 
     // Toggle the 'collapsed' class on the sidebar and main content
     sidebar.classList.toggle('collapsed');
@@ -13,6 +14,25 @@ function handleSidebarToggle() {
     // Toggle the icon between left and right arrow
     toggleBtn.querySelector('i').classList.toggle('fa-arrow-left');
     toggleBtn.querySelector('i').classList.toggle('fa-arrow-right');
+
+    // Check if screen width is smaller than 768px
+    if (window.innerWidth < 768) {
+        // Check if the path starts with /portfolio or /metrics
+        if (currentPath.startsWith('/portfolio') || currentPath.startsWith('/metrics')) {
+            var portfolioMenuCollapse = document.querySelector('.portfolio-menu-collapse');
+            var portfolioMenuWide = document.querySelector('.portfolio-menu-wide');
+
+            if (sidebar.classList.contains('collapsed')) {
+                // Hide the portfolio menu
+                portfolioMenuCollapse.style.display = 'none';
+                portfolioMenuWide.style.display = 'block';
+            } else {
+                // Show the portfolio menu
+                portfolioMenuCollapse.style.display = 'block';
+                portfolioMenuWide.style.display = 'none';
+            }
+        }
+    }
 }
 
 /**

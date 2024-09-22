@@ -1,77 +1,63 @@
-function activeMenu() {
-    var currentPath = window.location.pathname + window.location.hash;
+/**
+ * Displays a popup by adding the 'show' class to the element with the specified popupId.
+ * The popup is automatically closed after 3 seconds or when the close button is clicked.
+ *
+ * @param {string} popupId - The ID of the popup element to be displayed.
+ */
+function showPopup(popupId) {
+    var popup = document.getElementById(popupId); // Select the popup element by ID
 
-    // Normalize the path for "Home" cases
-    if (currentPath === '/' || currentPath === '/#' || currentPath === '' || currentPath === '/#hero') {
-        currentPath = '/#';
-    }
+    if (popup) {
+        // Scroll to the top of the page smoothly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Select all nav-links
-    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        // Show the popup by adding the 'show' class
+        popup.classList.add('show');
 
-    navLinks.forEach(link => {
-        // Remove active class from all links
-        link.classList.remove('active');
+        // Set a timeout to hide the popup after 3 seconds (3000 ms)
+        setTimeout(function () {
+            closePopup(popup); // Close the popup automatically after the time expires
+        }, 3000);
 
-        // Check if the href ends with the current path (including fragment)
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active');
-        }
-    });
-};
-
-window.onload = function () {
-    var showPopup = function (popupId) {
-        var popup = document.getElementById(popupId);
-        if (popup) {
-            // Ensure the page stays at the top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-            // Show the popup
-            popup.classList.add('show');
-    
-            // Hide the popup after 5 seconds
-            setTimeout(function () {
-                closePopup(popup);
-            }, 3000);
-    
-            // Add event listener for close button
-            popup.querySelector('.close-btn').addEventListener('click', function () {
+        // Add event listener to the close button inside the popup to close it on click
+        var closeButton = popup.querySelector('.close-btn');
+        if (closeButton) {
+            closeButton.addEventListener('click', function () {
                 closePopup(popup);
             });
         }
-    };
-    
-    var closePopup = function (popup) {
-        popup.classList.remove('show');
-    };
-    
-    // Show the success or error popup based on the condition
-    ['success-popup', 'error-popup', 'info-popup', 'warning-popup', 'custom-popup'].forEach(function (popupId) {
+    }
+}
+
+/**
+ * Closes the given popup by removing the 'show' class.
+ *
+ * @param {HTMLElement} popup - The popup element to close.
+ */
+function closePopup(popup) {
+    popup.classList.remove('show'); // Hide the popup by removing the 'show' class
+}
+
+/**
+ * Initializes the base functionality for popups.
+ * It attempts to display popups by their IDs if they are present on the page.
+ */
+function initBaseJS() {
+    var popupIds = ['success-popup', 'error-popup', 'info-popup', 'warning-popup', 'custom-popup'];
+
+    // Loop through each popup ID and attempt to show it if the element exists
+    popupIds.forEach(function (popupId) {
         showPopup(popupId);
     });
 
+    // Additional check for a generic 'popup' ID element and show it if found
     var popup = document.getElementById('popup');
     if (popup) {
         showPopup('popup');
     }
+}
 
-    // Function to check if any of the inner menu paths are active
-    var activateDashboardMenu = function() {
-        var currentPath = window.location.pathname;
-        var innerMenuPaths = ['/dashboard/', '/portfolio/', '/metrics/', '/accounts/', '/contact/', '/operations/'];
-        var dashboardLink = document.querySelector('.nav-link[href="/dashboard/"]');
-
-        innerMenuPaths.forEach(function(path) {
-            if (currentPath.startsWith(path)) {
-                dashboardLink.classList.add('active');
-            }
-        });
-    };
-
-    // Activate the Dashboard menu if any inner menu paths are active
-    activateDashboardMenu();
-
-    // Update active menu item when the hash changes
-    window.addEventListener('hashchange', activateDashboardMenu);
-};
+// Run the initialization function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initBaseJS();
+});

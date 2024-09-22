@@ -13,6 +13,7 @@
 
 /* Header section of the portfolio */
 .portfolio-header {
+    position: relative;
     display: flex;
     flex-direction: row;
     padding: 15px;
@@ -43,7 +44,7 @@
 }
 
 /* Portfolio title styling */
-.my-portfolio-title h1, 
+.my-portfolio-title h1,
 .portfolio-title h1 {
     color: var(--text-primary-color);
     font-size: large;
@@ -86,6 +87,45 @@
     font-size: small;
 }
 
+/* Portoflio kebab menu */
+.dropdown-item{
+    font-size: medium;
+}
+
+.portfolio-menu-collapse {
+    position: relative; /* Ensure relative positioning for absolute child elements */
+}
+
+.portfolio-menu-btn {
+    position: absolute;
+    top: 0; /* Align to the top */
+    right: 0; /* Align to the right */
+    z-index: 1000; /* Ensures the button is on top of other elements */
+    height: 16; /* If you want it to be half the height of its container */
+}
+
+.dropdown-menu {
+    right: 0; /* Ensures the dropdown aligns with the button on the right */
+    left: auto; /* Prevents the dropdown from extending to the left */
+}
+
+.portfolio-menu-collapse {
+    position: relative; /* Ensure relative positioning for absolute child elements */
+}
+
+.portfolio-menu-btn {
+    position: relative;
+    z-index: 1000; /* Ensures the button is on top of other elements */
+    height: 25px !important; /* Half the height of its container */
+    margin-left: -25px !important;
+    margin-bottom: 100px;
+}
+
+/* hide arrow from portfolio header kebab button */
+.dropdown-toggle::after {
+    display: none;
+}
+
 /* Asset header layout */
 .asset-header {
     display: flex;
@@ -99,7 +139,7 @@
 }
 
 /* First asset button */
-#btn-add-first-asset{
+#btn-add-first-asset {
     margin-left: 15px;
     margin-bottom: 15px;
 }
@@ -244,7 +284,7 @@
 }
 
 /* Ensures proper margin for delete and cancel buttons in the table */
-table #delete-asset-btn, 
+table #delete-asset-btn,
 table .btn-cancel {
     margin-top: 5px !important;
 }
@@ -293,8 +333,8 @@ table .btn-cancel {
 }
 
 /* Padding for content within portfolio cards */
-.portfolio-card-content, 
-.portfolio-card-stats, 
+.portfolio-card-content,
+.portfolio-card-stats,
 .portfolio-stats-container {
     padding: 15px;
 }
@@ -367,8 +407,31 @@ table.dataTable thead .sorting_desc {
     overflow: hidden;
 }
 
+/* Datables restyling */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate{
+    color: var(--text-secondary-color) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: var(--text-secondary-color) !important;
+}
+
+.filtered-column{
+    padding-left:20px !important;
+    padding-bottom: 10px !important;
+}
+
+.unfiltered-column {
+    padding: 8px 10px !important;
+}
+
 /* Media queries for responsive design */
 @media (min-width: 768px) {
+
     .container,
     .container-md,
     .container-sm {

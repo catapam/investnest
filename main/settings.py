@@ -157,7 +157,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
 
                 #Custom context processor for dashboard intra-menu:
-                'dashboard.context_processors.intra_menu_processor',
+                'dashboard.context_processors.IntraMenuProcessor',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

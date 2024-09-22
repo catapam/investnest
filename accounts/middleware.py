@@ -34,7 +34,7 @@ class LoginRequiredMiddleware(MiddlewareMixin):
             # Allow access to certain URLs without authentication
             allowed_urls = [
                 'account_login', 'account_signup', 'account_reset_password', 
-                'home', 'custom_401', 'custom_404'
+                'home', 'custom_401', 'custom_404', 'wireframes'
             ]
             if current_url not in allowed_urls:
                 # Display a warning message and redirect to login page
