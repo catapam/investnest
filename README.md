@@ -247,6 +247,58 @@ To deploy the application on Heroku:
 
 # Testing
 
+- Testing was mainly made using Google Chrome Developer Tools, including the mobile and responsive views.
+- Lighthouse tab of developer tools was used to score the site regarding Performance, Acessibility and SEO.
+- The site was tested on other devices using Edge, Firefox and Safari. When testing on desktops with OS: Mac iOS and Windows 11. And on mobile OS: Android and iOS.
+
+### HTML and accessibility
+
+#### Home
+
+* [W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcatapam.github.io%2Fsocks-in-a-box%2Findex.html)
+* [Wave Accessiblity result](https://wave.webaim.org/report#/https://catapam.github.io/socks-in-a-box/index.html)
+* Lighthouse result for mobile version:
+<br>
+
+![Home performance test mobile screenshot](documentation/home-mobile.png)
+* Lighthouse result for desktop version:
+<br>
+
+![Home performance test desktop screenshot](documentation/home-desktop.png)
+
+#### 401
+
+#### 404
+
+#### Account
+- Login
+- Register
+- Logout
+- User
+- Email
+- Password
+- Password reset
+- Password reset email sent
+- Confirmation email sent
+- Reset password from email key
+
+#### Dashboard
+##### Main
+##### Portfolio
+
+- View
+- Create Portfolio
+- Create Asset / Add transaction
+- Delete confirmation
+- Portfolio view
+
+##### Metrics
+
+##### Contacts
+
+##### Operations
+
+
 ## Manual testing
 
 # Bugs
