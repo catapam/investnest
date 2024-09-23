@@ -8,7 +8,7 @@
 {% block content %}
 <!-- Extra CSS block for authentication styles -->
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" defer>
 {% endblock extra_css %}
 
 <div class="container">
@@ -21,7 +21,7 @@
         <!-- Already have an account? Sign in link -->
         <p class="small">
             {% trans "Already have an account? Then please" %}
-            <a href="{{ login_url }}">
+            <a href="{{ login_url }}/#">
                 {% translate "sign in" %}
             </a>.
         </p>

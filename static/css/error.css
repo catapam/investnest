@@ -1,0 +1,16 @@
+/* Styling for custom error pages */
+.error-page {
+    /* Ensure the element takes up 100% of the viewport height and width */
+    height: calc(100vh - 60px);
+    width: 100vw;
+
+    /* Flexbox layout for vertical and horizontal centering */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+
+    /* Optional styling */
+    text-align: center; /* Center the text content */
+    padding: 20px; /* Add some padding to avoid content touching the edges */
+}

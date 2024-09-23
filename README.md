@@ -1,6 +1,6 @@
 # Investnest
 
-[Live project can be viewed here](https://investnest-b2db9f69475b.herokuapp.com/)
+<a href="https://investnest-b2db9f69475b.herokuapp.com" target="_blank">Live project can be viewed here</a>
 
 InvestNest is a full-stack web application designed to help users manage their investment portfolios. The application allows users to create, manage, and track their investment portfolios while providing real-time data integration, user-friendly reports, and robust authentication mechanisms.
 
@@ -109,7 +109,7 @@ The story point weight and MoSCoW priority of each task for the three sprints (E
 - Total 'Must Have': 34
 - Must Have proportion: 58.62%
 
-[Sprint 1 story point weight graph](https://github.com/users/catapam/projects/2/insights/4)
+<a href="https://github.com/users/catapam/projects/2/insights/4" target="_blank">Sprint 1 story point weight graph</a>
 
 ### Sprint/Epic 2
 
@@ -124,7 +124,7 @@ The story point weight and MoSCoW priority of each task for the three sprints (E
 - Total 'Must Have': 22
 - Must Have proportion: 38.59%
 
-[Sprint 2 story point weight graph](https://github.com/users/catapam/projects/2/insights/5)
+<a href="https://github.com/users/catapam/projects/2/insights/5" target="_blank">Sprint 2 story point weight graph</a>
 
 ### Sprint/Epic 3
 
@@ -139,7 +139,7 @@ The story point weight and MoSCoW priority of each task for the three sprints (E
 - Total 'Must Have': 32
 - Must Have proportion: 38.55%
 
-[Sprint 3 story point weight graph](https://github.com/users/catapam/projects/2/insights/6)
+<a href="https://github.com/users/catapam/projects/2/insights/6" target="_blank">Sprint 3 story point weight graph</a>
 
 ## Sprint Length
 
@@ -151,7 +151,7 @@ Tasks and tickets were reviewed weekly. New tickets, such as bug reports, may ha
 
 # Data structure
 
-* Data structure was created using [drawSQL](https://drawsql.app/)
+* Data structure was created using <a href="https://drawsql.app/" target="_blank">drawSQL</a> :
 ![ERD screenshot](documentation/ERD.png)
 
 # Design
@@ -166,13 +166,13 @@ Key design principles include:
 ## Color scheme
 
 * The color scheme chosen was a dark-mode with green accents. Briging senses of elegance, security, seriousness and richness, all appealing to the target consumer.
-* Used [Coolors](https://coolors.co/) to create the palette:
+* Used <a href="https://coolors.co/" target="_blank">Coolors</a> to create the palette:
 
 ![coolors screenshot](documentation/palette.png)
 
 ## Typography
 
-* The fonts were choosen on [Google fonts](https://fonts.google.com/), thinking of keeping the same sentiment as the colors passed.
+* The fonts were choosen on <a href="https://fonts.google.com/" target="_blank">Google fonts</a>, thinking of keeping the same sentiment as the colors passed.
 * Primary font family for body text: Roboto, with fallback fonts: Arial, sans-serif
 * Font family for headings: Merriweather, with fallback fonts: Georgia, serif
 
@@ -180,7 +180,7 @@ Key design principles include:
 
 * Wireframes were created in HTML during the branding and theme planning, it can be checked here:
 
-[Live wireframes for front-end site](https://investnest-b2db9f69475b.herokuapp.com/wireframes)
+<a href="https://investnest-b2db9f69475b.herokuapp.com/wireframes" target="_blank">Live wireframes for front-end site</a>
 
 # Features
 
@@ -251,53 +251,35 @@ To deploy the application on Heroku:
 - Lighthouse tab of developer tools was used to score the site regarding Performance, Acessibility and SEO.
 - The site was tested on other devices using Edge, Firefox and Safari. When testing on desktops with OS: Mac iOS and Windows 11. And on mobile OS: Android and iOS.
 
-### HTML and accessibility
+## HTML, accessibility and performance
 
-#### Home
+| **Page** | **<a href="https://validator.w3.org/nu/#textarea" target="_blank">W3C Markup validator</a>** | **<a href="https://wave.webaim.org/" target="_blank">Wave accessibility</a>** | **Performance** | **Acessibility** | **Best practices** | **SEO** |
+|------------------------------------------|------------|------------|------------|------------|------------|------------|
+| Home | Passed | Passed | 
+| 401 | Passed | Passed | <a href="/documentation/tests/401.png" target="_blank">M:96<br>D:100</a> | <a href="/documentation/tests/401.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/401.png" target="_blank">M:93<br>D:93</a> | <a href="/documentation/tests/401.png" target="_blank">M:91<br>D:91</a> |
+| 404 | Passed | Passed | <a href="/documentation/tests/404.png" target="_blank">M:90<br>D:91</a> | <a href="/documentation/tests/404.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/404.png" target="_blank">M:93<br>D:93</a> | <a href="/documentation/tests/404.png" target="_blank">M:91<br>D:91</a> |
+| Account / Login | Passed | Passed |  |  |  |  |
+| Account / Register | Passed | Passed |  |  |  |  |
+| Account / Logout | Passed | Passed |  |  |  |  |
+| Account / User edit | Passed | Passed |  |  |  |  |
+| Account / Email edit | Passed | Passed |  |  |  |  |
+| Account / Password change | Passed | Passed |  |  |  |  |
+| Account / Password reset | Passed | Passed |  |  |  |  |
+| Account / Password reset email sent | Passed | Passed |  |  |  |  |
+| Account / Reset password from email key | Passed | Passed | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:90<br>D:91</a> | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:96<br>D:96</a> | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:100<br>D:100</a> |
+| Dashboard / Main | Passed | Passed |  |  |  |  |
+| Dashboard / Portfolio / Overview | Passed | Passed |  |  |  |  |
+| Dashboard / Portfolio / Create Portfolio | Passed | Passed |  |  |  |  |
+| Dashboard / Portfolio / Create Asset | Passed | Passed |  |  |  |  |
+| Dashboard / Portfolio / Delete confirmation | Passed | Passed |  |  |  |  |
+| Dashboard / Portfolio / Asset view | Passed | Passed |  |  |  |  |
+| Metrics |  |  |  |  |  |  |
+| Contacts |  |  |  |  |  |  |
+| Operations |  |  |  |  |  |  |
 
-* [W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcatapam.github.io%2Fsocks-in-a-box%2Findex.html)
-* [Wave Accessiblity result](https://wave.webaim.org/report#/https://catapam.github.io/socks-in-a-box/index.html)
-* Lighthouse result for mobile version:
-<br>
-
-![Home performance test mobile screenshot](documentation/home-mobile.png)
-* Lighthouse result for desktop version:
-<br>
-
-![Home performance test desktop screenshot](documentation/home-desktop.png)
-
-#### 401
-
-#### 404
-
-#### Account
-- Login
-- Register
-- Logout
-- User
-- Email
-- Password
-- Password reset
-- Password reset email sent
-- Confirmation email sent
-- Reset password from email key
-
-#### Dashboard
-##### Main
-##### Portfolio
-
-- View
-- Create Portfolio
-- Create Asset / Add transaction
-- Delete confirmation
-- Portfolio view
-
-##### Metrics
-
-##### Contacts
-
-##### Operations
-
+* Passed state means the test was run, and returned no errors or alerts
+* Due to the nature of dashboard pages, Wave was run using the browser extension rather than the site tool.
+* M=mobile, D=desktop
 
 ## Manual testing
 

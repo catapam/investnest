@@ -1,7 +1,7 @@
 <!-- Sidebar with ARIA role for navigation -->
 <nav class="sidebar" id="sidebar" aria-label="Dashboard Navigation">
-    <ul class="menu-list .navbar-nav">
-        <div class="top-menu-dashboard">
+    <div class="menu-list">
+        <ul class="top-menu-dashboard navbar-nav">
             <!-- Accessible menu items with aria-label for clarity -->
             <li>
                 <a href="/dashboard/" class="menu-item nav-link" aria-label="Main Dashboard">
@@ -33,10 +33,10 @@
                     <span class="menu-text">Contact</span>
                 </a>
             </li>
-            <div class="empty-area"></div>
-        </div>
+            <li class="empty-area"></li>
+        </ul>
 
-        <div class="bottom-menu-dashboard">
+        <ul class="bottom-menu-dashboard navbar-nav">
             {% if request.user.is_staff %}
             <li>
                 <a href="/operations/" class="menu-item nav-link" aria-label="Operations">
@@ -61,8 +61,8 @@
                     <span class="menu-text">Logout</span>
                 </a>
             </li>
-        </div>
-    </ul>
+        </ul>
+    </div>
 
     <!-- Toggle button for the sidebar, with aria-controls for accessibility -->
     <button class="toggle-btn" id="toggle-btn" aria-controls="sidebar" aria-expanded="false">

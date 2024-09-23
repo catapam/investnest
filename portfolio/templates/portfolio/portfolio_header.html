@@ -23,7 +23,8 @@
                     <h1>Portfolio: 
                         <span class="display-mode">{{ portfolio.name }}</span>
                     </h1>
-                    <input name="name" type="text" class="edit-mode form-control" style="display: none;" value="{{ portfolio.name }}">
+                    <label for="portfolio-name-input" class="sr-only">Portfolio Name</label>
+                    <input id="portfolio-name-input" name="name" type="text" class="edit-mode form-control" style="display: none;" value="{{ portfolio.name }}">
                 </div>
 
                 <!-- Portfolio Description (Editable) -->
@@ -31,7 +32,8 @@
                     <p>Description: <br>
                         <span class="display-mode">{{ portfolio.description }}</span>
                     </p>
-                    <input name="description" type="text" class="edit-mode form-control" style="display: none;" value="{{ portfolio.description }}">
+                    <label for="portfolio-description-input" class="sr-only">Portfolio Description</label>
+                    <input id="portfolio-description-input" name="description" type="text" class="edit-mode form-control" style="display: none;" value="{{ portfolio.description }}">
                 </div>
             </form>
         </div>

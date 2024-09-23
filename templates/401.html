@@ -4,11 +4,12 @@
 {% block content %}
 <!-- Including the CSS for styling -->
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="preload" href="{% static 'css/home.css' %}" as="style" onload="this.rel='stylesheet'">
+<link rel="preload" href="{% static 'css/error.css' %}" as="style" onload="this.rel='stylesheet'">
 {% endblock extra_css %}
 
 <!-- Main content section with ARIA role for better accessibility -->
-<main role="main" aria-labelledby="unauthorized-heading">
+<div role="main" aria-labelledby="unauthorized-heading" class="error-page">
     <h1 id="unauthorized-heading">401 - Unauthorized</h1>
     
     <!-- Descriptive error message with clear next steps -->
@@ -16,10 +17,10 @@
     
     <!-- Improved link with aria-label for screen readers -->
     <a href="{% url 'home' %}#contact" aria-label="Contact InvestNest support for assistance">Contact us</a>
-</main>
+</div>
 
 <!-- Including the JavaScript for the page -->
 {% block extra_js %}
-<script src="{% static 'js/home.js' %}"></script>
+<script src="{% static 'js/home.js' %}" defer></script>
 {% endblock extra_js %}
 {% endblock %}

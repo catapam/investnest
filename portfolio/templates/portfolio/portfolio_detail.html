@@ -7,7 +7,7 @@
 
 <!-- Include DataTables CSS -->
 {% block extra_css_portfolio_header %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" defer>
 {% endblock extra_css_portfolio_header %}
 
 <div class="portfolio-content">
@@ -23,8 +23,11 @@
         <table class="table table-borderless table-hover table-sm align-middle" id="asset-table">
             <thead>
                 <tr>
-                    <th scope="col" class="unfiltered-column"><a href="{% url 'portfolio_add_asset' portfolio.pk %}"
-                            class="btn-add btn btn-success btn-sm" aria-label="Add asset">+</a></th>
+                    <th scope="col" class="unfiltered-column">
+                        <a href="{% url 'portfolio_add_asset' portfolio.pk %}"
+                           class="btn-add btn btn-success btn-sm" aria-label="Add asset" 
+                           tabindex="0" role="button" onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'portfolio_add_asset' portfolio.pk %}'; }">+</a>
+                    </th>
                     <th scope="col" class="filtered-column" data-column="name">Name</th>
                     <th scope="col" class="filtered-column" data-column="quantity">Quantity</th>
                     <th scope="col" class="filtered-column" data-column="price">Avg. Price</th>
@@ -33,19 +36,22 @@
             </thead>
             <tbody>
                 {% for asset in assets %}
-                <tr class="dashboard-table" style="cursor: pointer;"
-                    onclick="window.location.href='{% url 'edit_asset' portfolio.pk asset.pk %}'">
-                    <th scope="row">
+                <tr class="dashboard-table" style="cursor: pointer;" tabindex="0"
+                    onclick="window.location.href='{% url 'edit_asset' portfolio.pk asset.pk %}'"
+                    onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'edit_asset' portfolio.pk asset.pk %}'; }">
+                    <td>
                         <meta name="csrf-token" content="{{ csrf_token }}">
                         <a href="{% url 'edit_asset' portfolio.pk asset.pk %}" class="btn btn-info btn-sm"
-                            aria-label="View asset" onclick="event.stopPropagation();">
+                           aria-label="View asset" onclick="event.stopPropagation();" tabindex="0" role="button"
+                           onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'edit_asset' portfolio.pk asset.pk %}'; event.stopPropagation(); }">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                         <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm"
-                            aria-label="Delete asset" onclick="event.stopPropagation();">
+                           aria-label="Delete asset" onclick="event.stopPropagation();" tabindex="0" role="button"
+                           onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}'; event.stopPropagation(); }">
                             <i class="fa-solid fa-trash"></i>
                         </a>
-                    </th>
+                    </td>
                     <td>{{ asset.name }}</td>
                     <td>{{ asset.get_total_quantity }}</td>
                     <td>
@@ -67,7 +73,7 @@
             </tbody>
             <tfoot>
                 <tr class="dashboard-table">
-                    <th scope="row"></th>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -78,7 +84,9 @@
     </div>
     {% else %}
     <a href="{% url 'portfolio_add_asset' portfolio.pk %}"
-                            class="btn-add btn btn-success btn-sm" aria-label="Add asset" id="btn-add-first-asset">+</a>
+                            class="btn-add btn btn-success btn-sm" aria-label="Add asset" id="btn-add-first-asset" 
+                            tabindex="0" role="button"
+                            onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'portfolio_add_asset' portfolio.pk %}'; }">+</a>
     <p class="justify-inner-content">No assets in this portfolio yet.</p>
     {% endif %}
 

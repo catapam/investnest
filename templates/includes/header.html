@@ -3,11 +3,11 @@
 <header>
   {% with request.resolver_match.url_name as url_name %}
   <!-- ARIA role added to nav for better accessibility -->
-  <nav class="navbar navbar-expand-lg" role="navigation">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       
       <!-- Logo -->
-      <a class="navbar-brand" href="/#" aria-label="Homepage - InvestNest">
+      <a class="navbar-brand" href="/" aria-label="Homepage - InvestNest">
         <!-- Improved alt text for logo for better accessibility -->
         <img src="{% static 'images/logo.webp' %}" alt="InvestNest logo" width="30" height="24">
         InvestNest

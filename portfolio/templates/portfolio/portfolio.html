@@ -4,7 +4,7 @@
 
 <!-- Including CSS for dashboard and portfolio -->
 {% block extra_css_dashboard %}
-    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}" defer>
     <!-- Additional CSS for specific portfolio sections can be added here -->
     {% block extra_css_portfolio %}
     {% endblock extra_css_portfolio %}

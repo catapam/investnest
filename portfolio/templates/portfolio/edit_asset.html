@@ -5,7 +5,7 @@
 {% block title %}View Asset{% endblock title %}
 
 {% block portfolio_inner_content %}
-<div>
+<div id="edit-asset-template">
     <div>
         <!-- Inner Header for Asset Details -->
         <div class="inner-header d-flex justify-content-between align-items-center">
@@ -15,7 +15,8 @@
             <!-- Form to Edit Asset Name, initially hidden -->
             <form id="asset-name-form" method="post" style="display: none;" action="{% url 'edit_asset' portfolio.pk asset.pk %}">
                 {% csrf_token %}
-                <input type="text" name="name" value="{{ asset.name }}" class="form-control" />
+                <label for="asset-name-input" class="sr-only">Asset Name</label>
+                <input type="text" id="asset-name-input" name="name" value="{{ asset.name }}" class="form-control" />
             </form>
 
             <!-- Edit and Delete Buttons -->
@@ -24,7 +25,7 @@
                 <button type="submit" id="asset-save-btn" class="btn btn-success btn-sm" style="display: none;" aria-label="Save asset name">
                     <i class="fa-solid fa-floppy-disk"></i>
                 </button>
-                <button type="button" id="asset-cancel-btn" class="btn btn-danger btn-sm " style="display: none;" aria-label="Cancel edit" onclick="toggleAssetEditMode(false)">
+                <button type="button" id="asset-cancel-btn" class="btn btn-danger btn-sm" style="display: none;" aria-label="Cancel edit" onclick="toggleAssetEditMode(false)">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 <button id="edit-asset-name-btn" class="btn btn-warning btn-sm" style="display: inline-block;" aria-label="Edit asset name" onclick="toggleAssetEditMode(true)">
@@ -81,7 +82,8 @@
                         <!-- Transaction Type -->
                         <td>
                             <span class="display-mode">{{ transaction.get_type_display }}</span>
-                            <select name="type" class="edit-mode form-control" style="display: none;">
+                            <label for="transaction-type-{{ transaction.pk }}" class="sr-only">Transaction Type</label>
+                            <select name="type" id="transaction-type-{{ transaction.pk }}" class="edit-mode form-control" style="display: none;">
                                 <option value="long" {% if transaction.type == 'long' %}selected{% endif %}>Long</option>
                                 <option value="short" {% if transaction.type == 'short' %}selected{% endif %}>Short</option>
                             </select>
@@ -89,7 +91,8 @@
                         <!-- Transaction Action -->
                         <td>
                             <span class="display-mode">{{ transaction.get_action_display }}</span>
-                            <select name="action" class="edit-mode form-control" style="display: none;">
+                            <label for="transaction-action-{{ transaction.pk }}" class="sr-only">Transaction Action</label>
+                            <select name="action" id="transaction-action-{{ transaction.pk }}" class="edit-mode form-control" style="display: none;">
                                 <option value="buy" {% if transaction.action == 'buy' %}selected{% endif %}>Buy</option>
                                 <option value="sell" {% if transaction.action == 'sell' %}selected{% endif %}>Sell</option>
                             </select>
@@ -97,17 +100,20 @@
                         <!-- Quantity -->
                         <td>
                             <span class="display-mode">{{ transaction.quantity }}</span>
-                            <input name="quantity" type="number" class="edit-mode form-control" style="display: none;" value="{{ transaction.quantity }}">
+                            <label for="transaction-quantity-{{ transaction.pk }}" class="sr-only">Transaction Quantity</label>
+                            <input name="quantity" id="transaction-quantity-{{ transaction.pk }}" type="number" class="edit-mode form-control" style="display: none;" value="{{ transaction.quantity }}">
                         </td>
                         <!-- Price -->
                         <td>
                             <span class="display-mode">{{ transaction.price }}</span>
-                            <input name="price" type="number" class="edit-mode form-control" style="display: none;" value="{{ transaction.price }}">
+                            <label for="transaction-price-{{ transaction.pk }}" class="sr-only">Transaction Price</label>
+                            <input name="price" id="transaction-price-{{ transaction.pk }}" type="number" class="edit-mode form-control" style="display: none;" value="{{ transaction.price }}">
                         </td>
                         <!-- Date -->
                         <td>
                             <span class="display-mode">{{ transaction.date }}</span>
-                            <input name="date" type="datetime-local" class="edit-mode form-control" style="display: none;" value="{{ transaction.date|date:'Y-m-d\\TH:i' }}">
+                            <label for="transaction-date-{{ transaction.pk }}" class="sr-only">Transaction Date</label>
+                            <input name="date" id="transaction-date-{{ transaction.pk }}" type="datetime-local" class="edit-mode form-control" style="display: none;" value="{{ transaction.date|date:'Y-m-d\\TH:i' }}">
                         </td>
                     </tr>
                     {% endfor %}

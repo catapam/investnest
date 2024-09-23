@@ -33,14 +33,16 @@
         </a>
 
         <!-- Color Picker -->
-        <input id="color-switch" name="color" type="color" class="edit-mode form-control" 
-            style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
+        <input id="color-switch" name="color" type="color" class="dropdown-item edit-mode form-control" 
+                       style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
     </div>
 </div>
 <div class="portfolio-buttons portfolio-menu-collapse" style="display: none;">
     <!-- 3 Dots Menu Button -->
     <div class="dropdown">
-        <button class="btn btn-warning btn-sm dropdown-toggle portfolio-menu-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-warning btn-sm dropdown-toggle portfolio-menu-btn" type="button" 
+                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"
+                aria-label="Open portfolio options menu">
             <i class="fa-solid fa-ellipsis-h"></i>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -81,7 +83,8 @@
 
             <!-- Color Picker -->
             <li>
-                <input id="color-switch" name="color" type="color" class="dropdown-item edit-mode form-control" style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
+                <input id="color-switch" name="color" type="color" class="dropdown-item edit-mode form-control" 
+                       style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
             </li>
         </ul>
     </div>

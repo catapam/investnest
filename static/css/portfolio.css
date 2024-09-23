@@ -429,6 +429,11 @@ table.dataTable thead .sorting_desc {
     padding: 8px 10px !important;
 }
 
+/* Edit asset page */
+#edit-asset-template label{
+    color: var(--text-primary-color);
+}
+
 /* Media queries for responsive design */
 @media (min-width: 768px) {
 
