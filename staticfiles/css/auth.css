@@ -59,8 +59,10 @@
 /* Badges */
 .bg-primary{
     background-color: rgba(var(--info-color-rgb), var(--bs-bg-opacity)) !important;
+    color: var(--bg-darker);
 }
 
 .bg-success{
-    background-color: rgba(var(--dark-accent-rgb), var(--bs-bg-opacity)) !important;
+    color: var(--bg-darker);
+    background-color: rgba(var(--light-accent-rgb), var(--bs-bg-opacity)) !important;
 }

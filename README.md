@@ -228,6 +228,7 @@ Key design principles include:
 * **Chart.js**: For data visualizations in the performance dashboard.
 * **Heroku**: For application deployment.
 * **Git**: For version control.
+* **google-webfonts-helper**: For downloadable fonts that can be hosted locally avoiding layout shifts caused by slow response from Google fonts
 
 # Deployment
 
@@ -255,7 +256,7 @@ To deploy the application on Heroku:
 
 | **Page** | **<a href="https://validator.w3.org/nu/#textarea" target="_blank">W3C Markup validator</a>** | **<a href="https://wave.webaim.org/" target="_blank">Wave accessibility</a>** | **Performance** | **Acessibility** | **Best practices** | **SEO** |
 |------------------------------------------|------------|------------|------------|------------|------------|------------|
-| Home | Passed | Passed | 
+| Home | Passed | Passed | <a href="/documentation/tests/home.png" target="_blank">M:93<br>D:95</a> | <a href="/documentation/tests/home.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/home.png" target="_blank">M:96<br>D:96</a> | <a href="/documentation/tests/home.png" target="_blank">M:100<br>D:100</a> | 
 | 401 | Passed | Passed | <a href="/documentation/tests/401.png" target="_blank">M:96<br>D:100</a> | <a href="/documentation/tests/401.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/401.png" target="_blank">M:93<br>D:93</a> | <a href="/documentation/tests/401.png" target="_blank">M:91<br>D:91</a> |
 | 404 | Passed | Passed | <a href="/documentation/tests/404.png" target="_blank">M:90<br>D:91</a> | <a href="/documentation/tests/404.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/404.png" target="_blank">M:93<br>D:93</a> | <a href="/documentation/tests/404.png" target="_blank">M:91<br>D:91</a> |
 | Account / Login | Passed | Passed |  |  |  |  |
