@@ -3,10 +3,12 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
+
 # Class-based view for the dashboard page, requires login
 @method_decorator(login_required, name='dispatch')
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
+
 
 # Class-based view to handle the redirection to the main dashboard page
 @method_decorator(login_required, name='dispatch')

@@ -2,6 +2,7 @@ import re
 from django.db import models
 from django.core.exceptions import ValidationError
 
+
 # Base Singleton Model for single-instance models
 class SingletonModel(models.Model):
     """
@@ -30,10 +31,12 @@ class SingletonModel(models.Model):
         obj, created = cls.objects.get_or_create(pk=1)
         return obj
 
+
 # Hero Section Model
 class HeroSection(SingletonModel):
     """
-    Model to represent the hero section of the homepage, restricted to one instance.
+    Model to represent the hero section of the homepage,
+    restricted to one instance.
     """
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=300)
@@ -44,10 +47,12 @@ class HeroSection(SingletonModel):
     def __str__(self):
         return self.title
 
+
 # About Section Model
 class AboutSection(SingletonModel):
     """
-    Model for the about section on the homepage, also restricted to one instance.
+    Model for the about section on the homepage,
+    also restricted to one instance.
     """
     title = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=200)
@@ -59,6 +64,7 @@ class AboutSection(SingletonModel):
     def __str__(self):
         return self.title
 
+
 # Service Card Model
 class ServiceCard(models.Model):
     """
@@ -69,19 +75,24 @@ class ServiceCard(models.Model):
         ('in_construction', 'In construction'),
         ('live', 'Live'),
     ]
-    
+
     title = models.CharField(max_length=50)
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(
+        max_length=30,
+        choices=STATUS_CHOICES,
+        default='draft')
     short_description = models.CharField(max_length=100)
     long_description = models.TextField()
 
     def __str__(self):
         return self.title
 
+
 # Services Section Model
 class ServicesSection(SingletonModel):
     """
-    Model for the services section of the homepage, holding up to 3 service cards.
+    Model for the services section of the homepage,
+    holding up to 3 service cards.
     """
     title = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=100)
@@ -92,22 +103,29 @@ class ServicesSection(SingletonModel):
         Ensure that no more than 3 service cards are selected.
         """
         if self.services.count() > 3:
-            raise ValidationError('You can select a maximum of 3 service cards.')
+            raise ValidationError(
+                'You can select a maximum of 3 service cards.'
+                    )
 
     def __str__(self):
         return self.title
+
 
 # Service Order Model
 class ServiceOrder(models.Model):
     """
     Model to define the order of services in the services section.
     """
-    service_section = models.ForeignKey(ServicesSection, on_delete=models.CASCADE)
+    service_section = models.ForeignKey(
+        ServicesSection,
+        on_delete=models.CASCADE
+        )
     service = models.ForeignKey(ServiceCard, on_delete=models.CASCADE)
     order = models.PositiveIntegerField()
 
     class Meta:
         ordering = ['order']  # Default ordering is by 'order'
+
 
 # Pricing Plan Model
 class PricingPlan(models.Model):
@@ -127,12 +145,15 @@ class PricingPlan(models.Model):
         """
         Split features by commas or newlines into a list for display purposes.
         """
-        return [feature.strip() for feature in re.split(r'[,\n]', self.features) if feature.strip()]
+        return [feature.strip() for feature in re.split(
+            r'[,\n]', self.features) if feature.strip()]
+
 
 # Pricing Section Model
 class PricingSection(SingletonModel):
     """
-    Model for the pricing section of the homepage, holding up to 3 pricing plans.
+    Model for the pricing section of the homepage,
+    holding up to 3 pricing plans.
     """
     title = models.CharField(max_length=200)
     plans = models.ManyToManyField(PricingPlan)
@@ -142,22 +163,28 @@ class PricingSection(SingletonModel):
         Ensure that no more than 3 pricing plans are selected.
         """
         if self.plans.count() > 3:
-            raise ValidationError('You can select a maximum of 3 pricing plans.')
+            raise ValidationError(
+                'You can select a maximum of 3 pricing plans.')
 
     def __str__(self):
         return self.title
+
 
 # Pricing Order Model
 class PricingOrder(models.Model):
     """
     Model to define the order of pricing plans in the pricing section.
     """
-    pricing_section = models.ForeignKey(PricingSection, on_delete=models.CASCADE)
+    pricing_section = models.ForeignKey(
+        PricingSection,
+        on_delete=models.CASCADE
+            )
     pricing = models.ForeignKey(PricingPlan, on_delete=models.CASCADE)
     order = models.PositiveIntegerField()
 
     class Meta:
         ordering = ['order']  # Default ordering is by 'order'
+
 
 # Contact Model
 class Contact(models.Model):

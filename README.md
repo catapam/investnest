@@ -251,47 +251,127 @@ To deploy the application on Heroku:
 - Testing was mainly made using Google Chrome Developer Tools, including the mobile and responsive views.
 - Lighthouse tab of developer tools was used to score the site regarding Performance, Acessibility and SEO.
 - The site was tested on other devices using Edge, Firefox and Safari. When testing on desktops with OS: Mac iOS and Windows 11. And on mobile OS: Android and iOS.
+- The apps Operations, Metrics and Contacts are not being tested at this point as they are just place holders at this point in time.
 
 ## HTML, accessibility and performance
 
 | **Page** | **<a href="https://validator.w3.org/nu/#textarea" target="_blank">W3C Markup validator</a>** | **<a href="https://wave.webaim.org/" target="_blank">Wave accessibility</a>** | **Performance** | **Acessibility** | **Best practices** | **SEO** |
 |------------------------------------------|------------|------------|------------|------------|------------|------------|
-| Home | Passed | Passed | <a href="/documentation/tests/home.png" target="_blank">M:93<br>D:95</a> | <a href="/documentation/tests/home.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/home.png" target="_blank">M:96<br>D:96</a> | <a href="/documentation/tests/home.png" target="_blank">M:100<br>D:100</a> | 
-| 401 | Passed | Passed | <a href="/documentation/tests/401.png" target="_blank">M:96<br>D:100</a> | <a href="/documentation/tests/401.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/401.png" target="_blank">M:93<br>D:93</a> | <a href="/documentation/tests/401.png" target="_blank">M:91<br>D:91</a> |
-| 404 | Passed | Passed | <a href="/documentation/tests/404.png" target="_blank">M:90<br>D:91</a> | <a href="/documentation/tests/404.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/404.png" target="_blank">M:93<br>D:93</a> | <a href="/documentation/tests/404.png" target="_blank">M:91<br>D:91</a> |
-| Account / Login | Passed | Passed |  |  |  |  |
-| Account / Register | Passed | Passed |  |  |  |  |
-| Account / Logout | Passed | Passed |  |  |  |  |
-| Account / User edit | Passed | Passed |  |  |  |  |
-| Account / Email edit | Passed | Passed |  |  |  |  |
-| Account / Password change | Passed | Passed |  |  |  |  |
-| Account / Password reset | Passed | Passed |  |  |  |  |
-| Account / Password reset email sent | Passed | Passed |  |  |  |  |
-| Account / Reset password from email key | Passed | Passed | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:90<br>D:91</a> | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:100<br>D:100</a> | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:96<br>D:96</a> | <a href="/documentation/tests/reset_from_email.png" target="_blank">M:100<br>D:100</a> |
-| Dashboard / Main | Passed | Passed |  |  |  |  |
-| Dashboard / Portfolio / Overview | Passed | Passed |  |  |  |  |
-| Dashboard / Portfolio / Create Portfolio | Passed | Passed |  |  |  |  |
-| Dashboard / Portfolio / Create Asset | Passed | Passed |  |  |  |  |
-| Dashboard / Portfolio / Delete confirmation | Passed | Passed |  |  |  |  |
-| Dashboard / Portfolio / Asset view | Passed | Passed |  |  |  |  |
-| Metrics |  |  |  |  |  |  |
-| Contacts |  |  |  |  |  |  |
-| Operations |  |  |  |  |  |  |
+| Home | Passed | Passed | <a href="/documentation/tests/home-mobile.html" target="_blank">M:92</a><br><a href="/documentation/tests/home-desktop.html" target="_blank">D:94</a> | <a href="/documentation/tests/home-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/home-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/home-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/home-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/home-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/home-desktop.html" target="_blank">D:100</a> |
+| 401 | Passed | Passed | <a href="/documentation/tests/401-mobile.html" target="_blank">M:98</a><br><a href="/documentation/tests/401-desktop.html" target="_blank">D:98</a> | <a href="/documentation/tests/401-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/401-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/401-mobile.html" target="_blank">M:96</a><br><a href="/documentation/tests/401-desktop.html" target="_blank">D:96</a> | <a href="/documentation/tests/401-mobile.html" target="_blank">M:91</a><br><a href="/documentation/tests/401-desktop.html" target="_blank">D:91</a> |
+| 404 | Passed | Passed | <a href="/documentation/tests/404-mobile.html" target="_blank">M:95</a><br><a href="/documentation/tests/404-desktop.html" target="_blank">D:96</a> | <a href="/documentation/tests/404-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/404-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/404-mobile.html" target="_blank">M:96</a><br><a href="/documentation/tests/404-desktop.html" target="_blank">D:96</a> | <a href="/documentation/tests/404-mobile.html" target="_blank">M:91</a><br><a href="/documentation/tests/404-desktop.html" target="_blank">D:91</a> |
+| Account / Login | Passed | Passed | <a href="/documentation/tests/login-mobile.html" target="_blank">M:93</a><br><a href="/documentation/tests/login-desktop.html" target="_blank">D:98</a> | <a href="/documentation/tests/login-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/login-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/login-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/login-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/login-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/login-desktop.html" target="_blank">D:100</a> |
+| Account / Register | Passed | Passed | <a href="/documentation/tests/register-mobile.html" target="_blank">M:96</a><br><a href="/documentation/tests/register-desktop.html" target="_blank">D:96</a> | <a href="/documentation/tests/register-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/register-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/register-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/register-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/register-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/register-desktop.html" target="_blank">D:100</a> |
+| Account / Logout | Passed | Passed | <a href="/documentation/tests/logout-mobile.html" target="_blank">M:90</a><br><a href="/documentation/tests/logout-desktop.html" target="_blank">D:90</a> | <a href="/documentation/tests/logout-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/logout-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/logout-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/logout-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/logout-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/logout-desktop.html" target="_blank">D:100</a> |
+| Account / User edit | Passed | Passed | <a href="/documentation/tests/account-user-mobile.html" target="_blank">M:94</a><br><a href="/documentation/tests/account-user-desktop.html" target="_blank">D:94</a> | <a href="/documentation/tests/account-user-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-user-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/account-user-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-user-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/account-user-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-user-desktop.html" target="_blank">D:100</a> |
+| Account / Email edit | Passed | Passed | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:86</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:94</a> | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:100</a> |
+| Account / Password change | Passed | Passed | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:87</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> |
+| Account / Password reset | Passed | Passed | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:99</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> |
+| Account / Password reset email sent | Passed | Passed |
+| Account / Reset password from email key | Passed | Passed |
+| Dashboard / Main | Passed | Passed |
+| Dashboard / Portfolio / Overview | Passed | Passed | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:84</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Portfolio / Create Portfolio | Passed | Passed | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:90</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:92</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Portfolio / Create Asset | Passed | Passed | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:83</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:90</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Portfolio / Delete confirmation | Passed | Passed | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:90</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:91</a> | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Portfolio / Asset view | Passed | Passed | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:86</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:94</a> | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:100</a> |
 
 * Passed state means the test was run, and returned no errors or alerts
 * Due to the nature of dashboard pages, Wave was run using the browser extension rather than the site tool.
-* M=mobile, D=desktop
+* M=mobile, D=desktop.
+* Performance issues caused by initial server response (TTFB) were ignored due to the server were the current site is hosted being a free version of a third party service I don't have much control over. Initial server response may also be result of slow postgress queries, which is not the focus for this project, those can be dealt with once the site is deployed to a permanent server
+* Render blocking issues were avoided whenever possible, and only left when optimizing caused major layout shifts.
+
+## CSS
+| **File** | **<a href="https://jigsaw.w3.org/css-validator/" target="_blank">WC3 CSS validator</a>** |
+|----------|----------------------------|
+| <a href="static/css/auth.css" target="_blank">auth.css</a> | Level 3 + SVG |
+| <a href="static/css/base.css" target="_blank">base.css</a> | Level 3 + SVG |
+| <a href="static/css/dashboard.css" target="_blank">dashboard.css</a> | Level 3 + SVG |
+| <a href="static/css/error.css" target="_blank">error.css</a> | Level 3 + SVG |
+| <a href="static/css/fonts.css" target="_blank">fonts.css</a> | Level 3 + SVG |
+| <a href="static/css/footer.css" target="_blank">footer.css</a> | Level 3 + SVG |
+| <a href="static/css/home.css" target="_blank">home.css</a> | Level 3 + SVG |
+| <a href="static/css/portfolio.css" target="_blank">portfolio.css</a> | Level 3 + SVG |
+
+## Java Script
+| **File** | **<a href="https://jshint.com/" target="_blank">JS hint ES6</a>** |
+|----------|----------------------------|
+| <a href="static/js/asset.js" target="_blank">asset.js</a> | Passed |
+| <a href="static/js/base.js" target="_blank">base.js</a> | Passed |
+| <a href="static/js/dashboard.js" target="_blank">dashboard.js</a> | Passed |
+| <a href="static/js/home.js" target="_blank">home.js</a> | Passed |
+| <a href="static/js/portfolio_header.js" target="_blank">portfolio_header.js</a> | Passed |
+| <a href="static/js/portfolio.js" target="_blank">portfolio.js</a> | Passed |
+| <a href="static/js/sort_table.js" target="_blank">sort_table.js</a> | Passed |
+| <a href="static/js/transaction.js" target="_blank">transaction.js</a> | Passed |
+
+## Python
+| **File** | **<a href="https://pep8ci.herokuapp.com/" target="_blank">PEP8 validator</a>** |
+|----------|-------------------------|
+| <a href="manage.py" target="_blank">manage.py</a> | Passed |
+| <a href="main/admin.py" target="_blank">main/admin.py</a> | Passed |
+| <a href="main/apps.py" target="_blank">main/apps.py</a> | Passed |
+| <a href="main/asgi.py" target="_blank">main/asgi.py</a> | Passed |
+| <a href="main/settings.py" target="_blank">main/settings.py</a> | Passed |
+| <a href="main/signals.py" target="_blank">main/signals.py</a> | Passed |
+| <a href="main/urls.py" target="_blank">main/urls.py</a> | Passed |
+| <a href="main/view.py" target="_blank">main/views.py</a> | Passed |
+| <a href="main/wsgi.py" target="_blank">main/wsgi.py</a> | Passed |
+| <a href="home/apps.py" target="_blank">home/apps.py</a> | Passed |
+| <a href="home/apps.py" target="_blank">home/apps.py</a> | Passed |
+| <a href="home/forms.py" target="_blank">home/forms.py</a> | Passed |
+| <a href="home/models.py" target="_blank">home/models.py</a> | Passed |
+| <a href="home/signals.py" target="_blank">home/signals.py</a> | Passed |
+| <a href="home/urls.py" target="_blank">home/urls.py</a> | Passed |
+| <a href="home/views.py" target="_blank">home/views.py</a> | Passed |
+| <a href="account/admin.py" target="_blank">account/admin.py</a> | Passed |
+| <a href="account/apps.py" target="_blank">account/apps.py</a> | Passed |
+| <a href="account/forms.py" target="_blank">account/forms.py</a> | Passed |
+| <a href="account/middleware.py" target="_blank">account/middleware.py</a> | Passed |
+| <a href="account/models.py" target="_blank">account/models.py</a> | Passed |
+| <a href="account/urls.py" target="_blank">account/urls.py</a> | Passed |
+| <a href="account/views.py" target="_blank">account/views.py</a> | Passed |
+| <a href="dashboard/admin.py" target="_blank">dashboard/admin.py</a> | Passed |
+| <a href="dashboard/apps.py" target="_blank">dashboard/apps.py</a> | Passed |
+| <a href="dashboard/context_processor.py" target="_blank">dashboard/context_processor.py</a> | Passed |
+| <a href="dashboard/models.py" target="_blank">dashboard/models.py</a> | Passed |
+| <a href="dashboard/urls.py" target="_blank">dashboard/urls.py</a> | Passed |
+| <a href="dashboard/views.py" target="_blank">dashboard/views.py</a> | Passed |
+| <a href="portfolio/templatetags/custom_filters.py" target="_blank">portfolio/templatetags/custom_filters.py</a> | Passed |
+| <a href="portfolio/apps.py" target="_blank">portfolio/apps.py</a> | Passed |
+| <a href="portfolio/forms.py" target="_blank">portfolio/forms.py</a> | Passed |
+| <a href="portfolio/mixins.py" target="_blank">portfolio/mixins.py</a> | Passed |
+| <a href="portfolio/models.py" target="_blank">portfolio/models.py</a> | Passed |
+| <a href="portfolio/urls.py" target="_blank">portfolio/urls.py</a> | Passed |
+| <a href="portfolio/views.py" target="_blank">portfolio/views.py</a> | Passed |
 
 ## Manual testing
 
-# Bugs
+| **Page** | **Test** | **Expected result** | **Actual result** |
+|----------|----------|---------------------|-------------------|
 
-# Future optimizations
+## Bugs
+
+During tests the following bugs were found
+
+| **Bug** | **Replication** | **Troubleshooting** | **Fix** |
+|---------|-----------------|---------------------|---------|
 
 # Credits
 
 ## Code
 
+Two youtube videos were of grand relevance as guidance for coding:
+* <a href="https://www.youtube.com/watch?v=sBjbty691eI&list=PLXuTq6OsqZjbCSfiLNb2f1FOs8viArjWy" target="_blank">Initial setup and general settings</a> 
+*  <a href="https://www.youtube.com/watch?v=WbNNESIxJnY&t=9796s" target="_blank">Saas specifics and more advanced development</a> 
+
 ## Content
 
+* ChatGPT: For text reviews and copywriting assistance.
+
 # Acknowledgements
+
+* Gareth Mc Girr: My mentor, for all the help and advice throughout the project.
+* Code Institute: For all the training and guidance.
+* WP Engine: My current employer, for providing all the support necessary and allowing great networking.

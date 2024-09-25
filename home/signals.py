@@ -1,6 +1,7 @@
 from django.dispatch import Signal, receiver
 from django.contrib import messages
 
+
 # Define custom signals
 class FormSignals:
     """Class to define and handle form-related signals."""
@@ -23,6 +24,7 @@ class FormSignals:
             request, 'An error occurred while submitting the form. '
             'Please contact support via email: support@investnest.com.'
         )
+
 
 # Instantiate the FormSignals class to ensure handlers are connected
 form_signals = FormSignals()
