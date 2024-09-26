@@ -267,8 +267,9 @@ To deploy the application on Heroku:
 | Account / Email edit | Passed | Passed | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:86</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:94</a> | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/account-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/account-email-desktop.html" target="_blank">D:100</a> |
 | Account / Password change | Passed | Passed | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:87</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> |
 | Account / Password reset | Passed | Passed | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:99</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> |
-| Account / Password reset email sent | Passed | Passed |
+| Account / Password reset email sent | Passed | Passed | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:96</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:95</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> |
 | Account / Reset password from email key | Passed | Passed |
+| Account / Confirmation email from email key | Passed | Passed | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:94</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/confirm-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Main | Passed | Passed |
 | Dashboard / Portfolio / Overview | Passed | Passed | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:84</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Portfolio / Create Portfolio | Passed | Passed | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:90</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:92</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> |
@@ -348,8 +349,63 @@ To deploy the application on Heroku:
 
 ## Manual testing
 
-| **Page** | **Test** | **Expected result** | **Actual result** |
-|----------|----------|---------------------|-------------------|
+### Menu (logged out)
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Any page | Click sandwich menu button | Menu is shown as sort of drop down menu | Passed | N/a |
+| Any page | Click the logo/brand | Scroll to Hero image section | Passed | Passed | 
+| Any page | Select "Home" from navbar/sandwich menu | Scroll to Hero image section | Passed | Passed | 
+| Any page | Select "About" from navbar/sandwich menu | Scroll to About section | Passed | Passed |
+| Any page | Select "Services" from navbar/sandwich menu | Scroll to Services section | Passed | Passed |
+| Any page | Select "Pricing" from navbar/sandwich menu | Scroll to Pricing section | Passed | Passed |
+| Any page | Select "Contact" from navbar/sandwich menu | Scroll to Contact section | Passed | Passed |
+| Any page | Select "Contact" from navbar/sandwich menu | Scroll to Contact section | Passed | Passed |
+| Any page | Select "Login" from navbar/sandwich menu | Redirects to Login/Signin page | Passed | Passed |
+| Any page | Select "Register" from navbar/sandwich menu | Redirects to Register/signup page | Passed | Passed |
+
+### Home
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Home | Scroll down | Menu activate and URL changes selection as the sections are passed | N/a | Passed |
+| Home | Click "View services" at the hero section | Auto scroll to services section + URL changes | Passed | Passed |
+| Home | Click "Get in touch" at the About section | Auto scroll to Contact section + URL changes | Passed | Passed |
+| Home | Click "Get in touch" at the About section | Auto scroll to Contact section + URL changes | Passed | Passed |
+| Home | Click any cards at the Service section | Card flips revealing more details about the service | Passed | Passed |
+| Home | Check cards at the Service section | They are all the same size and only 3 are visible in the correct order as the DB | Passed | Passed |
+| Home | Check cards at the Service section | They are all the same size and only 3 are visible | Passed | Passed |
+| Home | Click "Get started" at the first card on Pricing section | Redirects to Register page | Passed | Passed |
+| Home | Click "Wait list" or "Get in touch" at the 2nd and 3rd cards on Pricing section | Redirects to Contac section | Passed | Passed |
+
+### Contact form
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Home | Test with invalid data | Submission is not allowed and alert is returned on the incorrect field | Passed | Passed |
+| Home | Test with valid data | Submission goes through, reloads home page, scrolling back to top and showing a sucessful message on a pop-up at the top and also at the contact form location | Passed | Passed |
+
+### Footer
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Any page | Only visible at home page | Scroll to the bottom of all pages and check if footer with social medias is visible | Passed | Passed |
+| Home | Test social media links | When clicked opens a new tab of the respective social media, get's marked as active after clicked | Passed | Passed |
+
+### Allauth pages
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Login | Click Signup from suggested hyperlink | Redirects to Register/signup page | Passed | Passed |
+| Login | Submit invalid data | Page reloads showing what was invalid | Passed | Passed |
+| Login | Submit valid data | Redirect to Dashboard Main page and a Welcome popup shows up with the user name | Passed | Passed |
+| Login | Submit valid data, with selecting remember me option | Same behavior as above, but user remains logged in even if page is closed | Passed | Passed |
+| Login | Click "Forgot Password" option | Redirect to password reset page | Passed | Passed |
+| Password reset request | Submit valid user email address, test link received by email | Redirects to "Password reset done" + Recovery email is sent with recovery link + Link redirects to "Password Reset with key" page | Passed | Passed |
+| Password reset request | Submit invalid/user-not-created email address, test link received by email | Redirects to "Password reset done" + Recovery email is still sent, but informing the email address does not have an account and how to create one, link redirects to Register page | Passed | Passed |
+| Register | Click Signin from suggested hyperlink | Redirects to Login/signin page | Passed | Passed |
+| Register | Submit invalid data, like email not having @ symbol, password too short or weak, password does not match | Page reloads showing which fields are invalid and instructions of valid input | Passed | Passed |
+| Register | Submit valid data | Redirects to Login page showing a popup infrming the confrmation email was sent | Passed | Passed |
+| Confirmation email | Click on the confirmation link first time | Redirects to Confirmation page | Passed | Passed |
+| Confirmation email | Click on the confirmation after confirmation | Redirects to Confirmation page informing the link is expired | Passed | Passed |
+| Confirmation page | Click on the confirmation button | Redirects to Login page | Passed | Passed |
+
+
 
 ## Bugs
 

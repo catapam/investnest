@@ -104,6 +104,7 @@ main {
 
 .nav-link {
     color: var(--text-primary-color);
+    height: 40px;
 }
 
 .nav-link:hover {
@@ -114,6 +115,15 @@ main {
     border-color: var(--text-secondary-color);
     border-width: 3px;
     color: var(--text-secondary-color) !important;
+}
+
+.navbar-collapse .nav-item{
+    min-height: 40px;
+}
+
+.navbar-collapse.collapse.show .logout-main-menu{
+    justify-content: flex-start;
+    position: unset;
 }
 
 /* Cards */
