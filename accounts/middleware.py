@@ -41,7 +41,8 @@ class LoginRequiredMiddleware(MiddlewareMixin):
                 'home', 'custom_401', 'custom_404', 'wireframes',
                 'account_reset_password_done',
                 'account_reset_password_from_key',
-                'account_confirm_email'
+                'account_confirm_email', 'account_verified_email_required',
+                'account_email_verification_sent'                
                 ]
             if current_url not in allowed_urls:
                 # Display a warning message and redirect to login page

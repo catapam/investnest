@@ -79,7 +79,7 @@ class IntraMenuProcessorClass:
         self.intra_menu = [
             {
                 'name': 'Main',
-                'url': '/dashboard/main/',
+                'url': '/dashboard/view/',
                 'icon': 'fas fa-home',
             },
         ]

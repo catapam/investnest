@@ -41,7 +41,6 @@ body {
     display: flex;
     flex-direction: column;
     font-family: var(--font-primary);
-    font-display: swap;
 }
 
 /* Screen-reader only */
@@ -60,7 +59,6 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-display: swap;
 }
 
 p {
@@ -106,6 +104,7 @@ main {
 
 .nav-link {
     color: var(--text-primary-color);
+    height: 40px;
 }
 
 .nav-link:hover {
@@ -116,6 +115,15 @@ main {
     border-color: var(--text-secondary-color);
     border-width: 3px;
     color: var(--text-secondary-color) !important;
+}
+
+.navbar-collapse .nav-item{
+    min-height: 40px;
+}
+
+.navbar-collapse.collapse.show .logout-main-menu{
+    justify-content: flex-start;
+    position: unset;
 }
 
 /* Cards */

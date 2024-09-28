@@ -268,7 +268,7 @@ To deploy the application on Heroku:
 | Account / Password change | Passed | Passed | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:87</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/change-password-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/change-password-desktop.html" target="_blank">D:100</a> |
 | Account / Password reset | Passed | Passed | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:99</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-desktop.html" target="_blank">D:100</a> |
 | Account / Password reset email sent | Passed | Passed | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:96</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:95</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> |
-| Account / Reset password from email key | Passed | Passed |
+| Account / Reset password from email key | Passed | Passed | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:97</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:98</a> | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:100</a> |
 | Account / Confirmation email from email key | Passed | Passed | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:94</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/confirm-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Main | Passed | Passed |
 | Dashboard / Portfolio / Overview | Passed | Passed | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:84</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> |
@@ -388,7 +388,7 @@ To deploy the application on Heroku:
 | Any page | Only visible at home page | Scroll to the bottom of all pages and check if footer with social medias is visible | Passed | Passed |
 | Home | Test social media links | When clicked opens a new tab of the respective social media, get's marked as active after clicked | Passed | Passed |
 
-### Allauth pages
+### Allauth frontend pages
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
 | Login | Click Signup from suggested hyperlink | Redirects to Register/signup page | Passed | Passed |
@@ -404,8 +404,42 @@ To deploy the application on Heroku:
 | Confirmation email | Click on the confirmation link first time | Redirects to Confirmation page | Passed | Passed |
 | Confirmation email | Click on the confirmation after confirmation | Redirects to Confirmation page informing the link is expired | Passed | Passed |
 | Confirmation page | Click on the confirmation button | Redirects to Login page | Passed | Passed |
+| Admin panel | Open /admin URL | If not logged as superuser, redirects to custom login page | Passed | Passed |
 
+### General dashboard
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| After login in | Check redirects | Correct page is loaded, "main" by defaul or specific page if requested pre-login, pop-up shows up welcoming user | Passed | Passed |
+| Side menu | Operations menu visibility | Only visible if logged as Superuser or Staff | Passed | Passed |
+| Side menu | Admin menu visibility | Only visible if logged as Superuser | Passed | Passed |
+| Side menu | Active state after selection | Menu option should change background and border to make it merge with the main content area | Passed | Passed |
+| Side menu | Operations, Admin and logout location | Those should always be alligned to the bottom of the screen | Passed | Passed |
+| Side menu | Other menu options location | Those should always be alligned to the top of the screen | Passed | Passed |
+| Side menu | Collapsable | Clicking the arrow button, should collapse/uncollpase | Passed | Passed |
+| Side menu | Collapse menu arrow | View arrow changing directions depending on the state | Passed | Passed |
+| Side menu | Mobile starts collpased | When loading from mobile the menu should start collpased, but uncollpasing stil works by clicking the arrow | Passed | N/a |
+| Side menu | Redirect when menu option is clicked | Check if each menu redirects to the expected page according to urls.py files | Passed | Passed |
 
+### Allauth pages (logged in)
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Account / User | Submit the user change using a unique name on the database | Redirects to Main dashboard page and shows a pop-up confirming the change | Passed | Passed |
+| Account / User | Submit the user change using a name already in use | Refreshes page showing the error on the form submission and error pop-up shows up informing the change was not made | Passed | Passed |
+| Account / Email | Add new unique email address | Refreshes page showing a pop-up confirming the domain was added, email is sent to confirm email verification, email is populated to the list showing state unvirified | Passed | Passed |
+| Account / Email | Add new unique email address | Refreshes page showing a pop-up confirming the domain was added, email is sent to confirm email verification, email is populated to the list showing state unvirified | Passed | Passed |
+| Account / Email | Add email address used on this account or any other on the database | Shows error alert on the form informing about the email being already in use | Passed | Passed |
+| Account / Email | Change primary email address, by selecting a new email address on the list and clicking the "Make primary" button | Refreshes page, show pop-up informing the change was completed or error in case it fails, updates the list to show the primary email address on the top and with the correct tag label associated | Passed | Passed |
+| Account / Email | Select email address from list and click re-send verification | Refreshes page and shows pop-up informing the email was sent | Passed | Passed |
+| Account / Email | Select email address from list and click remove | Confirmation pop-up asking for confrimation before proceeding, once confirmed the page refreshes and a pop-up shows up informing the action was completed, email is removed from database and list | Passed | Passed |
+| Account / Password | Submit with invalid data, either wrong 'current passowrd', unmatching 'new password' or invalid 'new password' (too weak) | Page refreshes with form showing which details are incorrect | Passed | Passed |
+| Account / Password | Submit with valid data, correct 'current passowrd', matching 'new password' and valid new password format | Page refreshes showing a pop-up confriming the change | Passed | Passed |
+| Account / Password | Click 'forgot password' | Redirects to reset password pagem where email address is requested to send the reset email | Passed | Passed |
+| Account / Password reset | Same as non-logged in tests for this page | - | Passed | Passed |
+
+### Portfolio
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Portfolio View |  |  | Passed | Passed |
 
 ## Bugs
 
@@ -413,6 +447,8 @@ During tests the following bugs were found
 
 | **Bug** | **Replication** | **Troubleshooting** | **Fix** |
 |---------|-----------------|---------------------|---------|
+| Sending emails blocked by receiver | Trying to reset password or confirm email | Checked error returned by email of receiver blocking it, which pointed to the fix | Issue was related to the domain used on the email setup, changing it to a default GMAIL address fixed it. Other workarounds would include DMARC record added to the DNS setup of the domain linked to the email address used, as that was not achievable at this point, the first fix was implemented |
+| Menu for Porfolio header options would break collapse state when resizing | Changing the size of screen after activating the collpased state, would make the collpased menu get stuck | Checked the function and calls to it to make sure the resizing event was triggering the change too | The function was not being called on resizeing events, adding it fixed the feature |
 
 # Credits
 

@@ -20,7 +20,7 @@ function handleSidebarToggle() {
         // Check if the path starts with /portfolio or /metrics
         if (currentPath.startsWith('/portfolio') || currentPath.startsWith('/metrics')) {
             var portfolioMenuCollapse = document.querySelector('.portfolio-menu-collapse');
-            var portfolioMenuWide = document.querySelector('.portfolio-menu-wide');
+            var portfolioMenuWide = document.querySelector('.font-weight: 400');
 
             if (sidebar.classList.contains('collapsed')) {
                 // Hide the portfolio menu
@@ -38,13 +38,11 @@ function handleSidebarToggle() {
 /**
  * Adjusts the sidebar and main content layout based on screen width.
  * Collapses the sidebar on smaller screens (< 768px) and expands it on larger screens.
- * Also updates the portfolio-menu-wide and portfolio-menu-collapse elements based on screen size.
  */
 function handleScreenResize() {
     var sidebar = document.getElementById('sidebar');
     var toggleBtn = document.getElementById('toggle-btn');
     var mainContent = document.getElementById('dashboard-content');
-    var currentPath = window.location.pathname;
 
     if (window.innerWidth < 768) {
         sidebar.classList.add('collapsed');
@@ -56,20 +54,6 @@ function handleScreenResize() {
         mainContent.classList.remove('collapsed');
         toggleBtn.querySelector('i').classList.remove('fa-arrow-right');
         toggleBtn.querySelector('i').classList.add('fa-arrow-left');
-    }
-
-    // Update portfolio-menu visibility on screen resize
-    if (currentPath.startsWith('/portfolio') || currentPath.startsWith('/metrics')) {
-        var portfolioMenuCollapse = document.querySelector('.portfolio-menu-collapse');
-        var portfolioMenuWide = document.querySelector('.portfolio-menu-wide');
-
-        if (window.innerWidth < 768) {
-            portfolioMenuCollapse.style.display = 'block';
-            portfolioMenuWide.style.display = 'none';
-        } else {
-            portfolioMenuCollapse.style.display = 'none';
-            portfolioMenuWide.style.display = 'block';
-        }
     }
 }
 
@@ -201,7 +185,6 @@ function initializeEventListeners() {
     // Update scroll buttons and faded items on scroll and window resize
     document.querySelector('.option-menu').addEventListener('scroll', updateScrollButtonsAndFadedItems);
     window.addEventListener('resize', updateScrollButtonsAndFadedItems);
-    window.addEventListener('resize', handleScreenResize);
 
     // Update scroll buttons and faded items when clicking inside the option menu wrapper
     optionMenuWrapper.addEventListener('click', updateScrollButtonsAndFadedItems);
@@ -215,4 +198,3 @@ document.addEventListener('DOMContentLoaded', function () {
     activateInnerDashboardMenu();
     updateScrollButtonsAndFadedItems();
 });
-

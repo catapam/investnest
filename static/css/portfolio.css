@@ -52,6 +52,16 @@
     padding-bottom: 0;
 }
 
+/* Portfolio Add button from prtofolio view page */
+.my-portfolio-title a{
+    margin-left: 15px;
+}
+
+/* Portfolio title */
+.portfolio-title {
+    margin: 15px;
+}
+
 /* Portfolio description */
 .portfolio-title p {
     margin: 5px 0 0 0;
@@ -149,7 +159,7 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
-    max-height: 65vh;
+    max-height: 53vh;
     padding: 15px;
     border: var(--border);
     background-color: var(--bg-light);
@@ -174,11 +184,6 @@
 .custom-control.form-group {
     padding: 5px;
     margin: 0;
-}
-
-/* Form group element height */
-.form-group div {
-    min-height: 40px;
 }
 
 /* Switch control styling */
@@ -233,6 +238,11 @@
 /* Moves the toggle button when checked */
 .custom-control.form-switch .form-check-input:checked:before {
     left: 27px;
+}
+
+/* Transaction form buttons */
+#transactionForm .btn{
+    margin-top: 0 !important;
 }
 
 /* Header section inside the portfolio */
