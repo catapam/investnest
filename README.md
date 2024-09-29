@@ -436,10 +436,82 @@ To deploy the application on Heroku:
 | Account / Password | Click 'forgot password' | Redirects to reset password pagem where email address is requested to send the reset email | Passed | Passed |
 | Account / Password reset | Same as non-logged in tests for this page | - | Passed | Passed |
 
-### Portfolio
+### Portfolio/Metrics Upper menu
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
-| Portfolio View |  |  | Passed | Passed |
+| Any views | Upper menu visuals | The menu options are View, New and all the portoflios, each portfolio icon is colored according to the portfolio color, the portfolios are listed alphabetically | Passed | Passed |
+| Any views | Upper menu visuals | When in mobile version only icons show on that menu, portfolio icons are differentiated by the color | Passed | Passed |
+| Any views | Upper menu visuals with many portfolios added | When the number of portfolios do not fit the screen the upper menu becomes scrollable by using button added to the screen, the buttons work | Passed | Passed |
+| Any views | Upper menu visuals on hovering | Green text should be applied to the item | Passed | Passed |
+| Any views | Upper menu visuals on active state | Background collor should be applied | Passed | Passed |
+| Any views | Click View option | Redirects to My Portfolio section, where all portfolios can be seen  | Passed | Passed |
+| Any views | Click Add option | Redirects to Create portfolio form | Passed | Passed |
+| Any views | Click Portfolio options | Redirects to the selected portfolio page | Passed | Passed |
+
+### Portfolio View
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Portfolio Title | Add button appear besides My portfolio title | Both the button and titel are correctly spaced and hover effect works on button | Passed | Passed |
+| Portfolio List | Check on new account with no portfolios added yet | A message informs there are not portfolios created yet | Passed | Passed |
+| Portfolio List | Check on new account with some portfolios added | All portfolios are listed showing a colored line on the far left side, the portfolio name and descriptio, and some stats, the stats are correctly calculated, the portfolios are listed alphabetically | Passed | Passed |
+| Portfolio List | Check on new account with some portfolios added | Hover effect works | N/a | Passed |
+| Portfolio Main content area | Collapsing and uncollapsing the side menu | No distortion, all data is correctly displayed yet, the main content area fills the screen | Passed | Passed |
+| Portfolio Main content area | Adding many portfolios | Only the main content area becomes scrollable if the number of portfolios does not fit the screen, the scroll only happens vertically, no distortion after scrolling elements as displayed | Passed | Passed |
+| Portfolio Add button | Click Add option | Redirects to Create portfolio form | Passed | Passed |
+
+### Portfolio Create
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Title | Styling check | Title is correctly spaced, and the expected styling is applied | Passed | Passed | 
+| Name | Try inserting input longer than 12 characteres | Form should limit entry and stop allowing more characteres once 12 is reached | Passed | Passed | 
+| Name | Try inserting input longer than 12 characteres | Form should limit entry and stop allowing more characteres once 12 is reached | Passed | Passed |
+| Description | Try inserting input longer than characteres set to model | Form should limit entry and stop allowing more characteres once is limit is reached | Passed | Passed |
+| Portfolio color | Initial value is randomized on refreshes | After refreshing the page check the value applied to color, It should vary randomly | Passed | Passed |
+| Portfolio color selector | Click color selector and chose a new color | Color input element updates accordingly | Passed | Passed |
+| Cancel button | Click | Redirects back to previous page | Passed | Passed |
+| Save button | Click | Creates portfolio and redirects to portfolio view page if data is valid, also shows up a pop-up informing the correct submition | Passed | Passed |
+| Save button | Click | If data is invalid form refreshes and shows which data is invalid and why, this is generally only possible if the name is already in use on the same account | Passed | Passed |
+| Save button | Click | Try adding a portfolio name that exists in another account, the portofolio is unique only within the user group, so form shoul be sumitted correctly | Passed | Passed |
+
+### Portfolio Header (all inner portfolio views)
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Main element | Layout view | Element has proper height, covers the full width of the dashboard content area, uses proper spacing and margins, background color is the portfolio color | Passed |  Passed |
+| Main element | Text elements view | Color of text changes according to the background, being black if the background is too light for the default white | Passed |  Passed |
+| Portfolio action buttons | Layout view | Button as alligned to the far right of the header element, have the right colors and hover effects | Passed | Passed | 
+| Portfolio action buttons | Display view | If mobile, the the actions buttons are converted into a kebab menu button aligned to the top-right corner of the header element, the buttons get hidden if the side menu is not collapsed. If in wide screens, the menu is shown 2 on the first line and metric on the second line | Passed | Passed |
+| Portfolio name | Content check | Name is correct according to database. Shown on the right side of "Portfolio" label in wide screens and below it in mobile | Passed | Passed |
+| Portfolio description | Content check | Description is correct according to database. Shown below the description label | Passed | Passed |
+| Portfolio stats | Content check | Stats are coorectly calculated and match the entries on the Portfolio | Passed | Passed |
+| Metrics button | Click | Redirects to Metrics page of the same portfolio | Passed | Passed |
+| Edit button | Click | Transforms header into a form where button to switch color replaces the metrics button, save replaces the edit, cancel replaces delete | Passed | Passed |
+| Cancel button | Click | Transforms header back to non-editable element | Passed | Passed |
+| Save button | Click | Submit the changes and a pop-up shows up informing about the change | Passed | Passed |
+| Delete button | Click | Redirect to deletion confirmation page | Passed | Passed |
+
+### Portfolio Details view
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Title | Styling check | Color, layout, font and spacing is accrding with the project layout | Passed | Passed |
+| Add asset button | Styling check | Color, layout, font and spacing is accrding with the project layout, hover effect works | Passed | Passed |
+| Main content area | Check when there is no assets still added | Message should show instead of any assets, advising there are no assets | Passed | Passed |
+| Main content area | Check when there is some assets | Search bar shows at the top, table with all assets is shown with filters for each column, the totals match the transactions added to the asset, total of whole portfolio is shown at the end of the table | Passed | Passed |
+| Main content area | Check when there is some assets, in mobile | In order to fit the table and good visualization the table is overlapped to the right and horizontal scrolling is activated | Passed | N/a |
+| Search bar | Test text and number inputs | Search will check on all columns contents and hide any lines that do not match the search | Passed | Passed |
+| Asset actions | Click the asset line on the table or the View icon | Redirects to Asset view page | Passed | Passed |
+| Asset actions | Click Delete button | Redirect to deletion confirmation page | Passed | Passed |
+
+### Add asset/transaction form
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+
+### Delete confirmation page
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+
+### Asset details view
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
 
 ## Bugs
 
