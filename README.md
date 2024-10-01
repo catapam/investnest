@@ -521,6 +521,7 @@ During tests the following bugs were found
 |---------|-----------------|---------------------|---------|
 | Sending emails blocked by receiver | Trying to reset password or confirm email | Checked error returned by email of receiver blocking it, which pointed to the fix | Issue was related to the domain used on the email setup, changing it to a default GMAIL address fixed it. Other workarounds would include DMARC record added to the DNS setup of the domain linked to the email address used, as that was not achievable at this point, the first fix was implemented |
 | Menu for Porfolio header options would break collapse state when resizing | Changing the size of screen after activating the collpased state, would make the collpased menu get stuck | Checked the function and calls to it to make sure the resizing event was triggering the change too | The function was not being called on resizeing events, adding it fixed the feature |
+| Clicking the asset delete button causes 500 error | Click the delete asset button on any of the pages, all other delete buttons do not have any issues | During troubleshooting the Debug logs pointed to an issue on the portfolio-menu-wide element, delete portfolio button. The view fails to pass a portfolio pk value on that specific request, passing an empty value and causing the error | The issue was with the context being passed from delete_asset request, which was breaking the portfolio header buttons as portoflio.pk was empty, once the value was correctly set on the views.py file that did the trick |
 
 # Credits
 

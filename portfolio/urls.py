@@ -59,7 +59,7 @@ urlpatterns = [
     path(
         '<int:portfolio_pk>/asset/<int:pk>/delete/',
         AssetDeleteView.as_view(),
-        name='portfolio_delete_asset',
+        name='delete_asset'
     ),
 
     # Transaction management URLs for assets within a specific portfolio

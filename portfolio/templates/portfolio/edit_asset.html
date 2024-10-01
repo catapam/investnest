@@ -31,7 +31,7 @@
                 <button id="edit-asset-name-btn" class="btn btn-warning btn-sm" style="display: inline-block;" aria-label="Edit asset name" onclick="toggleAssetEditMode(true)">
                     <i class="fa-solid fa-pencil"></i>
                 </button>
-                <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" id="delete-asset-btn" class="btn btn-danger btn-sm" aria-label="Delete asset">
+                <a href="{% url 'delete_asset' portfolio.pk asset.pk %}" id="delete-asset-btn" class="btn btn-danger btn-sm" aria-label="Delete asset">
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </div>

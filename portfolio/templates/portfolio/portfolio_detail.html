@@ -46,9 +46,9 @@
                            onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'edit_asset' portfolio.pk asset.pk %}'; event.stopPropagation(); }">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <a href="{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm"
+                        <a href="{% url 'delete_asset' portfolio.pk asset.pk %}" class="btn btn-danger btn-sm"
                            aria-label="Delete asset" onclick="event.stopPropagation();" tabindex="0" role="button"
-                           onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'portfolio_delete_asset' portfolio.pk asset.pk %}'; event.stopPropagation(); }">
+                           onkeydown="if(event.key === 'Enter' || event.key === ' ') { window.location.href='{% url 'delete_asset' portfolio.pk asset.pk %}'; event.stopPropagation(); }">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </td>

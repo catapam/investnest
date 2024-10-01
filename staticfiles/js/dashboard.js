@@ -48,7 +48,7 @@ function colapsableMenuPortfolio() {
                 portfolioMenuCollapse.style.display = 'none';
                 portfolioMenuWide.style.display = 'none';
             }
-        } else{
+        } else {
             portfolioMenuCollapse.style.display = 'none';
             portfolioMenuWide.style.display = 'block';
         }
@@ -186,7 +186,7 @@ function initializeEventListeners() {
     var scrollButtonRight = document.querySelector('.scroll-button-right');
     var optionMenuWrapper = document.querySelector('.option-menu-wrapper');
 
-    //Screenresize
+    // Screenresize
     window.addEventListener('resize', handleScreenResize);
 
     // Attach click event listener to the sidebar toggle button

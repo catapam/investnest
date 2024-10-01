@@ -1,0 +1,39 @@
+{% extends "dashboard/dashboard.html" %}
+{% load i18n allauth account crispy_forms_tags static %}
+
+{% block title %}Welcome{% endblock title %}
+
+<!-- Including CSS for dashboard and main -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}" defer>
+    
+    {% block extra_css_main %}
+    {% endblock extra_css_main %}
+{% endblock extra_css_dashboard %}
+
+{% block dashboard_content %}
+<div class="container welcome-container d-flex justify-content-center align-items-center">
+    <div class="text-center mt-5">
+        <h1>Welcome to InvestNest Dashboard</h1>
+        <p>Your platform for managing portfolios, tracking metrics, and handling operations efficiently.</p>
+        
+        <div class="row mt-6 welcome-card-board d-flex justify-content-center align-items-stretch">
+            <div class="col-md-5 card equal-height-card">
+                <h3>Manage Your Portfolio</h3>
+                <p>Track and manage transactions effortlessly.</p>
+                <a href="/portfolio/" class="btn btn-primary">Go to Portfolio</a>
+            </div>
+            <div class="col-md-5 card equal-height-card">
+                <h3>Account management</h3>
+                <p>Access account management tools</p>
+                <a href="/account/" class="btn btn-primary">Go to Account</a>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <h4>Stay tuned</h4>
+            <p>We continuously improve the platform to offer you the best tools.</p>
+        </div>
+    </div>
+</div>
+{% endblock dashboard_content %}

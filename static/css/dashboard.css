@@ -109,11 +109,6 @@ p, a {
     max-width: 70px;
 }
 
-.disabled {
-    color: var(--bg-darker) !important;
-    font-weight: 700;
-}
-
 .sidebar.collapsed .menu-text {
     display: none;
 }

@@ -1,9 +1,21 @@
 {% extends "dashboard/dashboard.html" %}
 {% load i18n allauth account crispy_forms_tags static %}
 
-{% block title %}Contact{% endblock title %}
+{% block title %}contact{% endblock title %}
+
+<!-- Including CSS for dashboard and contact -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}" defer>
+        
+    {% block extra_css_contact %}
+    {% endblock extra_css_contact %}
+{% endblock extra_css_dashboard %}
+
 {% block dashboard_content %}
-<div class="container">
-    <h1>Contact test</h1>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <h1>Contact</h1>
+        <p>This area will be designated for contact followups in a future version. Stay tuned!</p>
+    </div>
 </div>
 {% endblock dashboard_content %}

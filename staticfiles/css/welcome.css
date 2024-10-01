@@ -1,0 +1,45 @@
+h1 {
+    font-size: xx-large;
+}
+
+h2, h3, h4, h5, h6 {
+    font-size: large;
+}
+
+p {
+    font-size: medium;
+}
+
+.welcome-container {
+    overflow: auto;
+    margin-bottom: 25px;
+}
+
+.welcome-container div {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.welcome-card-board {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.welcome-card-board .card {
+    margin: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.equal-height-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures the content is distributed evenly */
+}
+
+.card a {
+    margin-top: auto; /* Makes sure the button stays at the bottom */
+}

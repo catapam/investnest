@@ -186,14 +186,26 @@ class AssetDeleteView(SafeDispatchMixin, DeleteView):
             Portfolio,
             pk=self.kwargs['portfolio_pk'],
             user=self.request.user,
-            )
+        )
         if asset.portfolio != portfolio:
             messages.error(
                 self.request,
                 'You do not have permission to delete this asset.',
-                    )
+            )
             return None
+
+        portfolio.update_portfolio_stats()
         return asset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portfolio'] = get_object_or_404(
+            Portfolio,
+            pk=self.kwargs['portfolio_pk'],
+            user=self.request.user,
+        )
+        context['asset'] = get_object_or_404(Asset, pk=self.kwargs['pk'])
+        return context
 
     def post(self, request, *args, **kwargs):
         asset = self.get_object()

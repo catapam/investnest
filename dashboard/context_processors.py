@@ -127,13 +127,6 @@ class IntraMenuProcessorClass:
                 'icon': 'fa-solid fa-eye',
             },
         ]
-        for portfolio in portfolios:
-            self.intra_menu.append({
-                'name': portfolio.name,
-                'url': f'/metrics/{portfolio.pk}/',
-                'icon': 'fa-solid fa-briefcase',
-                'color': portfolio.color,
-            })
 
     def _handle_operations(self):
         """Generates the intra-menu for the operations section."""
