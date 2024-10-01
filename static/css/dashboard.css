@@ -39,6 +39,27 @@ p, a {
     width: 60px;
 }
 
+/* Status circle */
+.status-circle {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: auto;
+    margin-right: -15px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+/* Green status circle */
+.green {
+    background-color: #28a745; /* Bootstrap's success color (green) */
+}
+
+/* Orange status circle */
+.orange {
+    background-color: #fd7e14; /* Bootstrap's warning color (orange) */
+}
+
 /* Dashboard Content */
 .dashboard-content {
     display: flex;

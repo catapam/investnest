@@ -276,6 +276,9 @@ To deploy the application on Heroku:
 | Dashboard / Portfolio / Create Asset | Passed | Passed | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:83</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:90</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Portfolio / Delete confirmation | Passed | Passed | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:90</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:91</a> | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/delete-confirmation-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/delete-confirmation-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Portfolio / Asset view | Passed | Passed | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:86</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:94</a> | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/asset-view-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/asset-view-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Metrics | Passed | Passed | <a href="/documentation/tests/metrics-mobile.html" target="_blank">M:95</a><br><a href="/documentation/tests/metrics-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/metrics-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/metrics-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/metrics-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/metrics-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/metrics-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/metrics-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Contact | Passed | Passed | <a href="/documentation/tests/contact-mobile.html" target="_blank">M:92</a><br><a href="/documentation/tests/contact-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/contact-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/contact-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/contact-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/contact-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/contact-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/contact-desktop.html" target="_blank">D:100</a> |
+| Dashboard / Operations | Passed | Passed | <a href="/documentation/tests/operations-mobile.html" target="_blank">M:95</a><br><a href="/documentation/tests/operations-desktop.html" target="_blank">D:98</a> | <a href="/documentation/tests/operations-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/operations-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/operations-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/operations-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/operations-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/operations-desktop.html" target="_blank">D:100</a> |
 
 * Passed state means the test was run, and returned no errors or alerts
 * Due to the nature of dashboard pages, Wave was run using the browser extension rather than the site tool.
@@ -294,6 +297,7 @@ To deploy the application on Heroku:
 | <a href="static/css/footer.css" target="_blank">footer.css</a> | Level 3 + SVG |
 | <a href="static/css/home.css" target="_blank">home.css</a> | Level 3 + SVG |
 | <a href="static/css/portfolio.css" target="_blank">portfolio.css</a> | Level 3 + SVG |
+| <a href="static/css/welcome.css" target="_blank">welcome.css</a> | Level 3 + SVG |
 
 ## Java Script
 | **File** | **<a href="https://jshint.com/" target="_blank">JS hint ES6</a>** |
@@ -419,6 +423,7 @@ To deploy the application on Heroku:
 | Side menu | Collapse menu arrow | View arrow changing directions depending on the state | Passed | Passed |
 | Side menu | Mobile starts collpased | When loading from mobile the menu should start collpased, but uncollpasing stil works by clicking the arrow | Passed | N/a |
 | Side menu | Redirect when menu option is clicked | Check if each menu redirects to the expected page according to urls.py files | Passed | Passed |
+| Side menu | Show status label (green or orange) | Live sections are shown with green circle label, while in development sections are marked in orange | Passed | Passed |
 
 ### Allauth pages (logged in)
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
@@ -510,6 +515,18 @@ To deploy the application on Heroku:
 |----------|----------|---------------------|--------------------------|---------------------------|
 
 ### Asset details view
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+
+### Metrics
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+
+### Contact
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+
+### Operations
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
 

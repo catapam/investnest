@@ -1,45 +1,54 @@
+/* Set the font size for the main heading (h1) to be very large */
 h1 {
     font-size: xx-large;
 }
 
+/* Set the font size for subheadings (h2 through h6) to be large */
 h2, h3, h4, h5, h6 {
     font-size: large;
 }
 
+/* Set the font size for paragraph text to medium */
 p {
     font-size: medium;
 }
 
+/* Style the container for the welcome page */
 .welcome-container {
-    overflow: auto;
-    margin-bottom: 25px;
+    overflow: auto; /* Allow scrolling if content overflows */
+    margin-bottom: 25px; /* Add space below the container */
 }
 
+/* Add margins to the div elements inside the welcome container */
 .welcome-container div {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 15px; /* Left margin to space out content */
+    margin-right: 15px; /* Right margin to space out content */
 }
 
+/* Style for the board of cards in the welcome section */
 .welcome-card-board {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
+    margin-top: 25px; /* Add space above the card board */
+    margin-bottom: 25px; /* Add space below the card board */
+    display: flex; /* Use flexbox to align the cards */
+    justify-content: center; /* Center the cards horizontally */
+    align-items: stretch; /* Stretch the cards to have equal height */
 }
 
+/* Style for individual cards inside the card board */
 .welcome-card-board .card {
-    margin: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 15px; /* Add space around each card */
+    padding: 15px; /* Add padding inside the card for content spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a light shadow around the card for visual effect */
 }
 
+/* Ensure that all cards have equal height by using flexbox */
 .equal-height-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Ensures the content is distributed evenly */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: space-between; /* Distribute space evenly between items */
 }
 
+/* Ensure that links inside cards are placed at the bottom */
 .card a {
-    margin-top: auto; /* Makes sure the button stays at the bottom */
+    margin-top: auto; /* Push the button link to the bottom of the card */
 }

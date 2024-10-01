@@ -5,7 +5,7 @@
 
 <!-- Including CSS for dashboard and main -->
 {% block extra_css_dashboard %}
-    <link rel="stylesheet" href="{% static 'css/welcome.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
     
     {% block extra_css_main %}
     {% endblock extra_css_main %}
@@ -14,24 +14,24 @@
 {% block dashboard_content %}
 <div class="container welcome-container d-flex justify-content-center align-items-center">
     <div class="text-center mt-5">
-        <h1>Welcome to InvestNest Dashboard</h1>
+        <h1>Welcome to InvestNest</h1>
         <p>Your platform for managing portfolios, tracking metrics, and handling operations efficiently.</p>
         
         <div class="row mt-6 welcome-card-board d-flex justify-content-center align-items-stretch">
             <div class="col-md-5 card equal-height-card">
-                <h3>Manage Your Portfolio</h3>
+                <h2>Manage Your Portfolio</h2>
                 <p>Track and manage transactions effortlessly.</p>
                 <a href="/portfolio/" class="btn btn-primary">Go to Portfolio</a>
             </div>
             <div class="col-md-5 card equal-height-card">
-                <h3>Account management</h3>
+                <h2>Account management</h2>
                 <p>Access account management tools</p>
                 <a href="/account/" class="btn btn-primary">Go to Account</a>
             </div>
         </div>
         
         <div class="mt-5">
-            <h4>Stay tuned</h4>
+            <h3>Stay tuned</h3>
             <p>We continuously improve the platform to offer you the best tools.</p>
         </div>
     </div>
