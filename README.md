@@ -270,7 +270,7 @@ To deploy the application on Heroku:
 | Account / Password reset email sent | Passed | Passed | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:96</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:95</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-done-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-done-desktop.html" target="_blank">D:100</a> |
 | Account / Reset password from email key | Passed | Passed | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:97</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:98</a> | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/password-reset-from-key-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/password-reset-from-key-desktop.html" target="_blank">D:100</a> |
 | Account / Confirmation email from email key | Passed | Passed | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:94</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:93</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/confirm-email-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/confirm-email-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/confirm-email-desktop.html" target="_blank">D:100</a> |
-| Dashboard / Main | Passed | Passed |
+| Dashboard / Main | Passed | Passed | <a href="/documentation/tests/main-mobile.html" target="_blank">M:93</a><br><a href="/documentation/tests/main-desktop.html" target="_blank">D:98</a> | <a href="/documentation/tests/main-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/main-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/main-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/main-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/main-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/main-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Portfolio / Overview | Passed | Passed | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:88</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:84</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-list-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-list-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Portfolio / Create Portfolio | Passed | Passed | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:90</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:92</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/portfolio-create-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/portfolio-create-desktop.html" target="_blank">D:100</a> |
 | Dashboard / Portfolio / Create Asset | Passed | Passed | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:83</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:90</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> | <a href="/documentation/tests/transaction-form-mobile.html" target="_blank">M:100</a><br><a href="/documentation/tests/transaction-form-desktop.html" target="_blank">D:100</a> |
@@ -518,17 +518,28 @@ To deploy the application on Heroku:
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
 
+### Main / Welcome
+| **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
+|----------|----------|---------------------|--------------------------|---------------------------|
+| Main | Check layout on mobile and desktop | The page is responsive and text sizes are proportional | Passed | Passed |
+| Main | Check cards size and placement | Cards should be correctly spaces, keep good proportions, responsive (2 columns on wide screens, 2 rows in mobile) | Passed | Passed |
+| Main | Click button 'Go to portfolio' | Redirects to Portfolio Overview page | Passed | Passed |
+| Main | Click button 'Go to account' | Redirects to Account User edit page | Passed | Passed |
+
 ### Metrics
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
+| Main | Check layout on mobile and desktop | The page is responsive and text sizes are proportional | Passed | Passed |
 
 ### Contact
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
+| Main | Check layout on mobile and desktop | The page is responsive and text sizes are proportional | Passed | Passed |
 
 ### Operations
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
+| Main | Check layout on mobile and desktop | The page is responsive and text sizes are proportional | Passed | Passed |
 
 ## Bugs
 
