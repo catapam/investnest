@@ -306,6 +306,7 @@ class TransactionCreateView(SafeDispatchMixin, CreateView):
         form.instance.asset = asset
         portfolio.update_portfolio_stats()
         messages.success(self.request, 'Transaction added successfully!')
+        portfolio.update_portfolio_stats()
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -345,6 +346,7 @@ class UpdateTransactionView(SafeDispatchMixin, UpdateView):
         portfolio.update_portfolio_stats()
 
         messages.success(self.request, 'Transaction updated successfully!')
+        portfolio.update_portfolio_stats()
         return JsonResponse({'status': 'success'})
 
     def get(self, request, *args, **kwargs):

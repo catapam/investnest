@@ -250,7 +250,7 @@ To deploy the application on Heroku:
 
 - Testing was mainly made using Google Chrome Developer Tools, including the mobile and responsive views.
 - Lighthouse tab of developer tools was used to score the site regarding Performance, Acessibility and SEO.
-- The site was tested on other devices using Edge, Firefox and Safari. When testing on desktops with OS: Mac iOS and Windows 11. And on mobile OS: Android and iOS.
+- The site was tested on other devices using Edge, Firefox and Safari. When testing on desktops with OS: Mac iOS and Windows 11. And on mobile OS: Android. More mobile tests were made using the inspector tools on desktop device.
 - The apps Operations, Metrics and Contacts are not being tested at this point as they are just place holders at this point in time.
 
 ## HTML, accessibility and performance
@@ -289,6 +289,7 @@ To deploy the application on Heroku:
 ## CSS
 | **File** | **<a href="https://jigsaw.w3.org/css-validator/" target="_blank">WC3 CSS validator</a>** |
 |----------|----------------------------|
+| <a href="static/css/asset.css" target="_blank">asset.css</a> | Level 3 + SVG |
 | <a href="static/css/auth.css" target="_blank">auth.css</a> | Level 3 + SVG |
 | <a href="static/css/base.css" target="_blank">base.css</a> | Level 3 + SVG |
 | <a href="static/css/dashboard.css" target="_blank">dashboard.css</a> | Level 3 + SVG |
@@ -509,10 +510,27 @@ To deploy the application on Heroku:
 ### Add asset/transaction form
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
+| General | Layout check | Layout is according to the rest of the dashboard, well spaced and does not overflow out of the screen, colors are correct | Passed | Passed |
+| Asset selector | Page is requested as Add asset | Asset comes with default value equal to --- so user has to select an asset from the list or select 'New asset' | Passed | Passed |
+| Asset selector | Page is requested as Add transaction | Asset comes with default value equal to asset where the page was requested from | Passed | Passed |
+| Asset selector | New asset is selected | Selector stops being a drop down menu and now accepts text input | Passed | Passed |
+| Asset selector | Max lenght | Form does not allow input longer than 8 characteres | Passed | Passed |
+| Type and Action toggles | Click | Color changes and selector moves to the other option Buy/sell or Long/short | Passed | Passed |
+| Quantity and price | Input invalid characteres | Input characteres like special or letters, the form should not accept them and field remain empty until number is input | Passed | Passed |
+| Quantity and price | Input valid characteres | Input numbers of varied lenghts, if it's too long form will fail submission and show a popup of the issue, if valid the form will accept submission | Passed | Passed |
+| Date | Type value | Typing only accepts characteres that fit in the pattern | Passed | Passed |
+| Date | Select from calendar | Clicking the calendar icon opens a calendar pop-up where the date can be easily selected | Passed | Passed |
+| Cancel button | Click | Redirects to previous page | Passed | Passed |
+| Add transaction button | Click | If valid inputs: Creates asset if non-existent, saves transaction and redirect to the asset view page | Passed | Passed |
+| Add transaction button | Click | If invalid inputs: Refreshes the page advising what is wrong | Passed | Passed |
 
 ### Delete confirmation page
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
+| General | Layout check | It matches the rest of the project, is consistent, aligned correctly and using right fonts and sizes | Passed | Passed |
+| Confirmation message | Check content | It changes accordingly if transaction, asset or porfolio is being deleted | Passed | Passed |
+| Confirmation button | Click | Deletes accordingly transaction, asset or porfolio. Also deletes any child elements (example deleting asset deletes also all transactions within it), redirects to parent page (if delete asset redirects to Portfolio view), and shows a popup confirming the sucess | Passed | Passed |
+| Cancel button | Click | Redirects back to previous page | Passed | Passed |
 
 ### Asset details view
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |

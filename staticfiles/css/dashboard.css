@@ -20,6 +20,7 @@ p, a {
 .dashboard-container {
     display: flex;
     position: relative;
+    max-height: max-content;
 }
 
 /* Sidebar */
@@ -81,6 +82,7 @@ p, a {
 .dashboard-content .container {
     height: auto;
     padding-top: 20px;
+    height: calc(100vh - 110px);
 }
 
 .collapsed + .dashboard-content {

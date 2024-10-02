@@ -4,6 +4,11 @@
 
 {% block title %}View Asset{% endblock title %}
 
+{% block extra_css_portfolio_header %}
+<!-- Additional styles for the header can be included here -->
+<link rel="stylesheet" href="{% static 'css/asset.css' %}">
+{% endblock extra_css_portfolio_header %}
+
 {% block portfolio_inner_content %}
 <div id="edit-asset-template">
     <div>
@@ -16,7 +21,7 @@
             <form id="asset-name-form" method="post" style="display: none;" action="{% url 'edit_asset' portfolio.pk asset.pk %}">
                 {% csrf_token %}
                 <label for="asset-name-input" class="sr-only">Asset Name</label>
-                <input type="text" id="asset-name-input" name="name" value="{{ asset.name }}" class="form-control" />
+                <input type="text" id="asset-name-input" name="name" value="{{ asset.name }}" class="form-control">
             </form>
 
             <!-- Edit and Delete Buttons -->
@@ -48,7 +53,7 @@
         <!-- Transactions Table -->
         {% if transactions %}
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>
@@ -65,19 +70,21 @@
                     {% for transaction in transactions %}
                     <tr id="transaction-{{ transaction.pk }}">
                         <!-- Action Buttons -->
-                        <td class="action-buttons">
-                            <button type="button" class="btn btn-warning btn-sm btn-edit" onclick="toggleEditMode({{ transaction.pk }})" aria-label="Edit transaction">
-                                <i class="fa-solid fa-pencil"></i>
-                            </button>
-                            <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm btn-delete" aria-label="Delete transaction">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                            <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;" onclick="saveTransaction({{ portfolio.pk }}, {{ asset.pk }}, {{ transaction.pk }})" aria-label="Save transaction">
-                                <i class="fa-solid fa-floppy-disk"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;" onclick="toggleEditMode({{ transaction.pk }}, false)" aria-label="Cancel transaction edit">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
+                        <td>
+                            <div class="action-buttons">
+                                <button type="button" class="btn btn-warning btn-sm btn-edit" onclick="toggleEditMode({{ transaction.pk }})" aria-label="Edit transaction">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </button>
+                                <a href="{% url 'delete_transaction' portfolio.pk asset.pk transaction.pk %}" class="btn btn-danger btn-sm btn-delete" aria-label="Delete transaction">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                                <button type="button" class="btn btn-success btn-sm btn-save" style="display: none;" onclick="saveTransaction({{ portfolio.pk }}, {{ asset.pk }}, {{ transaction.pk }})" aria-label="Save transaction">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm btn-cancel" style="display: none;" onclick="toggleEditMode({{ transaction.pk }}, false)" aria-label="Cancel transaction edit">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
                         </td>
                         <!-- Transaction Type -->
                         <td>

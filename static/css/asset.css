@@ -1,0 +1,71 @@
+/* Ensure the table layout is fixed to prevent resizing */
+table {
+    table-layout: fixed;
+    width: 100%; /* Ensures the table takes the full width of the container */
+}
+
+/* Set fixed column widths */
+th, td {
+    width: auto; /* Allow automatic width assignment but still fixed proportions */
+    text-align: center; /* Ensure centered alignment for text */
+    vertical-align: middle; /* Keep everything vertically aligned */
+    height: 50px; /* Set a consistent height for the table rows */
+}
+
+/* Ensure buttons are aligned side by side */
+.action-buttons {
+    display: flex;
+    align-items: center; /* Vertically centers the buttons */
+}
+
+/* Ensure the Add button is aligned with the first column */
+.btn-add, .btn-info {
+    display: flex;
+    justify-content: center;  /* Horizontally center the content */
+    align-items: center;      /* Vertically center the content */
+}
+
+/* Set specific column widths to ensure consistency */
+th:first-child, td:first-child {
+    width: 80px; /* Action buttons column */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 100px; /* Type column */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 100px; /* Action column */
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 120px; /* Quantity column */
+}
+
+th:nth-child(5), td:nth-child(5) {
+    width: 150px; /* Price column */
+}
+
+th:nth-child(6), td:nth-child(6) {
+    width: 180px; /* Date column */
+}
+
+/* Make sure inputs take up the full width of their cells */
+.edit-mode {
+    width: 100%; /* Ensure inputs stretch the full width of their table cell */
+}
+
+/* Ensure the select elements do not overflow */
+.edit-mode select,
+.edit-mode input[type="number"],
+.edit-mode input[type="datetime-local"] {
+    width: 100%; /* Maintain 100% width to prevent resizing */
+    box-sizing: border-box; /* Ensure padding is accounted for within width */
+}
+
+/* Make sure inputs and selects have the same height as display elements */
+.edit-mode input,
+.edit-mode select {
+    height: 36px; /* Ensure inputs and selects maintain the same height */
+    line-height: 36px; /* Vertically center text in inputs */
+}

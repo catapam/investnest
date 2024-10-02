@@ -48,7 +48,7 @@
 .portfolio-title h1 {
     color: var(--text-primary-color);
     font-size: large;
-    margin: auto 0 !important;
+    margin: auto 15px auto 0 !important;
     padding-bottom: 0;
 }
 
@@ -102,16 +102,12 @@
     font-size: medium;
 }
 
-.portfolio-menu-collapse {
-    position: relative; /* Ensure relative positioning for absolute child elements */
-}
-
 .portfolio-menu-btn {
     position: absolute;
     top: 0; /* Align to the top */
     right: 0; /* Align to the right */
     z-index: 1000; /* Ensures the button is on top of other elements */
-    height: 16px;
+    height: 25px !important;
 }
 
 .dropdown-menu {
@@ -120,15 +116,8 @@
 }
 
 .portfolio-menu-collapse {
-    position: relative; /* Ensure relative positioning for absolute child elements */
-}
-
-.portfolio-menu-btn {
-    position: relative;
-    z-index: 1000; /* Ensures the button is on top of other elements */
-    height: 25px !important; /* Half the height of its container */
-    margin-left: -25px !important;
-    margin-bottom: 100px;
+    position: absolute; /* Ensure relative positioning for absolute child elements */
+    right: 15px;
 }
 
 /* hide arrow from portfolio header kebab button */
@@ -159,7 +148,8 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
-    max-height: 53vh;
+    max-height: max-content;
+    bottom: 15px;
     padding: 15px;
     border: var(--border);
     background-color: var(--bg-light);
@@ -178,6 +168,7 @@
     text-align: center;
     width: 32px;
     height: 32px;
+    margin: 2px !important;
 }
 
 /* Form group customization */
@@ -265,7 +256,7 @@
 }
 
 /* Color picker styling */
-#color-switch {
+.color-switch {
     margin: 5px 0 0 5px;
     width: 69px;
     height: 32px;
@@ -322,6 +313,7 @@ table .btn-cancel {
 /* Title for adding a transaction */
 #transaction-add-title {
     margin-left: 15px;
+    width: 100%;
 }
 
 /* Adjusts column width in the dashboard table */

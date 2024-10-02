@@ -27,13 +27,13 @@
 
     <div class="button-l2 d-flex justify-content-start mt-2">
         <!-- Metrics Button -->
-        <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="disabled btn btn-success btn-metrics metrics-toggle" 
+        <a href="{% url 'metrics_portfolio' portfolio.pk %}" class="btn btn-success btn-metrics metrics-toggle" 
             style="display: block;">
             Metrics
         </a>
 
         <!-- Color Picker -->
-        <input id="color-switch" name="color" type="color" class="dropdown-item edit-mode form-control" 
+        <input id="color-switch" name="color" type="color" class="color-switch dropdown-item edit-mode form-control" 
                        style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
     </div>
 </div>
@@ -83,7 +83,7 @@
 
             <!-- Color Picker -->
             <li>
-                <input id="color-switch" name="color" type="color" class="dropdown-item edit-mode form-control metrics-toggle" 
+                <input id="color-switch2" name="color" type="color" class="color-switch dropdown-item edit-mode form-control metrics-toggle" 
                        style="display: none;" value="{{ portfolio.color }}" title="Pick a Color" aria-label="Pick a color">
             </li>
         </ul>
