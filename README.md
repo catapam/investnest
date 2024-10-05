@@ -7,6 +7,33 @@ InvestNest is a full-stack web application designed to help users manage their i
 ![amiresponsive screenshot](documentation/responsive.png)
 
 # Table of Contents
+1. [Description](#description)
+2. [User Experience](#user-experience)
+3. [Agile Methodology and Planning](#agile-methodology-and-planning)
+    - [Epic 1: Project Setup and Initial Configuration](#epic-1-project-setup-and-initial-configuration)
+    - [Epic 2: User Authentication and Authorization](#epic-2-user-authentication-and-authorization)
+    - [Epic 3: Portfolio Management (Project Delivery)](#epic-3-portfolio-management-project-delivery)
+    - [Epic 4: Real-Time Data Integration (Planned for Future Enhancements)](#epic-4-real-time-data-integration-planned-for-future-enhancements)
+    - [Epic 5: Reporting and Analytics (Planned for Future Enhancements)](#epic-5-reporting-and-analytics-planned-for-future-enhancements)
+    - [Epic 6: User Notifications (Planned for Future Enhancements)](#epic-6-user-notifications-planned-for-future-enhancements)
+4. [MoSCoW Methodology](#moscow-methodology)
+5. [Sprint Length](#sprint-length)
+6. [Reviews](#reviews)
+7. [Data Structure](#data-structure)
+8. [Design](#design)
+9. [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Future Features](#future-features)
+10. [How to Use](#how-to-use)
+11. [Technology Used](#technology-used)
+12. [Deployment](#deployment)
+13. [Testing](#testing)
+14. [Manual Testing](#manual-testing)
+15. [Bugs](#bugs)
+16. [Credits](#credits)
+    - [Code](#code)
+    - [Content](#content)
+17. [Acknowledgements](#acknowledgements)
 
 # Description
 
@@ -94,7 +121,11 @@ The first three epics and their stories are essential for the project delivery, 
 
 User stories are broken down into tasks, where each task is categorized as 'Must Have,' 'Should Have,' 'Could Have,' or 'Won’t Have.' Each task is also assigned a story point weight of 1, 2, or 4, reflecting the effort required to complete it.
 
-The story point weight and MoSCoW priority of each task for the three sprints (Epics 1, 2, and 3) were carefully planned to allow flexibility in execution. 'Must Haves' do not exceed 60% of the sprint's total story points. The details for each sprint are provided below:
+The story point weight and MoSCoW priority of each task for the three sprints (Epics 1, 2, and 3) were carefully planned to allow flexibility in execution. 'Must Haves' do not exceed 60% of the sprint's total story points. 
+
+For documenting and visualization, the sprints were closed with undone tasks/stories, those are all non-'Must have' and would be moved to a future sprint. They were all place in backlog for now but kept inside the sprint for documentation purposes. 
+
+The details for each sprint are provided below:
 
 ### Sprint/Epic 1
 
@@ -535,6 +566,19 @@ To deploy the application on Heroku:
 ### Asset details view
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
 |----------|----------|---------------------|--------------------------|---------------------------|
+| General | Check layout | The page is responsive, layout consistent with rest of project, spacing, sizing and color all fit well | Passed | Passed |
+| Buttons | Hover effect | All buttons show a color change when hovered over | Passed | Passed |
+| 'All' button | Click | Redirect back to portfolio view, where all assets can be seen | Passed | Passed |
+| Asset - Edit button at asset header line | Click | Asset name becomes editable, edit button and delete are replace with save and cancel, while 'all' button is hidden | Passed | Passed |
+| Asset - name and save button | Rename | Saving asset with new name refreshes the page an shows a popup advising the asset has been updated | Passed | Passed |
+| Asset - cancel button | Click | Edit mode is cancelled and view mode is restored, no changes are made | Passed | Passed |
+| Asset - delete button | Click | Redirects to 'Confirm deletion' page | Passed | Passed |
+| Transactions content area | Layout check | Table is well aligned and sized, buttons show with good distribution through the table, all rows have their own buttons, transactions are ordered by date with newest trasanction at the top | Passed | Passed |
+| Transactions - add button | Click | Redirects to transaction form, and brings the asset name, setting it as default on the form, but still allowing change | Passed | Passed |
+| Transactions - delete button | Click | Redirects to 'Confirm deletion' page | Passed | Passed |
+| Transactions - edit button | Click | All columns for the transaction become editable, edit button and delete are replace with save and cancel, table maintain the proportions | Passed | Passed |
+| Transactions - cancel button | Click | Edit mode is cancelled and view mode is restored, no changes are made | Passed | Passed |
+| Transactions - save button | Click | All changes are made to the transaction, page refreshes updating the totals at the Portfolio header, and a popup confirms the changes were made | Passed | Passed |
 
 ### Main / Welcome
 | **Location** | **Test** | **Expected result** | **Actual result mobile** | **Actual result desktop** |
