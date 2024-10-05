@@ -8,7 +8,7 @@
 {% block dashboard_content %}
 <!-- Extra CSS block for dashboard styles -->
 {% block extra_css_dashboard %}
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" >
 {% endblock extra_css_dashboard %}
 
 <div class="container">
@@ -134,7 +134,7 @@
 
 {% block extra_js_dashboard %}
 <!-- Confirmation dialog for removing email address -->
-<script type="text/javascript">
+<script>
 (function() {
   var message = "{% translate 'Do you really want to remove the selected email address?' %}";
   var actions = document.getElementsByName('action_remove');

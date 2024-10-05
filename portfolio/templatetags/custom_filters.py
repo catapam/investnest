@@ -3,6 +3,7 @@ from django import template
 # Create an instance of the Library class to register custom template filters
 register = template.Library()
 
+
 @register.filter
 def multiply(value, arg):
     """

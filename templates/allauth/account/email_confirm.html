@@ -1,16 +1,16 @@
-{% extends "dashboard/dashboard.html" %}
+{% extends "base.html" %}
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}
     {% translate "Confirm Email Address" %}
 {% endblock title %}
 
-{% block dashboard_content %}
 <!-- Extra CSS block for dashboard styles -->
-{% block extra_css_dashboard %}
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-{% endblock extra_css_dashboard %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" >
+{% endblock extra_css %}
 
+{% block content %}
 <div class="container">
     <div class="card text-center">
         <!-- Page heading -->
@@ -55,4 +55,4 @@
     </div>
 </div>
 
-{% endblock dashboard_content %}
+{% endblock content %}

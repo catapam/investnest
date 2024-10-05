@@ -1,0 +1,31 @@
+{% extends "dashboard/dashboard.html" %}
+{% load i18n allauth account crispy_forms_tags static %}
+
+{% block title %}
+    <!-- SEO-friendly and translated page title -->
+    {% translate "Account Inactive" %}
+{% endblock title %}
+
+{% block dashboard_content %}
+<!-- Including the CSS for styling -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock extra_css_dashboard %}
+
+<!-- Main content with ARIA role for accessibility -->
+<main role="main" aria-labelledby="account-inactive-heading">
+    <div class="container">
+        <div class="text-center card">
+            <!-- Accessible heading for the page -->
+            <h1 id="account-inactive-heading">
+                {% translate "Account Inactive" %}
+            </h1>
+            
+            <!-- Descriptive text with appropriate tags for accessibility -->
+            <p>
+                {% translate "This account is inactive." %}
+            </p>
+        </div>
+    </div>
+</main>
+{% endblock dashboard_content %}

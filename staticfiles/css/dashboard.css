@@ -1,6 +1,6 @@
 /* General Styles */
 #id_password1_helptext {
-    font-size: .675em;
+    font-size: 12px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    color: var(--light-accent);
+    color: var(--text-primary-color);
     padding-bottom: 20px;
 }
 
@@ -20,6 +20,7 @@ p, a {
 .dashboard-container {
     display: flex;
     position: relative;
+    max-height: max-content;
 }
 
 /* Sidebar */
@@ -37,6 +38,27 @@ p, a {
 
 .sidebar.collapsed {
     width: 60px;
+}
+
+/* Status circle */
+.status-circle {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: auto;
+    margin-right: -15px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+/* Green status circle */
+.green {
+    background-color: #28a745; /* Bootstrap's success color (green) */
+}
+
+/* Orange status circle */
+.orange {
+    background-color: #fd7e14; /* Bootstrap's warning color (orange) */
 }
 
 /* Dashboard Content */
@@ -60,6 +82,7 @@ p, a {
 .dashboard-content .container {
     height: auto;
     padding-top: 20px;
+    height: calc(100vh - 110px);
 }
 
 .collapsed + .dashboard-content {
@@ -107,11 +130,6 @@ p, a {
 
 .menu-text i {
     max-width: 70px;
-}
-
-.disabled {
-    color: var(--bg-darker) !important;
-    font-weight: 700;
 }
 
 .sidebar.collapsed .menu-text {

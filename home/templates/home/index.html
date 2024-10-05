@@ -3,8 +3,8 @@
 
 <!-- Extra CSS block for home styles and external libraries -->
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="preload" href="{% static 'css/home.css' %}" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="{% static 'css/footer.css' %}" as="style" onload="this.rel='stylesheet'">
 
     <!-- Child templates can add their own CSS here -->
     {% block extra_css_home %}
@@ -24,5 +24,5 @@
 
 <!-- Extra JS block for home styles and external libraries -->
 {% block extra_js %}
-    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/home.js' %}" defer></script>
 {% endblock extra_js %}

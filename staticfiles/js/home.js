@@ -151,13 +151,16 @@ function initializeObservers() {
         observer.observe(section);
     });
 
-    // Observe the footer to update URL when visible
-    var footerObserver = new IntersectionObserver(updateForFooter, {
-        rootMargin: '0px 0px 0px 0px', // No margin adjustments
-        threshold: 0.1 // Trigger when 10% of the footer is visible
-    });
+    // Check if the footer exists before observing
+    var footer = document.querySelector('footer');
+    if (footer) {
+        var footerObserver = new IntersectionObserver(updateForFooter, {
+            rootMargin: '0px 0px 0px 0px', // No margin adjustments
+            threshold: 0.1 // Trigger when 10% of the footer is visible
+        });
 
-    footerObserver.observe(document.querySelector('footer'));
+        footerObserver.observe(footer);
+    }
 }
 
 /**

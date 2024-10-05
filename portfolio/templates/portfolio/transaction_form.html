@@ -22,24 +22,22 @@
             <div class="form-group row text-center">
                 <!-- Buy/Sell Switch -->
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <label class="form-check-label" for="actionSwitch">Buy</label>
+                    <span>Buy</span>
                     <div class="custom-control form-switch d-inline-block mx-2">
-                        <input type="checkbox" class="form-check-input" role="switch" id="actionSwitch" name="actionSwitch" value="sell">
-                        <label class="form-check-label" for="actionSwitch"></label>
+                        <input type="checkbox" class="form-check-input" role="switch" id="actionSwitch" name="actionSwitch" value="sell" aria-label="Buy or Sell">
                     </div>
-                    <label class="form-check-label" for="actionSwitch">Sell</label>
+                    <span>Sell</span>
                     <!-- Hidden field for default action value -->
                     <input type="hidden" id="actionHidden" name="action" value="buy">
                 </div>
 
                 <!-- Long/Short Switch -->
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <label class="form-check-label" for="typeSwitch">Long</label>
+                    <span>Long</span>
                     <div class="custom-control form-switch d-inline-block mx-2">
-                        <input type="checkbox" class="form-check-input" role="switch" id="typeSwitch" name="typeSwitch" value="short">
-                        <label class="form-check-label" for="typeSwitch"></label>
+                        <input type="checkbox" class="form-check-input" role="switch" id="typeSwitch" name="typeSwitch" value="short" aria-label="Long or Short">
                     </div>
-                    <label class="form-check-label" for="typeSwitch">Short</label>
+                    <span>Short</span>
                     <!-- Hidden field for default type value -->
                     <input type="hidden" id="typeHidden" name="type" value="long">
                 </div>
@@ -70,4 +68,3 @@
 {% block extra_js_portfolio_header %}
 <script src="{% static 'js/transaction.js' %}" defer></script>
 {% endblock extra_js_portfolio_header %}
-

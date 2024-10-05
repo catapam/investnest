@@ -2,9 +2,10 @@ from django.contrib.admin import AdminSite
 from django.contrib import admin
 from django.apps import apps
 from home.models import (
-    HeroSection, AboutSection, ServiceCard, ServicesSection, 
+    HeroSection, AboutSection, ServiceCard, ServicesSection,
     PricingPlan, PricingSection, ServiceOrder, PricingOrder, Contact
 )
+
 
 # Custom AdminSite class to control the admin dashboard appearance and behavior
 class MyAdminSite(AdminSite):
@@ -24,15 +25,15 @@ class MyAdminSite(AdminSite):
 
         # Define the order in which the models should be displayed
         model_order = [
-            'Hero sections', 'About sections', 'Service cards', 
-            'Service orders', 'Services sections', 'Pricing plans', 
+            'Hero sections', 'About sections', 'Service cards',
+            'Service orders', 'Services sections', 'Pricing plans',
             'Pricing orders', 'Pricing sections', 'Contact'
         ]
 
         # Sort the models within each app by the defined order
         for app in app_dict.values():
             app['models'].sort(
-                key=lambda x: model_order.index(x['name']) 
+                key=lambda x: model_order.index(x['name'])
                 if x['name'] in model_order else len(model_order)
             )
 
@@ -64,7 +65,13 @@ class SingletonModelAdmin(admin.ModelAdmin):
             return self.model.objects.exists()
         return True
 
-    def change_view(self, request, object_id=None, form_url='', extra_context=None):
+    def change_view(
+        self,
+        request,
+        object_id=None,
+        form_url='',
+        extra_context=None
+    ):
         """
         Redirects to the edit page of the existing singleton instance.
         """

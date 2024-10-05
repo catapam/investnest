@@ -1,7 +1,16 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from .models import HeroSection, AboutSection, ServicesSection, PricingSection, ServiceOrder, PricingOrder, Contact
+from .models import (
+    HeroSection,
+    AboutSection,
+    ServicesSection,
+    PricingSection,
+    ServiceOrder,
+    PricingOrder,
+    Contact
+)
 from .forms import ContactForm
+
 
 # Class-based view for the Home page (Index)
 class Index(TemplateView):
@@ -11,7 +20,7 @@ class Index(TemplateView):
     # Define the context data passed to the template
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+
         # Load the Hero and About sections (Singleton models)
         context['hero_section'] = HeroSection.load()
         context['about_section'] = AboutSection.load()
@@ -46,17 +55,22 @@ class Index(TemplateView):
     def post(self, request, *args, **kwargs):
         # Instantiate the contact form with POST data
         contact_form = ContactForm(request.POST, request=request)
-        
+
         # Check if the form is valid
         if contact_form.is_valid():
-            contact_form.save()  # Save the valid form
-            return redirect(f'{self.request.path}?submitted=True')  # Redirect to prevent duplicate submissions
+            # Save the valid form
+            contact_form.save()
+            # Redirect to prevent duplicate submissions
+            return redirect(f'{self.request.path}?submitted=True')
 
         # If the form is invalid, re-render the page with errors
         context = self.get_context_data()
-        context['contact_form'] = contact_form  # Return form with validation errors
-        context['form_error'] = True  # Flag to indicate a form error occurred
+        # Return form with validation errors
+        context['contact_form'] = contact_form
+        # Flag to indicate a form error occurred
+        context['form_error'] = True
         return self.render_to_response(context)
+
 
 # Class-based view for the Wireframes page
 class Wireframes(TemplateView):

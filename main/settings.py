@@ -18,46 +18,6 @@ import logging.config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Allows logging of errors for better troubleshooting and support
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'ERROR',  
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/django_errors.log'),  
-            'formatter': 'verbose',
-        },
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file', 'console'],
-            'level': 'ERROR', 
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-    },
-}
-
 if os.path.exists('env.py'):
     import env
 
@@ -79,7 +39,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -125,11 +85,11 @@ MIDDLEWARE = [
 
     # Static file for heroku setup
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    
+
     # allauth requires:
     "allauth.account.middleware.AccountMiddleware",
 
-    #custom middleware:
+    # custom middleware:
     'accounts.middleware.LoginRequiredMiddleware',
 ]
 
@@ -156,7 +116,7 @@ TEMPLATES = [
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
 
-                #Custom context processor for dashboard intra-menu:
+                # Custom context processor for dashboard intra-menu:
                 'dashboard.context_processors.IntraMenuProcessor',
             ],
             'builtins': [
@@ -197,17 +157,27 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        )},
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "MinimumLengthValidator"
+        )
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "CommonPasswordValidator"
+        )
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "NumericPasswordValidator"
+        )
     },
 ]
 

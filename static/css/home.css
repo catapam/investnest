@@ -2,8 +2,8 @@
 #hero {
     width: 100%;
     min-height: 300px;
-    background-size: cover; 
-    background-position: center; 
+    background-size: cover;
+    background-position: center;
     color: white;
 }
 
@@ -29,11 +29,13 @@
 
 /* Services Section */
 #services .container {
-    min-height: 100%; /* Ensure the container stretches to fit the cards */
+    min-height: 100%;
+    /* Ensure the container stretches to fit the cards */
 }
 
 #services .row {
-    align-items: stretch; /* Ensure all cards stretch to the same height */
+    align-items: stretch;
+    /* Ensure all cards stretch to the same height */
 }
 
 /* Card Flip Animation */
@@ -52,7 +54,7 @@
     transform-style: preserve-3d;
 }
 
-.flip-card-front, 
+.flip-card-front,
 .flip-card-back {
     position: absolute;
     width: 100%;

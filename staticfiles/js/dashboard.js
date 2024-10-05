@@ -5,7 +5,6 @@ function handleSidebarToggle() {
     var sidebar = document.getElementById('sidebar');
     var toggleBtn = document.getElementById('toggle-btn');
     var mainContent = document.getElementById('dashboard-content');
-    var currentPath = window.location.pathname;
 
     // Toggle the 'collapsed' class on the sidebar and main content
     sidebar.classList.toggle('collapsed');
@@ -16,21 +15,42 @@ function handleSidebarToggle() {
     toggleBtn.querySelector('i').classList.toggle('fa-arrow-right');
 
     // Check if screen width is smaller than 768px
-    if (window.innerWidth < 768) {
-        // Check if the path starts with /portfolio or /metrics
-        if (currentPath.startsWith('/portfolio') || currentPath.startsWith('/metrics')) {
-            var portfolioMenuCollapse = document.querySelector('.portfolio-menu-collapse');
-            var portfolioMenuWide = document.querySelector('.portfolio-menu-wide');
+    colapsableMenuPortfolio();
+}
 
+/**
+ * Toggles the visibility of the portfolio menu on smaller screens (< 768px).
+ * Hides or shows the portfolio menu based on the current path and the sidebar's collapsed state.
+ */
+function colapsableMenuPortfolio() {
+    var currentPath = window.location.pathname;
+
+    // Regular expressions to check if the path starts with /portfolio/ or /metrics/ followed by at least one number
+    var portfolioRegex = /^\/portfolio\/\d+(\/.*)?/;
+    var metricsRegex = /^\/metrics\/\d+(\/.*)?/;
+
+    // If the current path matches either regex
+    if (portfolioRegex.test(currentPath) || metricsRegex.test(currentPath)) {
+        // Select the portfolio menu elements
+        var portfolioMenuCollapse = document.querySelector('.portfolio-menu-collapse');
+        var portfolioMenuWide = document.querySelector('.portfolio-menu-wide');
+        var sidebar = document.getElementById('sidebar'); // Ensure the sidebar element is selected
+
+        // Check if screen width is smaller than 768px
+        if (window.innerWidth < 768) {
+            // Check the sidebar's collapsed state and adjust the visibility of portfolio menus accordingly
             if (sidebar.classList.contains('collapsed')) {
-                // Hide the portfolio menu
-                portfolioMenuCollapse.style.display = 'none';
-                portfolioMenuWide.style.display = 'block';
-            } else {
-                // Show the portfolio menu
+                // When sidebar is collapsed, show the collapsed portfolio menu and hide the wide menu
                 portfolioMenuCollapse.style.display = 'block';
                 portfolioMenuWide.style.display = 'none';
+            } else {
+                // When sidebar is expanded, hide the collapsed portfolio menu and show the wide menu
+                portfolioMenuCollapse.style.display = 'none';
+                portfolioMenuWide.style.display = 'none';
             }
+        } else {
+            portfolioMenuCollapse.style.display = 'none';
+            portfolioMenuWide.style.display = 'block';
         }
     }
 }
@@ -55,6 +75,8 @@ function handleScreenResize() {
         toggleBtn.querySelector('i').classList.remove('fa-arrow-right');
         toggleBtn.querySelector('i').classList.add('fa-arrow-left');
     }
+
+    colapsableMenuPortfolio();
 }
 
 /**
@@ -120,7 +142,7 @@ function scrollActiveItemIntoView(item) {
 /**
  * Updates the visibility of scroll buttons and applies the 'faded' class to items that are partially visible.
  */
-function updateScrollButtonsAndFadedItems() {
+function updateScrollButtons() {
     var optionMenu = document.querySelector('.option-menu');
     var scrollButtonLeft = document.querySelector('.scroll-button-left');
     var scrollButtonRight = document.querySelector('.scroll-button-right');
@@ -133,17 +155,6 @@ function updateScrollButtonsAndFadedItems() {
 
     // Show or hide the right scroll button based on the remaining scrollable content
     scrollButtonRight.style.display = scrollLeft < maxScrollLeft - 1 ? 'block' : 'none';
-
-    // Add or remove the 'faded' class to items based on their visibility
-    var menuItems = optionMenu.querySelectorAll('.nav-item');
-    menuItems.forEach(function (item, index) {
-        var itemLeft = item.offsetLeft - scrollLeft;
-        var itemRight = itemLeft + item.offsetWidth;
-
-        // Check if the item is partially visible and apply the 'faded' class accordingly
-        var isPartiallyVisible = (itemLeft < 0 && index !== 0) || (itemRight > visibleWidth && index !== menuItems.length - 1);
-        item.classList.toggle('faded', isPartiallyVisible);
-    });
 }
 
 /**
@@ -153,7 +164,7 @@ function scrollMenuRight() {
     var optionMenu = document.querySelector('.option-menu');
     var menuWidth = optionMenu.clientWidth;
     optionMenu.scrollBy({ left: menuWidth / 2, behavior: 'smooth' });
-    setTimeout(updateScrollButtonsAndFadedItems, 300); // Update buttons and faded items after scrolling
+    setTimeout(updateScrollButtons, 300); // Update buttons and faded items after scrolling
 }
 
 /**
@@ -163,7 +174,7 @@ function scrollMenuLeft() {
     var optionMenu = document.querySelector('.option-menu');
     var menuWidth = optionMenu.clientWidth;
     optionMenu.scrollBy({ left: -menuWidth / 2, behavior: 'smooth' });
-    setTimeout(updateScrollButtonsAndFadedItems, 300); // Update buttons and faded items after scrolling
+    setTimeout(updateScrollButtons, 300); // Update buttons and faded items after scrolling
 }
 
 /**
@@ -175,6 +186,9 @@ function initializeEventListeners() {
     var scrollButtonRight = document.querySelector('.scroll-button-right');
     var optionMenuWrapper = document.querySelector('.option-menu-wrapper');
 
+    // Screenresize
+    window.addEventListener('resize', handleScreenResize);
+
     // Attach click event listener to the sidebar toggle button
     toggleBtn.addEventListener('click', handleSidebarToggle);
 
@@ -183,11 +197,11 @@ function initializeEventListeners() {
     scrollButtonLeft.addEventListener('click', scrollMenuLeft);
 
     // Update scroll buttons and faded items on scroll and window resize
-    document.querySelector('.option-menu').addEventListener('scroll', updateScrollButtonsAndFadedItems);
-    window.addEventListener('resize', updateScrollButtonsAndFadedItems);
+    document.querySelector('.option-menu').addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('resize', updateScrollButtons);
 
     // Update scroll buttons and faded items when clicking inside the option menu wrapper
-    optionMenuWrapper.addEventListener('click', updateScrollButtonsAndFadedItems);
+    optionMenuWrapper.addEventListener('click', updateScrollButtons);
 }
 
 // Execute the main initialization functions after DOM content is fully loaded
@@ -196,5 +210,5 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeEventListeners();
     activateDashboardMenu();
     activateInnerDashboardMenu();
-    updateScrollButtonsAndFadedItems();
+    updateScrollButtons();
 });

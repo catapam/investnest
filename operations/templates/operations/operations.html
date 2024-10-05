@@ -2,8 +2,20 @@
 {% load i18n allauth account crispy_forms_tags static %}
 
 {% block title %}Operations{% endblock title %}
+
+<!-- Including CSS for dashboard and operations -->
+{% block extra_css_dashboard %}
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+        
+    {% block extra_css_operations %}
+    {% endblock extra_css_operations %}
+{% endblock extra_css_dashboard %}
+
 {% block dashboard_content %}
-<div class="container">
-    <h1>Operations test</h1>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="text-center">
+        <h1>Operations</h1>
+        <p>This area will be designated for staff access operations in a future version of this code. Stay tuned!</p>
+    </div>
 </div>
 {% endblock dashboard_content %}

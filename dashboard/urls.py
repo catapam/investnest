@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DashboardView,RedirectDashboardView
+from .views import DashboardView, RedirectDashboardView
 
 # Define URL patterns for the dashboard application
 urlpatterns = [

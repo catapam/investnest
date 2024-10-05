@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 
+
 # Class-based view for handling 401 Unauthorized error
 class Custom401View(TemplateView):
     """
@@ -10,7 +11,8 @@ class Custom401View(TemplateView):
 
     def get(self, request, *args, **kwargs):
         """
-        Handles GET requests and returns the 401 status with the custom template.
+        Handles GET requests and returns the 401 status with the
+        custom template.
         """
         response = super().get(request, *args, **kwargs)
         response.status_code = 401
@@ -27,7 +29,8 @@ class Custom404View(TemplateView):
 
     def get(self, request, *args, **kwargs):
         """
-        Handles GET requests and returns the 404 status with the custom template.
+        Handles GET requests and returns the 404 status with the
+        custom template.
         """
         response = super().get(request, *args, **kwargs)
         response.status_code = 404

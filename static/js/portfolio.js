@@ -8,11 +8,11 @@ function togglePortfolioEditMode(portfolioId, editMode = true) {
     var row = document.getElementById('portfolio-header');
     var displayModeElements = row.querySelectorAll('.display-mode');
     var editModeElements = row.querySelectorAll('.edit-mode');
-    var editButton = row.querySelector('.btn-edit');
-    var deleteButton = row.querySelector('.btn-delete');
-    var saveButton = row.querySelector('.btn-save');
-    var cancelButton = row.querySelector('.btn-cancel');
-    var metricsButton = row.querySelector('.btn-metrics');
+    var editButton = row.querySelector('.edit-toggle');
+    var deleteButton = row.querySelector('.delete-toggle');
+    var saveButton = row.querySelector('.save-toggle');
+    var cancelButton = row.querySelector('.cancel-toggle');
+    var metricsButton = row.querySelector('.metrics-toggle');
 
     // Toggle between edit and display modes
     if (editMode) {
