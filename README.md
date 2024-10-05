@@ -140,8 +140,6 @@ The details for each sprint are provided below:
 - Total 'Must Have': 34
 - Must Have proportion: 58.62%
 
-<a href="https://github.com/users/catapam/projects/2/insights/4" target="_blank">Sprint 1 story point weight graph</a>
-
 ### Sprint/Epic 2
 
 **Story Point / MoSCoW** | **Must Have** | **Should Have** | **Could Have**
@@ -155,8 +153,6 @@ The details for each sprint are provided below:
 - Total 'Must Have': 22
 - Must Have proportion: 38.59%
 
-<a href="https://github.com/users/catapam/projects/2/insights/5" target="_blank">Sprint 2 story point weight graph</a>
-
 ### Sprint/Epic 3
 
 **Story Point / MoSCoW** | **Must Have** | **Should Have** | **Could Have**
@@ -169,8 +165,6 @@ The details for each sprint are provided below:
 - Total story points: 83
 - Total 'Must Have': 32
 - Must Have proportion: 38.55%
-
-<a href="https://github.com/users/catapam/projects/2/insights/6" target="_blank">Sprint 3 story point weight graph</a>
 
 ## Sprint Length
 
@@ -209,9 +203,10 @@ Key design principles include:
 
 ## Wireframes
 
-* Wireframes were created in HTML during the branding and theme planning, it can be checked here:
+* Wireframes were created in Canva during the branding and theme planning, it can be checked here:
 
-<a href="https://investnest-b2db9f69475b.herokuapp.com/wireframes" target="_blank">Live wireframes for front-end site</a>
+![Wireframe home](documentation/wireframe_1.png)
+![Wireframe Portfolio pages](documentation/wireframe_2.png)
 
 # Features
 
@@ -623,7 +618,7 @@ Two youtube videos were of grand relevance as guidance for coding:
 
 ## Content
 
-* ChatGPT: For text reviews and copywriting assistance.
+* ChatGPT: For text reviews, home page images and copywriting assistance.
 
 # Acknowledgements
 
